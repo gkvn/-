@@ -192,10 +192,10 @@ namespace AVG {
         Debug.LogError($"无法开始章节: {chapterId}");
         return false;
       }
-      _KillAvgUiFadeTween();
       if (_HasFadeTarget()) {
-        _RestoreAvgUiCanvasInteraction();
-        _GetAvgUiFadeAnim().FadeIn(() => _UpdateViews());
+        _PrepareAvgUiCanvasForContentBeforeFadeIn();
+        _UpdateViews();
+        _GetAvgUiFadeAnim().FadeIn();
       } else {
         _ApplyAvgUiShownImmediate();
         _UpdateViews();
@@ -263,18 +263,16 @@ namespace AVG {
         avgMode = AvgMode.DEFAULT;
 
         _EnsureAvgUiCanvasGroup();
-        _KillAvgUiFadeTween();
         if (_HasFadeTarget()) {
-          _RestoreAvgUiCanvasInteraction();
-          // 看 log 时主 AVG 通常仍是全不透明；FadeIn 会先强行 alpha=0 再淡入，会闪一下
+          // 全不透明：直接换内容，不必淡入
           if (_IsAvgUiCanvasAlreadyOpaque()) {
             _UpdateViews();
             _logView.gameObject.SetActive(false);
           } else {
-            _GetAvgUiFadeAnim().FadeIn(() => {
-              _UpdateViews();
-              _logView.gameObject.SetActive(false);
-            });
+            _PrepareAvgUiCanvasForContentBeforeFadeIn();
+            _UpdateViews();
+            _logView.gameObject.SetActive(false);
+            _GetAvgUiFadeAnim().FadeIn();
           }
         } else {
           _ApplyAvgUiShownImmediate();
@@ -418,6 +416,21 @@ namespace AVG {
         return false;
       }
       return _avgUiCanvasGroup.alpha >= 0.99f;
+    }
+
+    /// <summary>
+    /// 淡入前先刷新对白/立绘时调用：保证根激活、alpha=0、可交互，避免「先淡入再 _UpdateViews」导致淡入过程中画面跳变。
+    /// </summary>
+    private void _PrepareAvgUiCanvasForContentBeforeFadeIn() {
+      _KillAvgUiFadeTween();
+      if (_avgUiCanvasGroup == null) {
+        return;
+      }
+      if (_avgUiRoot != null) {
+        _avgUiRoot.SetActive(true);
+      }
+      _avgUiCanvasGroup.alpha = 0f;
+      _RestoreAvgUiCanvasInteraction();
     }
 
     private FadeAnimation _GetAvgUiFadeAnim() {

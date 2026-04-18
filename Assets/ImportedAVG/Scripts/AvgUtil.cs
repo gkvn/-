@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 namespace AVG {
   public static class AvgUtil {
     public const float DEFAULT_TYPING_SPEED = 0.05f;
-    public const float DEFAULT_FAST_WAIT_TIME = 0.4f;
+    public const float DEFAULT_FAST_WAIT_TIME = 0.05f;
     public const float DEFAULT_AUTO_WAIT_TIME = 0.5f;
     public const int LOG_LIMIT_CNT = 50;
     public const float DEFAULT_FADE_TIME = 0.2f;
