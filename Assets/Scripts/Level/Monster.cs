@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour, IResettable
 {
     [Header("Combo Sequence")]
@@ -22,6 +24,7 @@ public class Monster : MonoBehaviour, IResettable
     private List<GameObject> comboIndicators = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private NavMeshAgent agent;
     private Transform playerTransform;
     private bool isChasing;
     private Vector3 startPosition;
@@ -30,12 +33,27 @@ public class Monster : MonoBehaviour, IResettable
     {
         startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.freezeRotation = true;
+
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.isTrigger = false;
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = chaseSpeed;
+        agent.acceleration = 8f;
+        agent.stoppingDistance = 0.1f;
 
         var player = FindObjectOfType<PlayerController>();
         if (player != null) playerTransform = player.transform;
+
+        Debug.Log($"[Monster] Start — isOnNavMesh={agent.isOnNavMesh}, pos={transform.position}");
+        if (!agent.isOnNavMesh)
+            Debug.LogWarning("[Monster] 不在 NavMesh 上！请运行 Tools → 创建并烘焙 NavMesh 2D");
 
         CreateComboDisplay();
         UpdateComboDisplay();
@@ -52,27 +70,34 @@ public class Monster : MonoBehaviour, IResettable
             pm.OnPhaseChanged -= OnPhaseChanged;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (playerTransform == null || rb == null) return;
+        if (playerTransform == null || agent == null || !agent.isOnNavMesh) return;
 
         var pm = LevelPhaseManager.Instance;
-        if (pm == null || pm.CurrentPhase != LevelPhase.Dark) return;
+        bool shouldChase = pm != null && pm.CurrentPhase == LevelPhase.Dark;
 
-        float dist = Vector2.Distance(rb.position, (Vector2)playerTransform.position);
+        if (!shouldChase)
+        {
+            if (agent.hasPath) agent.ResetPath();
+            agent.isStopped = true;
+            return;
+        }
+
+        agent.isStopped = false;
+        float dist = Vector2.Distance(transform.position, playerTransform.position);
         isChasing = dist <= detectRange;
 
         if (isChasing)
-        {
-            Vector2 dir = ((Vector2)playerTransform.position - rb.position).normalized;
-            rb.MovePosition(rb.position + dir * chaseSpeed * Time.fixedDeltaTime);
-        }
+            agent.SetDestination(playerTransform.position);
+        else if (agent.hasPath)
+            agent.ResetPath();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!other.CompareTag("Player")) return;
-        var player = other.GetComponent<PlayerController>();
+        if (!collision.collider.CompareTag("Player")) return;
+        var player = collision.collider.GetComponent<PlayerController>();
         if (player != null)
             player.Die();
     }
@@ -102,6 +127,8 @@ public class Monster : MonoBehaviour, IResettable
 
         if (comboIndex >= requiredCombo.Length) return;
 
+        FlashRed();
+
         if (requiredCombo[comboIndex] == type)
         {
             comboIndex++;
@@ -117,7 +144,6 @@ public class Monster : MonoBehaviour, IResettable
         {
             comboIndex = 0;
             Debug.Log("[Monster] Wrong input! Combo reset.");
-            FlashRed();
         }
 
         UpdateComboDisplay();
@@ -126,12 +152,14 @@ public class Monster : MonoBehaviour, IResettable
     private void Defeat()
     {
         Debug.Log("[Monster] Defeated!");
+        if (agent != null && agent.isOnNavMesh) agent.ResetPath();
         gameObject.SetActive(false);
     }
 
     private void FlashRed()
     {
         if (spriteRenderer == null) return;
+        CancelInvoke(nameof(ResetColor));
         spriteRenderer.color = Color.red;
         Invoke(nameof(ResetColor), 0.15f);
     }
@@ -192,7 +220,17 @@ public class Monster : MonoBehaviour, IResettable
     public void ResetState()
     {
         gameObject.SetActive(true);
-        transform.position = startPosition;
+
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.ResetPath();
+            agent.Warp(startPosition);
+        }
+        else
+        {
+            transform.position = startPosition;
+        }
+
         if (rb != null) rb.velocity = Vector2.zero;
         comboIndex = 0;
         isChasing = false;
