@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private float interactRange = 1.2f;
+    [SerializeField] private Vector2 promptOffset = new Vector2(0, 1.2f);
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 facingDirection = Vector2.down;
     private float shootTimer;
     private bool isDead;
+    private GameObject interactPrompt;
 
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int ShootTrigger = Animator.StringToHash("isShooting");
@@ -32,6 +34,25 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb.gravityScale = 0;
         rb.freezeRotation = true;
+        CreateInteractPrompt();
+    }
+
+    private void CreateInteractPrompt()
+    {
+        interactPrompt = new GameObject("InteractPrompt");
+        interactPrompt.transform.SetParent(transform);
+        interactPrompt.transform.localPosition = promptOffset;
+        interactPrompt.transform.localScale = Vector3.one * 0.4f;
+
+        var sr = interactPrompt.AddComponent<SpriteRenderer>();
+        sr.color = Color.white;
+        sr.sortingOrder = 20;
+
+        var playerSR = GetComponent<SpriteRenderer>();
+        if (playerSR != null && playerSR.sprite != null)
+            sr.sprite = playerSR.sprite;
+
+        interactPrompt.SetActive(false);
     }
 
     private void Update()
@@ -39,6 +60,7 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         HandleMovementInput();
         HandleShoot();
+        UpdateInteractPrompt();
         HandleInteract();
         shootTimer -= Time.deltaTime;
     }
@@ -83,13 +105,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleInteract()
+    private IInteractable FindNearbyInteractable()
     {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-
-        if (animator != null)
-            animator.SetTrigger(InteractTrigger);
-
         var hits = Physics2D.OverlapCircleAll(
             (Vector2)transform.position + facingDirection * 0.5f,
             interactRange);
@@ -98,16 +115,50 @@ public class PlayerController : MonoBehaviour
         {
             var interactable = hit.GetComponent<IInteractable>();
             if (interactable != null)
-            {
-                interactable.Interact(this);
-                break;
-            }
+                return interactable;
         }
+        return null;
+    }
+
+    private void UpdateInteractPrompt()
+    {
+        bool canInteract = FindNearbyInteractable() != null;
+        if (interactPrompt != null && interactPrompt.activeSelf != canInteract)
+            interactPrompt.SetActive(canInteract);
+    }
+
+    private void HandleInteract()
+    {
+        if (!Input.GetKeyDown(KeyCode.E)) return;
+
+        if (animator != null)
+            animator.SetTrigger(InteractTrigger);
+
+        var target = FindNearbyInteractable();
+        if (target != null)
+            target.Interact(this);
+    }
+
+    private void Start()
+    {
+        var col = GetComponent<Collider2D>();
+        Debug.Log($"[Player] Start — tag={gameObject.tag}, collider={col != null}, isTrigger={col?.isTrigger}, bounds={col?.bounds}, rb={rb != null}");
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log($"[Player] OnTriggerEnter2D — other={other.name}, otherIsTrigger={other.isTrigger}");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"[Player] OnCollisionEnter2D — other={collision.collider.name}");
     }
 
     public void Die()
     {
         if (isDead) return;
+        Debug.Log("[Player] Die() called!");
         isDead = true;
         rb.velocity = Vector2.zero;
         Invoke(nameof(Respawn), 0.5f);
@@ -115,6 +166,7 @@ public class PlayerController : MonoBehaviour
 
     public void Respawn()
     {
+        Debug.Log("[Player] Respawn() called!");
         isDead = false;
         var spawn = FindObjectOfType<SpawnPoint>();
         if (spawn != null)
