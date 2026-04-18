@@ -29,8 +29,12 @@ public class LevelUI : MonoBehaviour
 
     private void UpdatePhaseText(LevelPhase phase)
     {
-        if (phaseText != null)
-            phaseText.text = phase == LevelPhase.Light ? "阶段一：亮灯探索" : "阶段二：黑灯挑战";
+        if (phaseText == null) return;
+        var lm = LanguageManager.Instance;
+        if (phase == LevelPhase.Light)
+            phaseText.text = lm != null ? lm.Pick("阶段一：亮灯探索", "Phase 1: Lights On") : "阶段一：亮灯探索";
+        else
+            phaseText.text = lm != null ? lm.Pick("阶段二：黑灯挑战", "Phase 2: Lights Off") : "阶段二：黑灯挑战";
     }
 
     public void ShowLevelComplete()

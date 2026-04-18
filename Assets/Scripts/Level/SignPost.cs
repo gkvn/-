@@ -7,9 +7,12 @@ public class SignPost : MonoBehaviour, IInteractable, IResettable
     [Header("显示内容")]
     [Tooltip("弹出界面的背景贴图")]
     [SerializeField] private Sprite popupBackground;
-    [Tooltip("显示的文字内容")]
+    [Tooltip("中文文字内容")]
     [TextArea(2, 5)]
-    [SerializeField] private string displayText = "路牌内容";
+    [SerializeField] private string displayTextCN = "路牌内容";
+    [Tooltip("英文文字内容")]
+    [TextArea(2, 5)]
+    [SerializeField] private string displayTextEN = "Sign Content";
     [Tooltip("文字大小（世界空间像素）")]
     [SerializeField] private float fontSize = 28f;
     [Tooltip("文字颜色")]
@@ -107,7 +110,8 @@ public class SignPost : MonoBehaviour, IInteractable, IResettable
         textGo.transform.localPosition = new Vector3(0, 0, -0.01f);
 
         var mesh = textGo.AddComponent<TextMesh>();
-        mesh.text = displayText;
+        var lm = LanguageManager.Instance;
+        mesh.text = lm != null ? lm.Pick(displayTextCN, displayTextEN) : displayTextCN;
         mesh.fontSize = 100;
         mesh.characterSize = fontSize / 100f;
         mesh.anchor = TextAnchor.MiddleCenter;

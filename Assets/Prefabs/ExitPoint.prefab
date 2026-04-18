@@ -125,7 +125,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.92, y: 0.92}
+    oldSize: {x: 0.23, y: 0.23}
     newSize: {x: 0.92, y: 0.92}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,6 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea91a9e9646c1024987f489fb28094e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victorySpriteA: {fileID: 21300000, guid: 08e769f3484005243aa6a82a4e3d1813, type: 3}
+  victorySpriteB: {fileID: 21300000, guid: 6d3a89b1719a8be40846e44c3cfad726, type: 3}
+  victoryOrbitRadius: 0.8
+  victoryDuration: 3
+  victoryZoomSize: 1
 --- !u!114 &594681814893848168
 MonoBehaviour:
   m_ObjectHideFlags: 0
