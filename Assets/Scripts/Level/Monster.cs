@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour, IResettable
 {
     [Header("Combo Sequence")]
@@ -18,27 +20,56 @@ public class Monster : MonoBehaviour, IResettable
     [Tooltip("追踪移动速度")]
     [SerializeField] private float chaseSpeed = 2f;
 
+    [Header("Health Bar")]
+    [Tooltip("血条相对怪物的偏移位置")]
+    [SerializeField] private Vector2 healthBarOffset = new Vector2(0, 1.4f);
+    [Tooltip("血条宽度")]
+    [SerializeField] private float healthBarWidth = 1.2f;
+    [Tooltip("血条高度")]
+    [SerializeField] private float healthBarHeight = 0.15f;
+
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private NavMeshAgent agent;
     private Transform playerTransform;
     private bool isChasing;
     private Vector3 startPosition;
+
+    private GameObject healthBarBg;
+    private GameObject healthBarFill;
 
     private void Start()
     {
         startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.freezeRotation = true;
+
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.isTrigger = false;
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = chaseSpeed;
+        agent.acceleration = 8f;
+        agent.stoppingDistance = 0.1f;
 
         var player = FindObjectOfType<PlayerController>();
         if (player != null) playerTransform = player.transform;
 
+        Debug.Log($"[Monster] Start — isOnNavMesh={agent.isOnNavMesh}, pos={transform.position}");
+        if (!agent.isOnNavMesh)
+            Debug.LogWarning("[Monster] 不在 NavMesh 上！请运行 Tools → 创建并烘焙 NavMesh 2D");
+
         CreateComboDisplay();
         UpdateComboDisplay();
+        CreateHealthBar();
+        UpdateHealthBar();
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)
@@ -52,27 +83,34 @@ public class Monster : MonoBehaviour, IResettable
             pm.OnPhaseChanged -= OnPhaseChanged;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (playerTransform == null || rb == null) return;
+        if (playerTransform == null || agent == null || !agent.isOnNavMesh) return;
 
         var pm = LevelPhaseManager.Instance;
-        if (pm == null || pm.CurrentPhase != LevelPhase.Dark) return;
+        bool shouldChase = pm != null && pm.CurrentPhase == LevelPhase.Dark;
 
-        float dist = Vector2.Distance(rb.position, (Vector2)playerTransform.position);
+        if (!shouldChase)
+        {
+            if (agent.hasPath) agent.ResetPath();
+            agent.isStopped = true;
+            return;
+        }
+
+        agent.isStopped = false;
+        float dist = Vector2.Distance(transform.position, playerTransform.position);
         isChasing = dist <= detectRange;
 
         if (isChasing)
-        {
-            Vector2 dir = ((Vector2)playerTransform.position - rb.position).normalized;
-            rb.MovePosition(rb.position + dir * chaseSpeed * Time.fixedDeltaTime);
-        }
+            agent.SetDestination(playerTransform.position);
+        else if (agent.hasPath)
+            agent.ResetPath();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!other.CompareTag("Player")) return;
-        var player = other.GetComponent<PlayerController>();
+        if (!collision.collider.CompareTag("Player")) return;
+        var player = collision.collider.GetComponent<PlayerController>();
         if (player != null)
             player.Die();
     }
@@ -83,6 +121,7 @@ public class Monster : MonoBehaviour, IResettable
     {
         bool isDark = phase == LevelPhase.Dark;
         SetComboDisplayVisible(!isDark);
+        SetHealthBarVisible(isDark);
     }
 
     private void SetComboDisplayVisible(bool visible)
@@ -95,43 +134,50 @@ public class Monster : MonoBehaviour, IResettable
 
     // ── Combo system ──
 
-    public void OnBulletHit(BulletType type)
+    public bool OnBulletHit(BulletType type)
     {
         var pm = LevelPhaseManager.Instance;
-        if (pm != null && pm.CurrentPhase == LevelPhase.Light) return;
+        if (pm != null && pm.CurrentPhase == LevelPhase.Light) return false;
 
-        if (comboIndex >= requiredCombo.Length) return;
+        if (comboIndex >= requiredCombo.Length) return false;
 
-        if (requiredCombo[comboIndex] == type)
+        FlashRed();
+
+        bool correct = requiredCombo[comboIndex] == type;
+        if (correct)
         {
             comboIndex++;
             Debug.Log($"[Monster] Correct! {comboIndex}/{requiredCombo.Length}");
+            UpdateHealthBar();
 
             if (comboIndex >= requiredCombo.Length)
             {
                 Defeat();
-                return;
+                return true;
             }
         }
         else
         {
             comboIndex = 0;
             Debug.Log("[Monster] Wrong input! Combo reset.");
-            FlashRed();
+            UpdateHealthBar();
         }
 
         UpdateComboDisplay();
+        return correct;
     }
 
     private void Defeat()
     {
         Debug.Log("[Monster] Defeated!");
+        if (agent != null && agent.isOnNavMesh) agent.ResetPath();
         gameObject.SetActive(false);
     }
 
     private void FlashRed()
     {
         if (spriteRenderer == null) return;
+        CancelInvoke(nameof(ResetColor));
         spriteRenderer.color = Color.red;
         Invoke(nameof(ResetColor), 0.15f);
     }
@@ -140,6 +186,61 @@ public class Monster : MonoBehaviour, IResettable
     {
         if (spriteRenderer != null)
             spriteRenderer.color = Color.magenta;
+    }
+
+    // ── Health bar ──
+
+    private void CreateHealthBar()
+    {
+        Sprite spr = RuntimeSprite.Get();
+
+        healthBarBg = new GameObject("HealthBarBg");
+        healthBarBg.transform.SetParent(transform);
+        healthBarBg.transform.localPosition = new Vector3(healthBarOffset.x, healthBarOffset.y, 0);
+        healthBarBg.transform.localScale = new Vector3(healthBarWidth, healthBarHeight, 1);
+        var bgSr = healthBarBg.AddComponent<SpriteRenderer>();
+        bgSr.sprite = spr;
+        bgSr.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+        bgSr.sortingOrder = 16;
+
+        healthBarFill = new GameObject("HealthBarFill");
+        healthBarFill.transform.SetParent(transform);
+        healthBarFill.transform.localPosition = new Vector3(healthBarOffset.x, healthBarOffset.y, 0);
+        healthBarFill.transform.localScale = new Vector3(healthBarWidth, healthBarHeight, 1);
+        var fillSr = healthBarFill.AddComponent<SpriteRenderer>();
+        fillSr.sprite = spr;
+        fillSr.color = new Color(0.9f, 0.2f, 0.2f, 0.9f);
+        fillSr.sortingOrder = 17;
+
+        SetHealthBarVisible(false);
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBarFill == null || healthBarBg == null) return;
+        float total = requiredCombo.Length;
+        float remaining = total - comboIndex;
+        float ratio = remaining / total;
+
+        float w = healthBarWidth * ratio;
+        float offset = -(healthBarWidth - w) / 2f;
+
+        healthBarFill.transform.localScale = new Vector3(w, healthBarHeight, 1);
+        healthBarFill.transform.localPosition = new Vector3(healthBarOffset.x + offset, healthBarOffset.y, 0);
+
+        var fillSr = healthBarFill.GetComponent<SpriteRenderer>();
+        if (fillSr != null)
+        {
+            if (ratio > 0.5f) fillSr.color = new Color(0.9f, 0.2f, 0.2f, 0.9f);
+            else if (ratio > 0.25f) fillSr.color = new Color(0.9f, 0.6f, 0.1f, 0.9f);
+            else fillSr.color = new Color(0.9f, 0.9f, 0.1f, 0.9f);
+        }
+    }
+
+    private void SetHealthBarVisible(bool visible)
+    {
+        if (healthBarBg != null) healthBarBg.SetActive(visible);
+        if (healthBarFill != null) healthBarFill.SetActive(visible);
     }
 
     // ── Combo display ──
@@ -157,7 +258,7 @@ public class Monster : MonoBehaviour, IResettable
         {
             var go = new GameObject($"Combo_{i}");
             go.transform.SetParent(transform);
-            go.transform.localPosition = new Vector3(startX + i * spacing, 1.8f, 0);
+            go.transform.localPosition = new Vector3(healthBarOffset.x + startX + i * spacing, healthBarOffset.y, 0);
 
             bool isDot = requiredCombo[i] == BulletType.Dot;
             go.transform.localScale = isDot
@@ -192,11 +293,22 @@ public class Monster : MonoBehaviour, IResettable
     public void ResetState()
     {
         gameObject.SetActive(true);
-        transform.position = startPosition;
+
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.ResetPath();
+            agent.Warp(startPosition);
+        }
+        else
+        {
+            transform.position = startPosition;
+        }
+
         if (rb != null) rb.velocity = Vector2.zero;
         comboIndex = 0;
         isChasing = false;
         UpdateComboDisplay();
+        UpdateHealthBar();
         if (spriteRenderer != null)
             spriteRenderer.color = Color.magenta;
     }

@@ -21,7 +21,6 @@ public class TopDownCamera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         cam.orthographic = true;
-        cam.orthographicSize = cameraSize;
         cam.rect = new Rect(0.5f, 0f, 0.5f, 1f);
         cam.backgroundColor = lightBackground;
     }
