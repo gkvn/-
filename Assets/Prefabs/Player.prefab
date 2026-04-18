@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 6391d8a1fdfe38040b80a5f221bc53ce, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -174,5 +174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   projectilePrefab: {fileID: 404603296599366247, guid: a4a0809b917d21c4693b003249c82034, type: 3}
-  shootCooldown: 0.3
+  holdThreshold: 0.25
   interactRange: 1.2
+  promptOffset: {x: 0, y: 1.2}
