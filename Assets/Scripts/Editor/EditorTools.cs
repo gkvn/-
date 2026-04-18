@@ -39,6 +39,48 @@ public static class EditorTools
         Debug.Log(anyVisible ? "UI 已在 Scene 视图中隐藏" : "UI 已在 Scene 视图中显示");
     }
 
+    [MenuItem("Tools/创建 SignPost Prefab")]
+    public static void CreateSignPostPrefab()
+    {
+        string folder = "Assets/Prefabs";
+        if (!AssetDatabase.IsValidFolder(folder))
+            AssetDatabase.CreateFolder("Assets", "Prefabs");
+
+        string path = folder + "/SignPost.prefab";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(path) != null)
+        {
+            Debug.Log("SignPost.prefab 已存在：" + path);
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            return;
+        }
+
+        var go = new GameObject("SignPost");
+
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = RuntimeSprite.Get();
+        sr.color = new Color(0.6f, 0.45f, 0.2f);
+
+        var col = go.AddComponent<BoxCollider2D>();
+        col.isTrigger = false;
+
+        go.AddComponent<SignPost>();
+
+        var hideable = go.AddComponent<DarkPhaseHideable>();
+        var so = new SerializedObject(hideable);
+        var prop = so.FindProperty("keepColliderWhenHidden");
+        if (prop != null)
+        {
+            prop.boolValue = false;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        var prefab = PrefabUtility.SaveAsPrefabAsset(go, path);
+        Object.DestroyImmediate(go);
+
+        Selection.activeObject = prefab;
+        Debug.Log("已创建 SignPost Prefab：" + path);
+    }
+
     [MenuItem("Tools/创建并烘焙 NavMesh 2D")]
     public static void CreateAndBakeNavMesh2D()
     {
