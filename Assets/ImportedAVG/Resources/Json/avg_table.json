@@ -1,0 +1,37 @@
+{
+  "chapters": {
+    "level1_start": {
+      "chapId": "level1_start",
+      "chapName": "level1_start",
+      "startDlgId": "1_na"
+    },
+    "level1_mid": {
+      "chapId": "level1_mid",
+      "chapName": "level1_mid",
+      "startDlgId": "1_na"
+    },
+    "level1_end": {
+      "chapId": "level1_end",
+      "chapName": "level1_end",
+      "startDlgId": "1_na"
+    }
+  },
+  "conditions": {},
+  "events": {},
+  "charDisplays": {
+    "a1": {
+      "charDisplayId": "a1",
+      "charName": "_99[k]r",
+      "charAvatar": "a_1",
+      "charBody": "a_1",
+      "charFace": ""
+    },
+    "b1": {
+      "charDisplayId": "b1",
+      "charName": "§Ø_∆.µΩ",
+      "charAvatar": "b_1",
+      "charBody": "b_1",
+      "charFace": ""
+    }
+  }
+}
