@@ -3,6 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
 public static class SceneSetup
@@ -19,6 +20,9 @@ public static class SceneSetup
     static GameObject _prefabMonster;
     static GameObject _prefabWall;
 
+    static UnityEngine.Tilemaps.Tile _groundTile;
+    static UnityEngine.Tilemaps.Tile _wallTile;
+
     [MenuItem("Tools/生成游戏场景")]
     public static void SetupScenes()
     {
@@ -29,6 +33,7 @@ public static class SceneSetup
             return;
 
         EnsurePlaceholderSprite();
+        EnsureTileAssets();
         CreateAllPrefabs();
 
         CreateMainMenuScene();
@@ -102,6 +107,58 @@ public static class SceneSetup
         imp.spritePixelsPerUnit = ppu;
         imp.filterMode = FilterMode.Point;
         imp.SaveAndReimport();
+    }
+
+    // ═══════════════════════════ Tile creation ═══════════════════════════
+
+    static void EnsureTileAssets()
+    {
+        if (!AssetDatabase.IsValidFolder("Assets/Tiles"))
+            AssetDatabase.CreateFolder("Assets", "Tiles");
+
+        _groundTile = CreateTile("GroundTile", new Color(0.2f, 0.35f, 0.2f),
+            UnityEngine.Tilemaps.Tile.ColliderType.None);
+        _wallTile = CreateTile("WallTile", new Color(0.45f, 0.45f, 0.5f),
+            UnityEngine.Tilemaps.Tile.ColliderType.Grid);
+
+        Debug.Log("Tile 资源已就绪：GroundTile, WallTile");
+    }
+
+    static UnityEngine.Tilemaps.Tile CreateTile(string name, Color spriteColor,
+        UnityEngine.Tilemaps.Tile.ColliderType colliderType)
+    {
+        string tilePath = $"Assets/Tiles/{name}.asset";
+        var existing = AssetDatabase.LoadAssetAtPath<UnityEngine.Tilemaps.Tile>(tilePath);
+        if (existing != null) return existing;
+
+        string spritePath = $"Assets/Sprites/{name}.png";
+        var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+        if (sprite == null)
+        {
+            if (!AssetDatabase.IsValidFolder("Assets/Sprites"))
+                AssetDatabase.CreateFolder("Assets", "Sprites");
+
+            var tex = new Texture2D(4, 4, TextureFormat.RGBA32, false);
+            var px = tex.GetPixels();
+            for (int i = 0; i < px.Length; i++) px[i] = spriteColor;
+            tex.SetPixels(px);
+            tex.Apply();
+            System.IO.File.WriteAllBytes(System.IO.Path.GetFullPath(spritePath), tex.EncodeToPNG());
+            Object.DestroyImmediate(tex);
+
+            AssetDatabase.ImportAsset(spritePath, ImportAssetOptions.ForceSynchronousImport);
+            SetSpriteImport(spritePath, 4);
+            sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+        }
+
+        var tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
+        tile.sprite = sprite;
+        tile.color = Color.white;
+        tile.colliderType = colliderType;
+        AssetDatabase.CreateAsset(tile, tilePath);
+        AssetDatabase.SaveAssets();
+
+        return AssetDatabase.LoadAssetAtPath<UnityEngine.Tilemaps.Tile>(tilePath);
     }
 
     // ═══════════════════════════ Prefab creation ═══════════════════════════
@@ -320,16 +377,13 @@ public static class SceneSetup
         new GameObject("EventSystem").AddComponent<EventSystem>()
             .gameObject.AddComponent<StandaloneInputModule>();
 
-        // ── Game objects (all from prefabs) ──
+        // ── Tilemap terrain ──
+        BuildTilemap();
+
+        // ── Interactive objects (prefabs) ──
         Spawn(_prefabPlayer,     new Vector2(2, 2));
         Spawn(_prefabSpawnPoint, new Vector2(2, 2));
         Spawn(_prefabExitPoint,  new Vector2(9, 9));
-
-        SpawnScaled(_prefabWall, "Wall_Bottom", new Vector2(5, -0.5f),   new Vector3(12, 1, 1));
-        SpawnScaled(_prefabWall, "Wall_Top",    new Vector2(5, 10.5f),   new Vector3(12, 1, 1));
-        SpawnScaled(_prefabWall, "Wall_Left",   new Vector2(-0.5f, 5),   new Vector3(1, 12, 1));
-        SpawnScaled(_prefabWall, "Wall_Right",  new Vector2(10.5f, 5),   new Vector3(1, 12, 1));
-        SpawnScaled(_prefabWall, "Wall_Inner",  new Vector2(5, 4f),      new Vector3(6, 0.5f, 1));
 
         SpawnScaled(_prefabSpike, "Spike", new Vector2(5, 2), new Vector3(3, 0.6f, 1));
 
@@ -358,6 +412,54 @@ public static class SceneSetup
         BuildGameUI(topDown);
 
         EditorSceneManager.SaveScene(scene, "Assets/Scenes/Test.unity");
+    }
+
+    static void BuildTilemap()
+    {
+        var gridGO = new GameObject("Grid");
+        gridGO.AddComponent<Grid>();
+
+        // Ground layer
+        var groundGO = new GameObject("Ground");
+        groundGO.transform.SetParent(gridGO.transform);
+        groundGO.AddComponent<Tilemap>();
+        groundGO.AddComponent<TilemapRenderer>();
+        groundGO.AddComponent<TilemapDarkPhase>();
+
+        // Wall layer
+        var wallGO = new GameObject("Walls");
+        wallGO.transform.SetParent(gridGO.transform);
+        wallGO.AddComponent<Tilemap>();
+        var wallRenderer = wallGO.AddComponent<TilemapRenderer>();
+        wallRenderer.sortingOrder = 1;
+        wallGO.AddComponent<TilemapCollider2D>();
+        var wallRB = wallGO.AddComponent<Rigidbody2D>();
+        wallRB.bodyType = RigidbodyType2D.Static;
+        var composite = wallGO.AddComponent<CompositeCollider2D>();
+        wallGO.GetComponent<TilemapCollider2D>().usedByComposite = true;
+        wallGO.AddComponent<TilemapDarkPhase>();
+
+        var groundMap = groundGO.GetComponent<Tilemap>();
+        var wallMap = wallGO.GetComponent<Tilemap>();
+
+        const int minX = -1, maxX = 11, minY = -1, maxY = 11;
+
+        for (int x = minX; x <= maxX; x++)
+        {
+            for (int y = minY; y <= maxY; y++)
+            {
+                var pos = new Vector3Int(x, y, 0);
+                bool isBorder = x == minX || x == maxX || y == minY || y == maxY;
+                bool isInnerWall = y == 4 && x >= 2 && x <= 7;
+
+                if (isBorder || isInnerWall)
+                    wallMap.SetTile(pos, _wallTile);
+                else
+                    groundMap.SetTile(pos, _groundTile);
+            }
+        }
+
+        Debug.Log("Tilemap 已生成：Ground + Walls");
     }
 
     static GameObject Spawn(GameObject prefab, Vector2 pos)
