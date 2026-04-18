@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [Tooltip("按住超过此时长(秒)发射线子弹，否则发射点子弹")]
     [SerializeField] private float holdThreshold = 0.25f;
+    [Tooltip("子弹发射点相对角色的偏移")]
+    [SerializeField] private Vector2 bulletSpawnOffset = new Vector2(0, 0.5f);
 
     [Header("Interaction")]
     [SerializeField] private float interactRange = 1.2f;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Camera gameCamera;
     private float mouseDownTime;
     private bool mouseIsDown;
+    private bool chargeReadyFired;
     private GameObject interactPrompt;
     private GameObject chargeIndicator;
 
@@ -60,9 +63,11 @@ public class PlayerController : MonoBehaviour
     private void CreateInteractPrompt()
     {
         interactPrompt = new GameObject("InteractPrompt");
+        interactPrompt.tag = "Player";
         interactPrompt.transform.SetParent(transform);
         interactPrompt.transform.localPosition = promptOffset;
         interactPrompt.transform.localScale = Vector3.one * 0.4f;
+        foreach (var c in interactPrompt.GetComponents<Collider2D>()) Destroy(c);
         var sr = interactPrompt.AddComponent<SpriteRenderer>();
         sr.sprite = GetSpriteOrFallback();
         sr.color = Color.white;
@@ -73,9 +78,11 @@ public class PlayerController : MonoBehaviour
     private void CreateChargeIndicator()
     {
         chargeIndicator = new GameObject("ChargeIndicator");
+        chargeIndicator.tag = "Player";
         chargeIndicator.transform.SetParent(transform);
         chargeIndicator.transform.localPosition = new Vector3(0, -0.8f, 0);
         chargeIndicator.transform.localScale = new Vector3(0, 0.1f, 1);
+        foreach (var c in chargeIndicator.GetComponents<Collider2D>()) Destroy(c);
         var sr = chargeIndicator.AddComponent<SpriteRenderer>();
         sr.sprite = GetSpriteOrFallback();
         sr.color = new Color(0.4f, 0.8f, 1f);
@@ -137,7 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             mouseDownTime = Time.time;
             mouseIsDown = true;
-            Debug.Log("[Shoot] Mouse down");
+            chargeReadyFired = false;
         }
 
         if (mouseIsDown)
@@ -148,6 +155,12 @@ public class PlayerController : MonoBehaviour
             chargeIndicator.transform.localScale = new Vector3(ratio * 0.8f, 0.1f, 1);
             chargeIndicator.GetComponent<SpriteRenderer>().color =
                 ratio >= 1f ? new Color(0.4f, 0.8f, 1f) : Color.yellow;
+
+            if (ratio >= 1f && !chargeReadyFired)
+            {
+                chargeReadyFired = true;
+                SpawnChargeBurst();
+            }
         }
 
         if (Input.GetMouseButtonUp(0) && mouseIsDown)
@@ -173,9 +186,12 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
             animator.SetTrigger(ShootTrigger);
 
-        Vector3 mouseWorld = gameCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = ((Vector2)mouseWorld - (Vector2)transform.position).normalized;
-        Vector2 spawnPos = (Vector2)transform.position + dir * 0.5f;
+        Vector3 mouseScreen = Input.mousePosition;
+        mouseScreen.z = Mathf.Abs(gameCamera.transform.position.z);
+        Vector3 mouseWorld = gameCamera.ScreenToWorldPoint(mouseScreen);
+        Vector2 origin = (Vector2)transform.position + bulletSpawnOffset;
+        Vector2 dir = ((Vector2)mouseWorld - origin).normalized;
+        Vector2 spawnPos = origin;
 
         GameObject proj;
         if (projectilePrefab != null)
@@ -205,6 +221,19 @@ public class PlayerController : MonoBehaviour
         col.radius = 0.5f;
         go.AddComponent<Projectile>();
         return go;
+    }
+
+    private void SpawnChargeBurst()
+    {
+        var burst = new GameObject("ChargeBurst");
+        burst.transform.SetParent(transform);
+        burst.transform.localPosition = new Vector3(0.5f, -0.8f, 0);
+        var sr = burst.AddComponent<SpriteRenderer>();
+        sr.sprite = RuntimeSprite.Get();
+        sr.color = new Color(0.4f, 0.8f, 1f, 0.9f);
+        sr.sortingOrder = 21;
+        burst.transform.localScale = Vector3.one * 0.1f;
+        burst.AddComponent<ChargeBurstEffect>();
     }
 
     // ── Interaction ──

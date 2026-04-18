@@ -58,9 +58,18 @@ public static class EditorTools
             go.AddComponent<CollectSources2d>();
         }
 
+        surface.agentTypeID = 0;
         surface.BuildNavMesh();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-        Debug.Log("NavMesh 2D 烘焙完成！按 Ctrl+S 保存场景。");
+
+        var settings = NavMesh.GetSettingsByID(0);
+        Debug.Log($"NavMesh 2D 烘焙完成！agentRadius={settings.agentRadius}  按 Ctrl+S 保存场景。");
+    }
+
+    [MenuItem("Tools/设置 NavMesh Agent 半径")]
+    public static void SetNavMeshAgentRadius()
+    {
+        NavAgentRadiusWindow.Open();
     }
 
     static void PrepareNavMeshScene()
@@ -104,7 +113,7 @@ public static class EditorTools
         var mod = existing.GetComponent<NavMeshModifier>();
         if (mod == null) mod = existing.AddComponent<NavMeshModifier>();
         mod.overrideArea = true;
-        mod.area = 0; // Walkable
+        mod.area = 0;
 
         Debug.Log($"NavFloor 地面：center={bounds.center}, size={box.size}");
     }
@@ -113,14 +122,12 @@ public static class EditorTools
     {
         int wallCount = 0;
 
-        // Find the "Wall" root object in scene (covers edge_walls + other_walls)
         var wallRoot = GameObject.Find("Wall");
         if (wallRoot != null)
         {
             wallCount += MarkChildrenNotWalkable(wallRoot.transform);
         }
 
-        // Also mark any other objects whose name contains "Wall" and has a non-trigger collider
         var allColliders = Object.FindObjectsOfType<Collider2D>();
         foreach (var col in allColliders)
         {
@@ -135,7 +142,7 @@ public static class EditorTools
             {
                 var mod = col.gameObject.AddComponent<NavMeshModifier>();
                 mod.overrideArea = true;
-                mod.area = 1; // Not Walkable
+                mod.area = 1;
                 wallCount++;
             }
         }
@@ -154,9 +161,51 @@ public static class EditorTools
 
             var mod = col.gameObject.AddComponent<NavMeshModifier>();
             mod.overrideArea = true;
-            mod.area = 1; // Not Walkable
+            mod.area = 1;
             count++;
         }
         return count;
+    }
+
+    public static void SetHumanoidAgentRadius(float radius)
+    {
+        const string path = "ProjectSettings/NavMeshAreas.asset";
+        var text = System.IO.File.ReadAllText(path);
+        text = System.Text.RegularExpressions.Regex.Replace(
+            text,
+            @"(agentTypeID: 0\s+agentRadius: )\S+",
+            "${1}" + radius.ToString("F2"));
+        System.IO.File.WriteAllText(path, text);
+    }
+}
+
+public class NavAgentRadiusWindow : EditorWindow
+{
+    private float radius;
+
+    public static void Open()
+    {
+        var win = GetWindow<NavAgentRadiusWindow>("NavMesh Agent 半径");
+        var settings = NavMesh.GetSettingsByID(0);
+        win.radius = settings.agentRadius;
+        win.minSize = new Vector2(300, 100);
+        win.maxSize = new Vector2(400, 120);
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Space(10);
+        GUILayout.Label("越小 → 窄通道覆盖越多；越大 → 离墙越远\n建议 0.05 ~ 0.5", EditorStyles.wordWrappedLabel);
+        GUILayout.Space(5);
+        radius = EditorGUILayout.Slider("Agent 半径", radius, 0.01f, 0.5f);
+        GUILayout.Space(5);
+
+        if (GUILayout.Button("保存并重新烘焙"))
+        {
+            EditorTools.SetHumanoidAgentRadius(radius);
+            AssetDatabase.Refresh();
+            Close();
+            EditorTools.CreateAndBakeNavMesh2D();
+        }
     }
 }

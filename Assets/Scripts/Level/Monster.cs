@@ -20,6 +20,14 @@ public class Monster : MonoBehaviour, IResettable
     [Tooltip("追踪移动速度")]
     [SerializeField] private float chaseSpeed = 2f;
 
+    [Header("Health Bar")]
+    [Tooltip("血条相对怪物的偏移位置")]
+    [SerializeField] private Vector2 healthBarOffset = new Vector2(0, 1.4f);
+    [Tooltip("血条宽度")]
+    [SerializeField] private float healthBarWidth = 1.2f;
+    [Tooltip("血条高度")]
+    [SerializeField] private float healthBarHeight = 0.15f;
+
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
@@ -28,6 +36,9 @@ public class Monster : MonoBehaviour, IResettable
     private Transform playerTransform;
     private bool isChasing;
     private Vector3 startPosition;
+
+    private GameObject healthBarBg;
+    private GameObject healthBarFill;
 
     private void Start()
     {
@@ -57,6 +68,8 @@ public class Monster : MonoBehaviour, IResettable
 
         CreateComboDisplay();
         UpdateComboDisplay();
+        CreateHealthBar();
+        UpdateHealthBar();
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)
@@ -108,6 +121,7 @@ public class Monster : MonoBehaviour, IResettable
     {
         bool isDark = phase == LevelPhase.Dark;
         SetComboDisplayVisible(!isDark);
+        SetHealthBarVisible(isDark);
     }
 
     private void SetComboDisplayVisible(bool visible)
@@ -120,33 +134,37 @@ public class Monster : MonoBehaviour, IResettable
 
     // ── Combo system ──
 
-    public void OnBulletHit(BulletType type)
+    public bool OnBulletHit(BulletType type)
     {
         var pm = LevelPhaseManager.Instance;
-        if (pm != null && pm.CurrentPhase == LevelPhase.Light) return;
+        if (pm != null && pm.CurrentPhase == LevelPhase.Light) return false;
 
-        if (comboIndex >= requiredCombo.Length) return;
+        if (comboIndex >= requiredCombo.Length) return false;
 
         FlashRed();
 
-        if (requiredCombo[comboIndex] == type)
+        bool correct = requiredCombo[comboIndex] == type;
+        if (correct)
         {
             comboIndex++;
             Debug.Log($"[Monster] Correct! {comboIndex}/{requiredCombo.Length}");
+            UpdateHealthBar();
 
             if (comboIndex >= requiredCombo.Length)
             {
                 Defeat();
-                return;
+                return true;
             }
         }
         else
         {
             comboIndex = 0;
             Debug.Log("[Monster] Wrong input! Combo reset.");
+            UpdateHealthBar();
         }
 
         UpdateComboDisplay();
+        return correct;
     }
 
     private void Defeat()
@@ -170,6 +188,61 @@ public class Monster : MonoBehaviour, IResettable
             spriteRenderer.color = Color.magenta;
     }
 
+    // ── Health bar ──
+
+    private void CreateHealthBar()
+    {
+        Sprite spr = RuntimeSprite.Get();
+
+        healthBarBg = new GameObject("HealthBarBg");
+        healthBarBg.transform.SetParent(transform);
+        healthBarBg.transform.localPosition = new Vector3(healthBarOffset.x, healthBarOffset.y, 0);
+        healthBarBg.transform.localScale = new Vector3(healthBarWidth, healthBarHeight, 1);
+        var bgSr = healthBarBg.AddComponent<SpriteRenderer>();
+        bgSr.sprite = spr;
+        bgSr.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+        bgSr.sortingOrder = 16;
+
+        healthBarFill = new GameObject("HealthBarFill");
+        healthBarFill.transform.SetParent(transform);
+        healthBarFill.transform.localPosition = new Vector3(healthBarOffset.x, healthBarOffset.y, 0);
+        healthBarFill.transform.localScale = new Vector3(healthBarWidth, healthBarHeight, 1);
+        var fillSr = healthBarFill.AddComponent<SpriteRenderer>();
+        fillSr.sprite = spr;
+        fillSr.color = new Color(0.9f, 0.2f, 0.2f, 0.9f);
+        fillSr.sortingOrder = 17;
+
+        SetHealthBarVisible(false);
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBarFill == null || healthBarBg == null) return;
+        float total = requiredCombo.Length;
+        float remaining = total - comboIndex;
+        float ratio = remaining / total;
+
+        float w = healthBarWidth * ratio;
+        float offset = -(healthBarWidth - w) / 2f;
+
+        healthBarFill.transform.localScale = new Vector3(w, healthBarHeight, 1);
+        healthBarFill.transform.localPosition = new Vector3(healthBarOffset.x + offset, healthBarOffset.y, 0);
+
+        var fillSr = healthBarFill.GetComponent<SpriteRenderer>();
+        if (fillSr != null)
+        {
+            if (ratio > 0.5f) fillSr.color = new Color(0.9f, 0.2f, 0.2f, 0.9f);
+            else if (ratio > 0.25f) fillSr.color = new Color(0.9f, 0.6f, 0.1f, 0.9f);
+            else fillSr.color = new Color(0.9f, 0.9f, 0.1f, 0.9f);
+        }
+    }
+
+    private void SetHealthBarVisible(bool visible)
+    {
+        if (healthBarBg != null) healthBarBg.SetActive(visible);
+        if (healthBarFill != null) healthBarFill.SetActive(visible);
+    }
+
     // ── Combo display ──
 
     private void CreateComboDisplay()
@@ -185,7 +258,7 @@ public class Monster : MonoBehaviour, IResettable
         {
             var go = new GameObject($"Combo_{i}");
             go.transform.SetParent(transform);
-            go.transform.localPosition = new Vector3(startX + i * spacing, 1.8f, 0);
+            go.transform.localPosition = new Vector3(healthBarOffset.x + startX + i * spacing, healthBarOffset.y, 0);
 
             bool isDot = requiredCombo[i] == BulletType.Dot;
             go.transform.localScale = isDot
@@ -235,6 +308,7 @@ public class Monster : MonoBehaviour, IResettable
         comboIndex = 0;
         isChasing = false;
         UpdateComboDisplay();
+        UpdateHealthBar();
         if (spriteRenderer != null)
             spriteRenderer.color = Color.magenta;
     }

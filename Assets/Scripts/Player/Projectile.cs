@@ -10,9 +10,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Sprite dotSprite;
     [SerializeField] private Sprite lineSprite;
 
+    [Header("命中停留")]
+    [Tooltip("击中后子弹停留时间(秒)")]
+    [SerializeField] private float hitLingerTime = 0.4f;
+
     public BulletType Type { get; private set; }
 
     private Rigidbody2D rb;
+    private bool hasHit;
 
     private void Awake()
     {
@@ -47,6 +52,14 @@ public class Projectile : MonoBehaviour
             transform.localScale = Vector3.one * 0.5f;
             sr.color = Color.yellow;
         }
+
+        var col = GetComponent<CircleCollider2D>();
+        if (col != null)
+        {
+            float maxScale = Mathf.Max(transform.localScale.x, transform.localScale.y);
+            col.radius = 0.2f / maxScale;
+        }
+
     }
 
     public void Launch(Vector2 direction)
@@ -56,17 +69,69 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasHit) return;
         if (other.CompareTag("Player")) return;
 
         var monster = other.GetComponent<Monster>();
         if (monster != null)
         {
-            monster.OnBulletHit(Type);
-            Destroy(gameObject);
+            bool wasCorrect = monster.OnBulletHit(Type);
+            HitStop(wasCorrect ? HitType.MonsterCorrect : HitType.MonsterWrong);
             return;
         }
 
         if (!other.isTrigger)
-            Destroy(gameObject);
+            HitStop(HitType.Wall);
+    }
+
+    private enum HitType { Wall, MonsterCorrect, MonsterWrong }
+
+    private void HitStop(HitType hitType)
+    {
+        hasHit = true;
+        rb.velocity = Vector2.zero;
+
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        SpawnHitEffect(hitType);
+
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.4f);
+
+        CancelInvoke();
+        Destroy(gameObject, hitLingerTime);
+    }
+
+    private void SpawnHitEffect(HitType hitType)
+    {
+        var fx = new GameObject("HitFX");
+        fx.transform.position = transform.position;
+
+        var sr = fx.AddComponent<SpriteRenderer>();
+        sr.sprite = RuntimeSprite.Get();
+        sr.sortingOrder = 18;
+
+        switch (hitType)
+        {
+            case HitType.Wall:
+                sr.color = new Color(1f, 1f, 1f, 0.8f);
+                fx.transform.localScale = Vector3.one * 0.15f;
+                fx.AddComponent<HitEffect>().Init(0.5f, Color.white);
+                break;
+
+            case HitType.MonsterCorrect:
+                sr.color = new Color(1f, 0.3f, 0.1f, 0.9f);
+                fx.transform.localScale = Vector3.one * 0.2f;
+                fx.AddComponent<HitEffect>().Init(0.8f, new Color(1f, 0.3f, 0.1f));
+                break;
+
+            case HitType.MonsterWrong:
+                sr.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+                fx.transform.localScale = Vector3.one * 0.15f;
+                fx.AddComponent<HitEffect>().Init(0.4f, Color.gray);
+                break;
+        }
     }
 }
