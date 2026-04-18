@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float shootCooldown = 0.3f;
+    [Tooltip("按住超过此时长(秒)发射线子弹，否则发射点子弹")]
+    [SerializeField] private float holdThreshold = 0.25f;
 
     [Header("Interaction")]
     [SerializeField] private float interactRange = 1.2f;
@@ -18,9 +19,13 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Vector2 moveInput;
     private Vector2 facingDirection = Vector2.down;
-    private float shootTimer;
     private bool isDead;
+
+    private Camera gameCamera;
+    private float mouseDownTime;
+    private bool mouseIsDown;
     private GameObject interactPrompt;
+    private GameObject chargeIndicator;
 
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int ShootTrigger = Animator.StringToHash("isShooting");
@@ -34,7 +39,22 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb.gravityScale = 0;
         rb.freezeRotation = true;
+
+        var tdc = FindObjectOfType<TopDownCamera>();
+        gameCamera = tdc != null ? tdc.Cam : Camera.main;
+        if (gameCamera == null) gameCamera = FindObjectOfType<Camera>();
+        Debug.Log($"[Player] gameCamera={gameCamera != null}, projectilePrefab={projectilePrefab != null}");
+
         CreateInteractPrompt();
+        CreateChargeIndicator();
+    }
+
+    private Sprite GetSpriteOrFallback()
+    {
+        var parentSR = GetComponent<SpriteRenderer>();
+        if (parentSR != null && parentSR.sprite != null)
+            return parentSR.sprite;
+        return RuntimeSprite.Get();
     }
 
     private void CreateInteractPrompt()
@@ -43,16 +63,24 @@ public class PlayerController : MonoBehaviour
         interactPrompt.transform.SetParent(transform);
         interactPrompt.transform.localPosition = promptOffset;
         interactPrompt.transform.localScale = Vector3.one * 0.4f;
-
         var sr = interactPrompt.AddComponent<SpriteRenderer>();
+        sr.sprite = GetSpriteOrFallback();
         sr.color = Color.white;
         sr.sortingOrder = 20;
-
-        var playerSR = GetComponent<SpriteRenderer>();
-        if (playerSR != null && playerSR.sprite != null)
-            sr.sprite = playerSR.sprite;
-
         interactPrompt.SetActive(false);
+    }
+
+    private void CreateChargeIndicator()
+    {
+        chargeIndicator = new GameObject("ChargeIndicator");
+        chargeIndicator.transform.SetParent(transform);
+        chargeIndicator.transform.localPosition = new Vector3(0, -0.8f, 0);
+        chargeIndicator.transform.localScale = new Vector3(0, 0.1f, 1);
+        var sr = chargeIndicator.AddComponent<SpriteRenderer>();
+        sr.sprite = GetSpriteOrFallback();
+        sr.color = new Color(0.4f, 0.8f, 1f);
+        sr.sortingOrder = 20;
+        chargeIndicator.SetActive(false);
     }
 
     private void Update()
@@ -62,7 +90,6 @@ public class PlayerController : MonoBehaviour
         HandleShoot();
         UpdateInteractPrompt();
         HandleInteract();
-        shootTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -70,6 +97,8 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         rb.velocity = moveInput * moveSpeed;
     }
+
+    // ── Movement ──
 
     private void HandleMovementInput()
     {
@@ -87,23 +116,98 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(IsRunning, moveInput != Vector2.zero);
     }
 
+    // ── Shooting ──
+
     private void HandleShoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && shootTimer <= 0f)
+        bool overUI = UnityEngine.EventSystems.EventSystem.current != null &&
+            UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+
+        if (overUI)
         {
-            shootTimer = shootCooldown;
-            if (animator != null)
-                animator.SetTrigger(ShootTrigger);
-            if (projectilePrefab != null)
+            if (mouseIsDown)
             {
-                var proj = Instantiate(projectilePrefab,
-                    (Vector2)transform.position + facingDirection * 0.5f,
-                    Quaternion.identity);
-                var p = proj.GetComponent<Projectile>();
-                if (p != null) p.Launch(facingDirection);
+                mouseIsDown = false;
+                chargeIndicator.SetActive(false);
             }
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            mouseDownTime = Time.time;
+            mouseIsDown = true;
+            Debug.Log("[Shoot] Mouse down");
+        }
+
+        if (mouseIsDown)
+        {
+            float held = Time.time - mouseDownTime;
+            float ratio = Mathf.Clamp01(held / holdThreshold);
+            chargeIndicator.SetActive(true);
+            chargeIndicator.transform.localScale = new Vector3(ratio * 0.8f, 0.1f, 1);
+            chargeIndicator.GetComponent<SpriteRenderer>().color =
+                ratio >= 1f ? new Color(0.4f, 0.8f, 1f) : Color.yellow;
+        }
+
+        if (Input.GetMouseButtonUp(0) && mouseIsDown)
+        {
+            mouseIsDown = false;
+            chargeIndicator.SetActive(false);
+
+            float held = Time.time - mouseDownTime;
+            BulletType type = held >= holdThreshold ? BulletType.Line : BulletType.Dot;
+            Debug.Log($"[Shoot] Fire! type={type}, held={held:F2}s");
+            FireBullet(type);
         }
     }
+
+    private void FireBullet(BulletType type)
+    {
+        if (gameCamera == null)
+        {
+            Debug.LogError("[Shoot] gameCamera is null! Cannot fire.");
+            return;
+        }
+
+        if (animator != null)
+            animator.SetTrigger(ShootTrigger);
+
+        Vector3 mouseWorld = gameCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = ((Vector2)mouseWorld - (Vector2)transform.position).normalized;
+        Vector2 spawnPos = (Vector2)transform.position + dir * 0.5f;
+
+        GameObject proj;
+        if (projectilePrefab != null)
+        {
+            proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+        }
+        else
+        {
+            proj = CreateRuntimeBullet(spawnPos);
+        }
+
+        var p = proj.GetComponent<Projectile>();
+        if (p != null) p.Launch(dir, type);
+    }
+
+    private GameObject CreateRuntimeBullet(Vector2 pos)
+    {
+        var go = new GameObject("Projectile");
+        go.transform.position = pos;
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = RuntimeSprite.Get();
+        sr.sortingOrder = 5;
+        var r = go.AddComponent<Rigidbody2D>();
+        r.gravityScale = 0;
+        var col = go.AddComponent<CircleCollider2D>();
+        col.isTrigger = true;
+        col.radius = 0.5f;
+        go.AddComponent<Projectile>();
+        return go;
+    }
+
+    // ── Interaction ──
 
     private IInteractable FindNearbyInteractable()
     {
@@ -139,26 +243,12 @@ public class PlayerController : MonoBehaviour
             target.Interact(this);
     }
 
-    private void Start()
-    {
-        var col = GetComponent<Collider2D>();
-        Debug.Log($"[Player] Start — tag={gameObject.tag}, collider={col != null}, isTrigger={col?.isTrigger}, bounds={col?.bounds}, rb={rb != null}");
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log($"[Player] OnTriggerEnter2D — other={other.name}, otherIsTrigger={other.isTrigger}");
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log($"[Player] OnCollisionEnter2D — other={collision.collider.name}");
-    }
+    // ── Life ──
 
     public void Die()
     {
         if (isDead) return;
-        Debug.Log("[Player] Die() called!");
+        Debug.Log("[Player] Die!");
         isDead = true;
         rb.velocity = Vector2.zero;
         Invoke(nameof(Respawn), 0.5f);
@@ -166,7 +256,6 @@ public class PlayerController : MonoBehaviour
 
     public void Respawn()
     {
-        Debug.Log("[Player] Respawn() called!");
         isDead = false;
         var spawn = FindObjectOfType<SpawnPoint>();
         if (spawn != null)
