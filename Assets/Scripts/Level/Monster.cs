@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Collider2D))]
 public class Monster : MonoBehaviour
 {
     [Header("Combo Sequence")]
@@ -10,19 +11,88 @@ public class Monster : MonoBehaviour
         BulletType.Dot, BulletType.Dot, BulletType.Line
     };
 
+    [Header("AI")]
+    [Tooltip("开始追踪玩家的距离")]
+    [SerializeField] private float detectRange = 5f;
+    [Tooltip("追踪移动速度")]
+    [SerializeField] private float chaseSpeed = 2f;
+
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
+    private Transform playerTransform;
+    private bool isChasing;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        var player = FindObjectOfType<PlayerController>();
+        if (player != null) playerTransform = player.transform;
+
         CreateComboDisplay();
         UpdateComboDisplay();
+
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.OnPhaseChanged += OnPhaseChanged;
     }
+
+    private void OnDestroy()
+    {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.OnPhaseChanged -= OnPhaseChanged;
+    }
+
+    private void Update()
+    {
+        if (playerTransform == null) return;
+
+        var pm = LevelPhaseManager.Instance;
+        if (pm == null || pm.CurrentPhase != LevelPhase.Dark) return;
+
+        float dist = Vector2.Distance(transform.position, playerTransform.position);
+        isChasing = dist <= detectRange;
+
+        if (isChasing)
+        {
+            Vector2 dir = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
+            transform.position += (Vector3)(dir * chaseSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        var player = other.GetComponent<PlayerController>();
+        if (player != null)
+            player.Die();
+    }
+
+    // ── Phase handling ──
+
+    private void OnPhaseChanged(LevelPhase phase)
+    {
+        bool isDark = phase == LevelPhase.Dark;
+        SetComboDisplayVisible(!isDark);
+    }
+
+    private void SetComboDisplayVisible(bool visible)
+    {
+        foreach (var go in comboIndicators)
+        {
+            if (go != null) go.SetActive(visible);
+        }
+    }
+
+    // ── Combo system ──
 
     public void OnBulletHit(BulletType type)
     {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null && pm.CurrentPhase == LevelPhase.Light) return;
+
         if (comboIndex >= requiredCombo.Length) return;
 
         if (requiredCombo[comboIndex] == type)
@@ -65,7 +135,7 @@ public class Monster : MonoBehaviour
             spriteRenderer.color = Color.magenta;
     }
 
-    // ── Combo display: small icons above monster head ──
+    // ── Combo display ──
 
     private void CreateComboDisplay()
     {
@@ -115,6 +185,6 @@ public class Monster : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }
