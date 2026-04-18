@@ -39,6 +39,7 @@ public class Monster : MonoBehaviour, IResettable
 
     private GameObject healthBarBg;
     private GameObject healthBarFill;
+    private List<GameObject> healthBarDividers = new List<GameObject>();
 
     private void Start()
     {
@@ -212,7 +213,32 @@ public class Monster : MonoBehaviour, IResettable
         fillSr.color = new Color(0.9f, 0.2f, 0.2f, 0.9f);
         fillSr.sortingOrder = 17;
 
+        CreateHealthBarDividers(spr);
         SetHealthBarVisible(false);
+    }
+
+    private void CreateHealthBarDividers(Sprite spr)
+    {
+        int total = requiredCombo.Length;
+        if (total <= 1) return;
+
+        float dividerWidth = healthBarHeight * 0.3f;
+        float segmentWidth = healthBarWidth / total;
+        float barLeft = healthBarOffset.x - healthBarWidth / 2f;
+
+        for (int i = 1; i < total; i++)
+        {
+            var div = new GameObject($"HealthBarDiv_{i}");
+            div.transform.SetParent(transform);
+            float x = barLeft + segmentWidth * i;
+            div.transform.localPosition = new Vector3(x, healthBarOffset.y, 0);
+            div.transform.localScale = new Vector3(dividerWidth, healthBarHeight * 1.1f, 1);
+            var sr = div.AddComponent<SpriteRenderer>();
+            sr.sprite = spr;
+            sr.color = new Color(0.1f, 0.1f, 0.1f, 0.95f);
+            sr.sortingOrder = 18;
+            healthBarDividers.Add(div);
+        }
     }
 
     private void UpdateHealthBar()
@@ -241,6 +267,10 @@ public class Monster : MonoBehaviour, IResettable
     {
         if (healthBarBg != null) healthBarBg.SetActive(visible);
         if (healthBarFill != null) healthBarFill.SetActive(visible);
+        foreach (var div in healthBarDividers)
+        {
+            if (div != null) div.SetActive(visible);
+        }
     }
 
     // ── Combo display ──

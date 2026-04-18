@@ -13,9 +13,33 @@ public class PlayerController : MonoBehaviour
     [Tooltip("子弹发射点相对角色的偏移")]
     [SerializeField] private Vector2 bulletSpawnOffset = new Vector2(0, 0.5f);
 
+    [Header("Appearance")]
+    [Tooltip("亮灯阶段角色贴图")]
+    [SerializeField] private Sprite lightSprite;
+    [Tooltip("黑灯阶段角色贴图")]
+    [SerializeField] private Sprite darkSprite;
+
+    [Header("Charge Indicator")]
+    [Tooltip("蓄力条相对角色的位置")]
+    [SerializeField] private Vector2 chargeBarOffset = new Vector2(0, -0.8f);
+    [Tooltip("蓄力条满时的宽度")]
+    [SerializeField] private float chargeBarWidth = 0.8f;
+    [Tooltip("蓄力条高度")]
+    [SerializeField] private float chargeBarHeight = 0.1f;
+    [Tooltip("蓄力条贴图（留空则自动生成黄色纯色）")]
+    [SerializeField] private Sprite chargeBarSprite;
+    [Tooltip("蓄力中颜色")]
+    [SerializeField] private Color chargeBarChargingColor = Color.yellow;
+    [Tooltip("蓄力满颜色")]
+    [SerializeField] private Color chargeBarReadyColor = new Color(0.4f, 0.8f, 1f);
+
     [Header("Interaction")]
     [SerializeField] private float interactRange = 1.2f;
     [SerializeField] private Vector2 promptOffset = new Vector2(0, 1.2f);
+    [Tooltip("交互提示图标大小")]
+    [SerializeField] private float promptScale = 0.4f;
+    [Tooltip("交互提示图标贴图（留空则使用角色贴图或默认白块）")]
+    [SerializeField] private Sprite promptSprite;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -26,9 +50,10 @@ public class PlayerController : MonoBehaviour
     private Camera gameCamera;
     private float mouseDownTime;
     private bool mouseIsDown;
-    private bool chargeReadyFired;
     private GameObject interactPrompt;
     private GameObject chargeIndicator;
+    private GameObject chargeGlowLeft;
+    private GameObject chargeGlowRight;
 
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int ShootTrigger = Animator.StringToHash("isShooting");
@@ -36,10 +61,13 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 FacingDirection => facingDirection;
 
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb.gravityScale = 0;
         rb.freezeRotation = true;
 
@@ -50,6 +78,49 @@ public class PlayerController : MonoBehaviour
 
         CreateInteractPrompt();
         CreateChargeIndicator();
+    }
+
+    private bool subscribedToPhase;
+
+    private void OnEnable()
+    {
+        TrySubscribePhase();
+    }
+
+    private void Start()
+    {
+        TrySubscribePhase();
+    }
+
+    private void TrySubscribePhase()
+    {
+        if (subscribedToPhase) return;
+        var pm = LevelPhaseManager.Instance;
+        if (pm == null) return;
+        pm.OnPhaseChanged += OnPhaseChanged;
+        ApplyPhaseSprite(pm.CurrentPhase);
+        subscribedToPhase = true;
+    }
+
+    private void OnDisable()
+    {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.OnPhaseChanged -= OnPhaseChanged;
+        subscribedToPhase = false;
+    }
+
+    private void OnPhaseChanged(LevelPhase phase)
+    {
+        ApplyPhaseSprite(phase);
+    }
+
+    private void ApplyPhaseSprite(LevelPhase phase)
+    {
+        if (spriteRenderer == null) return;
+        Sprite target = phase == LevelPhase.Dark ? darkSprite : lightSprite;
+        if (target != null)
+            spriteRenderer.sprite = target;
     }
 
     private Sprite GetSpriteOrFallback()
@@ -66,10 +137,10 @@ public class PlayerController : MonoBehaviour
         interactPrompt.tag = "Player";
         interactPrompt.transform.SetParent(transform);
         interactPrompt.transform.localPosition = promptOffset;
-        interactPrompt.transform.localScale = Vector3.one * 0.4f;
+        interactPrompt.transform.localScale = Vector3.one * promptScale;
         foreach (var c in interactPrompt.GetComponents<Collider2D>()) Destroy(c);
         var sr = interactPrompt.AddComponent<SpriteRenderer>();
-        sr.sprite = GetSpriteOrFallback();
+        sr.sprite = promptSprite != null ? promptSprite : GetSpriteOrFallback();
         sr.color = Color.white;
         sr.sortingOrder = 20;
         interactPrompt.SetActive(false);
@@ -80,14 +151,33 @@ public class PlayerController : MonoBehaviour
         chargeIndicator = new GameObject("ChargeIndicator");
         chargeIndicator.tag = "Player";
         chargeIndicator.transform.SetParent(transform);
-        chargeIndicator.transform.localPosition = new Vector3(0, -0.8f, 0);
-        chargeIndicator.transform.localScale = new Vector3(0, 0.1f, 1);
+        chargeIndicator.transform.localPosition = new Vector3(chargeBarOffset.x, chargeBarOffset.y, 0);
+        chargeIndicator.transform.localScale = new Vector3(0, chargeBarHeight, 1);
         foreach (var c in chargeIndicator.GetComponents<Collider2D>()) Destroy(c);
         var sr = chargeIndicator.AddComponent<SpriteRenderer>();
-        sr.sprite = GetSpriteOrFallback();
-        sr.color = new Color(0.4f, 0.8f, 1f);
+        sr.sprite = chargeBarSprite != null ? chargeBarSprite : RuntimeSprite.Get();
+        sr.color = chargeBarChargingColor;
         sr.sortingOrder = 20;
         chargeIndicator.SetActive(false);
+
+        chargeGlowLeft = CreateChargeGlowEdge("ChargeGlowL");
+        chargeGlowRight = CreateChargeGlowEdge("ChargeGlowR");
+    }
+
+    private GameObject CreateChargeGlowEdge(string name)
+    {
+        var glow = new GameObject(name);
+        glow.tag = "Player";
+        glow.transform.SetParent(transform);
+        glow.transform.localPosition = Vector3.zero;
+        glow.transform.localScale = Vector3.zero;
+        foreach (var c in glow.GetComponents<Collider2D>()) Destroy(c);
+        var sr = glow.AddComponent<SpriteRenderer>();
+        sr.sprite = RuntimeSprite.Get();
+        sr.color = new Color(chargeBarReadyColor.r, chargeBarReadyColor.g, chargeBarReadyColor.b, 0f);
+        sr.sortingOrder = 21;
+        glow.SetActive(false);
+        return glow;
     }
 
     private void Update()
@@ -136,6 +226,7 @@ public class PlayerController : MonoBehaviour
             {
                 mouseIsDown = false;
                 chargeIndicator.SetActive(false);
+                SetChargeGlowActive(false);
             }
             return;
         }
@@ -144,7 +235,6 @@ public class PlayerController : MonoBehaviour
         {
             mouseDownTime = Time.time;
             mouseIsDown = true;
-            chargeReadyFired = false;
         }
 
         if (mouseIsDown)
@@ -152,21 +242,18 @@ public class PlayerController : MonoBehaviour
             float held = Time.time - mouseDownTime;
             float ratio = Mathf.Clamp01(held / holdThreshold);
             chargeIndicator.SetActive(true);
-            chargeIndicator.transform.localScale = new Vector3(ratio * 0.8f, 0.1f, 1);
+            chargeIndicator.transform.localScale = new Vector3(ratio * chargeBarWidth, chargeBarHeight, 1);
             chargeIndicator.GetComponent<SpriteRenderer>().color =
-                ratio >= 1f ? new Color(0.4f, 0.8f, 1f) : Color.yellow;
+                ratio >= 1f ? chargeBarReadyColor : chargeBarChargingColor;
 
-            if (ratio >= 1f && !chargeReadyFired)
-            {
-                chargeReadyFired = true;
-                SpawnChargeBurst();
-            }
+            UpdateChargeGlow(ratio >= 1f);
         }
 
         if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             mouseIsDown = false;
             chargeIndicator.SetActive(false);
+            SetChargeGlowActive(false);
 
             float held = Time.time - mouseDownTime;
             BulletType type = held >= holdThreshold ? BulletType.Line : BulletType.Dot;
@@ -223,17 +310,40 @@ public class PlayerController : MonoBehaviour
         return go;
     }
 
-    private void SpawnChargeBurst()
+    private void UpdateChargeGlow(bool charged)
     {
-        var burst = new GameObject("ChargeBurst");
-        burst.transform.SetParent(transform);
-        burst.transform.localPosition = new Vector3(0.5f, -0.8f, 0);
-        var sr = burst.AddComponent<SpriteRenderer>();
-        sr.sprite = RuntimeSprite.Get();
-        sr.color = new Color(0.4f, 0.8f, 1f, 0.9f);
-        sr.sortingOrder = 21;
-        burst.transform.localScale = Vector3.one * 0.1f;
-        burst.AddComponent<ChargeBurstEffect>();
+        if (!charged)
+        {
+            SetChargeGlowActive(false);
+            return;
+        }
+
+        SetChargeGlowActive(true);
+
+        float glowH = chargeBarHeight * 1.6f;
+        float glowW = chargeBarHeight * 0.6f;
+        float halfBar = chargeBarWidth / 2f;
+
+        chargeGlowLeft.transform.localPosition = new Vector3(
+            chargeBarOffset.x - halfBar - glowW * 0.3f, chargeBarOffset.y, 0);
+        chargeGlowRight.transform.localPosition = new Vector3(
+            chargeBarOffset.x + halfBar + glowW * 0.3f, chargeBarOffset.y, 0);
+
+        chargeGlowLeft.transform.localScale = new Vector3(glowW, glowH, 1);
+        chargeGlowRight.transform.localScale = new Vector3(glowW, glowH, 1);
+
+        float pulse = (Mathf.Sin(Time.time * 8f) + 1f) * 0.5f;
+        float alpha = Mathf.Lerp(0.15f, 0.5f, pulse);
+        var c = new Color(chargeBarReadyColor.r, chargeBarReadyColor.g, chargeBarReadyColor.b, alpha);
+
+        chargeGlowLeft.GetComponent<SpriteRenderer>().color = c;
+        chargeGlowRight.GetComponent<SpriteRenderer>().color = c;
+    }
+
+    private void SetChargeGlowActive(bool active)
+    {
+        if (chargeGlowLeft != null) chargeGlowLeft.SetActive(active);
+        if (chargeGlowRight != null) chargeGlowRight.SetActive(active);
     }
 
     // ── Interaction ──
@@ -307,12 +417,15 @@ public class PlayerController : MonoBehaviour
     {
         isDead = false;
 
-        var sr = GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = Color.white;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.white;
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)
+        {
             pm.ResetAllObjects();
+            ApplyPhaseSprite(pm.CurrentPhase);
+        }
 
         var spawn = FindObjectOfType<SpawnPoint>();
         if (spawn != null)
