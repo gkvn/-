@@ -274,18 +274,41 @@ public class PlayerController : MonoBehaviour
 
     // ── Life ──
 
+    [Header("Death Effect")]
+    [Tooltip("死亡光圈初始半径")]
+    [SerializeField] private float deathLightRadius = 1.5f;
+    [Tooltip("光圈收缩时长(秒)")]
+    [SerializeField] private float deathShrinkDuration = 1f;
+
     public void Die()
     {
         if (isDead) return;
         Debug.Log("[Player] Die!");
         isDead = true;
         rb.velocity = Vector2.zero;
-        Invoke(nameof(Respawn), 0.5f);
+
+        var pm = LevelPhaseManager.Instance;
+        bool isDark = pm != null && pm.CurrentPhase == LevelPhase.Dark;
+        var sr = GetComponent<SpriteRenderer>();
+
+        if (isDark)
+        {
+            var fx = gameObject.AddComponent<DeathEffect>();
+            fx.Play(sr, deathLightRadius, deathShrinkDuration, Respawn);
+        }
+        else
+        {
+            var flash = gameObject.AddComponent<DeathFlashEffect>();
+            flash.Play(sr, 1f, 2, Respawn);
+        }
     }
 
     public void Respawn()
     {
         isDead = false;
+
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = Color.white;
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)
