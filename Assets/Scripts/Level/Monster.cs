@@ -14,11 +14,31 @@ public class Monster : MonoBehaviour, IResettable
         BulletType.Dot, BulletType.Dot, BulletType.Line
     };
 
+    [Header("Visibility")]
+    [Tooltip("是否在亮灯阶段显示（关闭则怪物只在黑灯阶段出现）")]
+    [SerializeField] private bool showInLight = true;
+    [Tooltip("亮灯阶段是否显示打击提示（点和线）")]
+    [SerializeField] private bool showComboInLight = true;
+
     [Header("AI")]
     [Tooltip("开始追踪玩家的距离")]
     [SerializeField] private float detectRange = 5f;
     [Tooltip("追踪移动速度")]
     [SerializeField] private float chaseSpeed = 2f;
+
+    [Header("Combo Display")]
+    [Tooltip("打击提示相对怪物的偏移位置")]
+    [SerializeField] private Vector2 comboOffset = new Vector2(0, 1.4f);
+    [Tooltip("各提示图标之间的间距")]
+    [SerializeField] private float comboSpacing = 0.5f;
+    [Tooltip("\"点\"图标大小")]
+    [SerializeField] private float comboDotSize = 0.35f;
+    [Tooltip("\"线\"图标大小(宽, 高)")]
+    [SerializeField] private Vector2 comboLineSize = new Vector2(0.7f, 0.25f);
+    [Tooltip("\"点\"图标贴图（留空用默认方块）")]
+    [SerializeField] private Sprite comboDotSprite;
+    [Tooltip("\"线\"图标贴图（留空用默认方块）")]
+    [SerializeField] private Sprite comboLineSprite;
 
     [Header("Health Bar")]
     [Tooltip("血条相对怪物的偏移位置")]
@@ -74,7 +94,10 @@ public class Monster : MonoBehaviour, IResettable
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)
+        {
             pm.OnPhaseChanged += OnPhaseChanged;
+            ApplyPhaseVisibility(pm.CurrentPhase);
+        }
     }
 
     private void OnDestroy()
@@ -86,7 +109,7 @@ public class Monster : MonoBehaviour, IResettable
 
     private void Update()
     {
-        if (playerTransform == null || agent == null || !agent.isOnNavMesh) return;
+        if (playerTransform == null || agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
         var pm = LevelPhaseManager.Instance;
         bool shouldChase = pm != null && pm.CurrentPhase == LevelPhase.Dark;
@@ -120,9 +143,32 @@ public class Monster : MonoBehaviour, IResettable
 
     private void OnPhaseChanged(LevelPhase phase)
     {
+        ApplyPhaseVisibility(phase);
+    }
+
+    private void ApplyPhaseVisibility(LevelPhase phase)
+    {
         bool isDark = phase == LevelPhase.Dark;
-        SetComboDisplayVisible(!isDark);
+
+        if (!showInLight && !isDark)
+        {
+            SetMonsterActive(false);
+            return;
+        }
+
+        SetMonsterActive(true);
+        SetComboDisplayVisible(!isDark && showComboInLight);
         SetHealthBarVisible(isDark);
+    }
+
+    private void SetMonsterActive(bool active)
+    {
+        if (spriteRenderer != null) spriteRenderer.enabled = active;
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = active;
+        if (agent != null) agent.enabled = active;
+        SetComboDisplayVisible(false);
+        SetHealthBarVisible(false);
     }
 
     private void SetComboDisplayVisible(bool visible)
@@ -277,26 +323,26 @@ public class Monster : MonoBehaviour, IResettable
 
     private void CreateComboDisplay()
     {
-        var parentSR = GetComponent<SpriteRenderer>();
-        Sprite baseSprite = parentSR != null ? parentSR.sprite : null;
-        if (baseSprite == null) baseSprite = RuntimeSprite.Get();
-
-        float spacing = 0.5f;
-        float startX = -(requiredCombo.Length - 1) * spacing / 2f;
+        Sprite fallback = RuntimeSprite.Get();
+        float startX = -(requiredCombo.Length - 1) * comboSpacing / 2f;
 
         for (int i = 0; i < requiredCombo.Length; i++)
         {
             var go = new GameObject($"Combo_{i}");
             go.transform.SetParent(transform);
-            go.transform.localPosition = new Vector3(healthBarOffset.x + startX + i * spacing, healthBarOffset.y, 0);
+            go.transform.localPosition = new Vector3(
+                comboOffset.x + startX + i * comboSpacing, comboOffset.y, 0);
 
             bool isDot = requiredCombo[i] == BulletType.Dot;
             go.transform.localScale = isDot
-                ? Vector3.one * 0.35f
-                : new Vector3(0.7f, 0.25f, 1f);
+                ? Vector3.one * comboDotSize
+                : new Vector3(comboLineSize.x, comboLineSize.y, 1f);
 
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = baseSprite;
+            if (isDot)
+                sr.sprite = comboDotSprite != null ? comboDotSprite : fallback;
+            else
+                sr.sprite = comboLineSprite != null ? comboLineSprite : fallback;
             sr.sortingOrder = 15;
             sr.color = Color.gray;
 
@@ -324,10 +370,18 @@ public class Monster : MonoBehaviour, IResettable
     {
         gameObject.SetActive(true);
 
-        if (agent != null && agent.isOnNavMesh)
+        if (agent != null)
         {
-            agent.ResetPath();
-            agent.Warp(startPosition);
+            agent.enabled = true;
+            if (agent.isOnNavMesh)
+            {
+                agent.ResetPath();
+                agent.Warp(startPosition);
+            }
+            else
+            {
+                transform.position = startPosition;
+            }
         }
         else
         {
@@ -341,6 +395,10 @@ public class Monster : MonoBehaviour, IResettable
         UpdateHealthBar();
         if (spriteRenderer != null)
             spriteRenderer.color = Color.magenta;
+
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            ApplyPhaseVisibility(pm.CurrentPhase);
     }
 
     private void OnDrawGizmos()
