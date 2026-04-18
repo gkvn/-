@@ -60,8 +60,13 @@ public class Projectile : MonoBehaviour
 
         var monster = other.GetComponent<Monster>();
         if (monster != null)
+        {
             monster.OnBulletHit(Type);
+            Destroy(gameObject);
+            return;
+        }
 
-        Destroy(gameObject);
+        if (!other.isTrigger)
+            Destroy(gameObject);
     }
 }

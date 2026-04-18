@@ -38,11 +38,28 @@ public class LevelPhaseManager : MonoBehaviour
 
     public void TransitionToDark()
     {
+        ResetAllObjects();
         SetPhase(LevelPhase.Dark);
         var player = FindObjectOfType<PlayerController>();
         var spawn = FindObjectOfType<SpawnPoint>();
         if (player != null && spawn != null)
             player.TeleportTo(spawn.transform.position);
+    }
+
+    public void ResetAllObjects()
+    {
+        var resettables = FindObjectsOfType<MonoBehaviour>();
+        int count = 0;
+        foreach (var mb in resettables)
+        {
+            var r = mb as IResettable;
+            if (r != null)
+            {
+                r.ResetState();
+                count++;
+            }
+        }
+        Debug.Log($"[Phase] 已重置 {count} 个交互物体");
     }
 
     public void OnLevelComplete()

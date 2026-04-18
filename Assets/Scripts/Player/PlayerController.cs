@@ -257,6 +257,11 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
+
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.ResetAllObjects();
+
         var spawn = FindObjectOfType<SpawnPoint>();
         if (spawn != null)
             transform.position = spawn.transform.position;

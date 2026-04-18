@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PressureButton : MonoBehaviour, IInteractable
+public class PressureButton : MonoBehaviour, IInteractable, IResettable
 {
     [SerializeField] private Door linkedDoor;
 
@@ -24,5 +24,14 @@ public class PressureButton : MonoBehaviour, IInteractable
 
         if (spriteRenderer != null)
             spriteRenderer.color = isPressed ? Color.green : Color.red;
+    }
+
+    public void ResetState()
+    {
+        isPressed = false;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.red;
+        if (linkedDoor != null)
+            linkedDoor.Close();
     }
 }

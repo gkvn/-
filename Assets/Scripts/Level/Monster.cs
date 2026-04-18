@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
-public class Monster : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class Monster : MonoBehaviour, IResettable
 {
     [Header("Combo Sequence")]
     [Tooltip("击败此怪物所需的子弹组合（Dot=点击, Line=长按）")]
@@ -20,12 +21,18 @@ public class Monster : MonoBehaviour
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
     private Transform playerTransform;
     private bool isChasing;
+    private Vector3 startPosition;
 
     private void Start()
     {
+        startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        rb.freezeRotation = true;
 
         var player = FindObjectOfType<PlayerController>();
         if (player != null) playerTransform = player.transform;
@@ -45,20 +52,20 @@ public class Monster : MonoBehaviour
             pm.OnPhaseChanged -= OnPhaseChanged;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (playerTransform == null) return;
+        if (playerTransform == null || rb == null) return;
 
         var pm = LevelPhaseManager.Instance;
         if (pm == null || pm.CurrentPhase != LevelPhase.Dark) return;
 
-        float dist = Vector2.Distance(transform.position, playerTransform.position);
+        float dist = Vector2.Distance(rb.position, (Vector2)playerTransform.position);
         isChasing = dist <= detectRange;
 
         if (isChasing)
         {
-            Vector2 dir = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
-            transform.position += (Vector3)(dir * chaseSpeed * Time.deltaTime);
+            Vector2 dir = ((Vector2)playerTransform.position - rb.position).normalized;
+            rb.MovePosition(rb.position + dir * chaseSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -180,6 +187,18 @@ public class Monster : MonoBehaviour
             else
                 sr.color = Color.gray;
         }
+    }
+
+    public void ResetState()
+    {
+        gameObject.SetActive(true);
+        transform.position = startPosition;
+        if (rb != null) rb.velocity = Vector2.zero;
+        comboIndex = 0;
+        isChasing = false;
+        UpdateComboDisplay();
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.magenta;
     }
 
     private void OnDrawGizmos()

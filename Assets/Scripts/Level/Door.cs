@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IResettable
 {
     private Collider2D col;
     private SpriteRenderer spriteRenderer;
@@ -32,5 +32,10 @@ public class Door : MonoBehaviour
         col.enabled = true;
         if (spriteRenderer != null)
             spriteRenderer.color = closedColor;
+    }
+
+    public void ResetState()
+    {
+        Close();
     }
 }
