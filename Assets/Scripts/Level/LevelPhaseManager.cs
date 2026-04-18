@@ -50,6 +50,20 @@ public class LevelPhaseManager : MonoBehaviour
         {
             RestartLevel();
         }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            if (CurrentPhase == LevelPhase.Light)
+            {
+                Debug.Log("[Debug] 作弊：跳到 Dark 阶段");
+                TransitionToDark();
+            }
+            else
+            {
+                Debug.Log("[Debug] 作弊：直接通关");
+                OnLevelComplete();
+            }
+        }
     }
 
     public void RestartCurrentPhase()
