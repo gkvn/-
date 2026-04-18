@@ -20,8 +20,14 @@ public class LevelPhaseManager : MonoBehaviour
 
     private void Start()
     {
+        if (topDownCamera == null)
+            topDownCamera = FindObjectOfType<TopDownCamera>();
+
         SetPhase(LevelPhase.Light);
     }
+
+    /// <summary>由 <see cref="GameplayBootstrap"/> 在运行时注入场景相机。</summary>
+    public void AssignTopDownCamera(TopDownCamera cam) => topDownCamera = cam;
 
     private bool debugLightsOn;
 

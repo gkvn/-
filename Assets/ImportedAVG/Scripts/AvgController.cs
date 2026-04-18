@@ -82,6 +82,8 @@ namespace AVG {
     private AvgDialogView m_dialogView;
     private AvgModel m_model;
     private bool m_isInited;
+    /// <summary>上一帧玩家视角下主界面是否为隐藏；用于区分「重新打开」与「一直开着」。</summary>
+    private bool _avgUiWasHidden = true;
     private AvgState m_currentState = AvgState.IDLE;
     private AvgMode m_currentMode = AvgMode.DEFAULT;
     private Coroutine m_typingCoroutine;
@@ -169,14 +171,19 @@ namespace AVG {
       _KillAvgUiFadeTween();
       if (_HasFadeTarget()) {
         if (visible) {
+          _ResetAvgModeWhenReopeningUi();
           _RestoreAvgUiCanvasInteraction();
           _GetAvgUiFadeAnim().FadeIn();
         } else {
-          _GetAvgUiFadeAnim().FadeOut(() => _ClearSegmentViews());
+          _GetAvgUiFadeAnim().FadeOut(() => {
+            _MarkAvgUiHidden();
+            _ClearSegmentViews();
+          });
         }
         return;
       }
       if (visible) {
+        _ResetAvgModeWhenReopeningUi();
         _ApplyAvgUiShownImmediate();
       } else {
         _ApplyAvgUiHiddenImmediate();
@@ -192,6 +199,7 @@ namespace AVG {
         Debug.LogError($"无法开始章节: {chapterId}");
         return false;
       }
+      _ResetAvgModeWhenReopeningUi();
       if (_HasFadeTarget()) {
         _PrepareAvgUiCanvasForContentBeforeFadeIn();
         _UpdateViews();
@@ -279,6 +287,7 @@ namespace AVG {
           _UpdateViews();
           _logView.gameObject.SetActive(false);
         }
+        _avgUiWasHidden = false;
       }
     }
     #endregion
@@ -384,10 +393,28 @@ namespace AVG {
       _ChangeState(AvgState.IDLE);
       _KillAvgUiFadeTween();
       if (_HasFadeTarget()) {
-        _GetAvgUiFadeAnim().FadeOut(() => _ClearSegmentViews());
+        _GetAvgUiFadeAnim().FadeOut(() => {
+          _MarkAvgUiHidden();
+          _ClearSegmentViews();
+        });
       } else {
         _ApplyAvgUiHiddenImmediate();
         _ClearSegmentViews();
+      }
+    }
+
+    private void _MarkAvgUiHidden() {
+      _avgUiWasHidden = true;
+    }
+
+    /// <summary>主界面从隐藏再次显示时，自动/快放恢复为手动（不改变已打开的日志面板状态）。</summary>
+    private void _ResetAvgModeWhenReopeningUi() {
+      if (!_avgUiWasHidden) {
+        return;
+      }
+      _avgUiWasHidden = false;
+      if (m_currentMode == AvgMode.AUTO || m_currentMode == AvgMode.FAST) {
+        avgMode = AvgMode.DEFAULT;
       }
     }
 
@@ -499,6 +526,7 @@ namespace AVG {
       if (_logView != null) {
         _logView.gameObject.SetActive(false);
       }
+      _MarkAvgUiHidden();
     }
 
     private void _ClearSegmentViews() {
