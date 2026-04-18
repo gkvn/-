@@ -53,13 +53,15 @@ public class Projectile : MonoBehaviour
             sr.color = Color.yellow;
         }
 
+        float halfLength = transform.localScale.x * 0.5f;
+        transform.position += (Vector3)(direction.normalized * halfLength);
+
         var col = GetComponent<CircleCollider2D>();
         if (col != null)
         {
             float maxScale = Mathf.Max(transform.localScale.x, transform.localScale.y);
             col.radius = 0.2f / maxScale;
         }
-
     }
 
     public void Launch(Vector2 direction)

@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float holdThreshold = 0.25f;
     [Tooltip("子弹发射点相对角色的偏移")]
     [SerializeField] private Vector2 bulletSpawnOffset = new Vector2(0, 0.5f);
+    [Tooltip("子弹生成点离墙壁的安全距离")]
+    [SerializeField] private float bulletWallMargin = 0.05f;
 
     [Header("Appearance")]
     [Tooltip("亮灯阶段角色贴图")]
@@ -278,7 +281,7 @@ public class PlayerController : MonoBehaviour
         Vector3 mouseWorld = gameCamera.ScreenToWorldPoint(mouseScreen);
         Vector2 origin = (Vector2)transform.position + bulletSpawnOffset;
         Vector2 dir = ((Vector2)mouseWorld - origin).normalized;
-        Vector2 spawnPos = origin;
+        Vector2 spawnPos = GetSafeBulletSpawn((Vector2)transform.position, origin, dir);
 
         GameObject proj;
         if (projectilePrefab != null)
@@ -292,6 +295,17 @@ public class PlayerController : MonoBehaviour
 
         var p = proj.GetComponent<Projectile>();
         if (p != null) p.Launch(dir, type);
+    }
+
+    private Vector2 GetSafeBulletSpawn(Vector2 playerCenter, Vector2 desiredOrigin, Vector2 dir)
+    {
+        float dist = Vector2.Distance(playerCenter, desiredOrigin);
+        RaycastHit2D hit = Physics2D.Raycast(playerCenter, dir, dist + 0.1f, ~0);
+
+        if (hit.collider != null && !hit.collider.CompareTag("Player") && !hit.collider.isTrigger)
+            return hit.point - dir * bulletWallMargin;
+
+        return desiredOrigin;
     }
 
     private GameObject CreateRuntimeBullet(Vector2 pos)

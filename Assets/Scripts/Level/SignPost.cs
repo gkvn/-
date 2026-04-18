@@ -28,11 +28,44 @@ public class SignPost : MonoBehaviour, IInteractable, IResettable
     private GameObject popupInstance;
     private float hideTimer;
     private bool showing;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D col;
 
     private void Awake()
     {
-        var col = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<BoxCollider2D>();
         col.isTrigger = false;
+    }
+
+    private void Start()
+    {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+        {
+            pm.OnPhaseChanged += OnPhaseChanged;
+            ApplyPhase(pm.CurrentPhase);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.OnPhaseChanged -= OnPhaseChanged;
+    }
+
+    private void OnPhaseChanged(LevelPhase phase)
+    {
+        ApplyPhase(phase);
+    }
+
+    private void ApplyPhase(LevelPhase phase)
+    {
+        bool visible = phase == LevelPhase.Light;
+        if (spriteRenderer != null) spriteRenderer.enabled = visible;
+        if (col != null) col.enabled = visible;
+        if (!visible) HidePopup();
     }
 
     public void Interact(PlayerController player)
@@ -100,6 +133,9 @@ public class SignPost : MonoBehaviour, IInteractable, IResettable
     public void ResetState()
     {
         HidePopup();
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            ApplyPhase(pm.CurrentPhase);
     }
 
     private void OnDrawGizmos()

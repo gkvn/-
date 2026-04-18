@@ -65,15 +65,6 @@ public static class EditorTools
 
         go.AddComponent<SignPost>();
 
-        var hideable = go.AddComponent<DarkPhaseHideable>();
-        var so = new SerializedObject(hideable);
-        var prop = so.FindProperty("keepColliderWhenHidden");
-        if (prop != null)
-        {
-            prop.boolValue = false;
-            so.ApplyModifiedPropertiesWithoutUndo();
-        }
-
         var prefab = PrefabUtility.SaveAsPrefabAsset(go, path);
         Object.DestroyImmediate(go);
 
