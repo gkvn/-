@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "创造了那么美的东西，最后却毁于自己的争斗。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Created such beautiful things, yet destroyed by their own fighting.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "我们西格纳鲁会不会也……",
-      "dlgTextEN": null,
+      "dlgTextEN": "Could Signalru end up the same way...",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "……不想了。先找到§Ø_∆.µΩ再说。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...Never mind. Finding §Ø_∆.µΩ comes first.",
       "cgId": null,
       "charDisplays": [
         {

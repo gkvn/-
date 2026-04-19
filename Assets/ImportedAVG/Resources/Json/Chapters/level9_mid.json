@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "§Ø_∆.µΩ在核心区的地面上留下了最后的笔记。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ left the final note on the floor of the core area.",
       "cgId": "cg_past2",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "然后倒下了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Then collapsed.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -36,7 +36,7 @@
     "3_na": {
       "id": "3_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -52,7 +52,7 @@
     "4_na": {
       "id": "4_na",
       "dlgText": "黑暗中，_99[k]r拼命向最深处跑去。",
-      "dlgTextEN": null,
+      "dlgTextEN": "In the darkness, _99[k]r sprinted toward the deepest point.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -68,7 +68,7 @@
     "5_b": {
       "id": "5_b",
       "dlgText": "§Ø_∆.µΩ！！",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ!!",
       "cgId": null,
       "charDisplays": [
         {
@@ -90,7 +90,7 @@
     "6_na": {
       "id": "6_na",
       "dlgText": "核心区域还残留着最后一点微弱的光。",
-      "dlgTextEN": null,
+      "dlgTextEN": "A faint trace of light still lingered in the core area.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -106,7 +106,7 @@
     "7_na": {
       "id": "7_na",
       "dlgText": "光里面，有一个人影。",
-      "dlgTextEN": null,
+      "dlgTextEN": "In that light, a figure.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -122,7 +122,7 @@
     "8_b": {
       "id": "8_b",
       "dlgText": "§Ø_∆.µΩ……？",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ...?",
       "cgId": null,
       "charDisplays": [
         {
@@ -144,7 +144,7 @@
     "9_b": {
       "id": "9_b",
       "dlgText": "§Ø_∆.µΩ！你还活着！",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ! You're alive!",
       "cgId": null,
       "charDisplays": [
         {
@@ -166,7 +166,7 @@
     "10_a": {
       "id": "10_a",
       "dlgText": "……_99[k]r？",
-      "dlgTextEN": null,
+      "dlgTextEN": "..._99[k]r?",
       "cgId": null,
       "charDisplays": [
         {
@@ -193,7 +193,7 @@
     "11_a": {
       "id": "11_a",
       "dlgText": "真的是你……",
-      "dlgTextEN": null,
+      "dlgTextEN": "It's really you...",
       "cgId": null,
       "charDisplays": [
         {
@@ -220,7 +220,7 @@
     "12_b": {
       "id": "12_b",
       "dlgText": "我找到你了。我终于找到你了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I found you. I finally found you.",
       "cgId": null,
       "charDisplays": [
         {
@@ -247,7 +247,7 @@
     "13_a": {
       "id": "13_a",
       "dlgText": "你怎么来了……我不是说了不用找我吗。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Why did you come... I said don't come looking for me.",
       "cgId": null,
       "charDisplays": [
         {
@@ -274,7 +274,7 @@
     "14_b": {
       "id": "14_b",
       "dlgText": "你觉得我看到那句话会听话吗。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Did you really think I'd listen to that?",
       "cgId": null,
       "charDisplays": [
         {
@@ -301,7 +301,7 @@
     "15_a": {
       "id": "15_a",
       "dlgText": "……也是。你一直都这样。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...Fair enough. You've always been like that.",
       "cgId": null,
       "charDisplays": [
         {

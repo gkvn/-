@@ -1,10 +1,10 @@
 id,text,tags
-1_a,"……",#cgid:cg_past1,#char@1:b1
-2_a,"大家一定以为我失联了。失踪了。",#char@1:b1,#istalking:b1
-3_a,"但我只是……不知道时间过了那么久。",#char@1:b1,#istalking:b1
-4_a,"我认识的人……现在还好吗。",#char@1:b1,#istalking:b1
-5_na,"……",#cgid:cg_now_dark
-6_b,"这一页的笔记……笔迹在发抖。",#char@1:a1,#istalking:a1
-7_b,"§Ø_∆.µΩ写了什么'光速''时间膨胀'之类的词。",#char@1:a1,#istalking:a1
-8_b,"我看不太懂……但§Ø_∆.µΩ的语气突然变了。",#char@1:a1,#istalking:a1
-9_b,"§Ø_∆.µΩ，你到底怎么了。",#char@1:a1,#istalking:a1
+1_a,"……",#cgid:cg_past1,#char@1:b1,#texten:......
+2_a,"大家一定以为我失联了。失踪了。",#char@1:b1,#istalking:b1,#texten:Everyone must think I went missing. Disappeared.
+3_a,"但我只是……不知道时间过了那么久。",#char@1:b1,#istalking:b1,#texten:But I just... didn't know so much time had passed.
+4_a,"我认识的人……现在还好吗。",#char@1:b1,#istalking:b1,#texten:The people I knew... are they still okay.
+5_na,"……",#cgid:cg_now_dark,#texten:......
+6_b,"这一页的笔记……笔迹在发抖。",#char@1:a1,#istalking:a1,#texten:The handwriting on this page... it's shaking.
+7_b,"§Ø_∆.µΩ写了什么'光速''时间膨胀'之类的词。",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ wrote something about 'speed of light' and 'time dilation.'
+8_b,"我看不太懂……但§Ø_∆.µΩ的语气突然变了。",#char@1:a1,#istalking:a1,#texten:I can't quite understand it... but §Ø_∆.µΩ's tone suddenly changed.
+9_b,"§Ø_∆.µΩ，你到底怎么了。",#char@1:a1,#istalking:a1,"#texten:§Ø_∆.µΩ, what happened to you."

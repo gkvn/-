@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_past1",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "大家一定以为我失联了。失踪了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Everyone must think I went missing. Disappeared.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "但我只是……不知道时间过了那么久。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But I just... didn't know so much time had passed.",
       "cgId": null,
       "charDisplays": [
         {
@@ -70,7 +70,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "我认识的人……现在还好吗。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The people I knew... are they still okay.",
       "cgId": null,
       "charDisplays": [
         {
@@ -92,7 +92,7 @@
     "5_na": {
       "id": "5_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -108,7 +108,7 @@
     "6_b": {
       "id": "6_b",
       "dlgText": "这一页的笔记……笔迹在发抖。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The handwriting on this page... it's shaking.",
       "cgId": null,
       "charDisplays": [
         {
@@ -130,7 +130,7 @@
     "7_b": {
       "id": "7_b",
       "dlgText": "§Ø_∆.µΩ写了什么'光速''时间膨胀'之类的词。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ wrote something about 'speed of light' and 'time dilation.'",
       "cgId": null,
       "charDisplays": [
         {
@@ -151,8 +151,8 @@
     },
     "8_b": {
       "id": "8_b",
-      "dlgText": "我看不太懂……但她的语气突然变了。",
-      "dlgTextEN": null,
+      "dlgText": "我看不太懂……但§Ø_∆.µΩ的语气突然变了。",
+      "dlgTextEN": "I can't quite understand it... but §Ø_∆.µΩ's tone suddenly changed.",
       "cgId": null,
       "charDisplays": [
         {
@@ -174,7 +174,7 @@
     "9_b": {
       "id": "9_b",
       "dlgText": "§Ø_∆.µΩ，你到底怎么了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ, what happened to you.",
       "cgId": null,
       "charDisplays": [
         {

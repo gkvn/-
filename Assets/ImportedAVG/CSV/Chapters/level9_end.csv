@@ -1,10 +1,10 @@
 id,text,tags
-1_b,"你身体怎么样？",#cgid:cg_now,#char@1:a1,#char@2:b1,#istalking:a1
-2_a,"……不太好。这里的灯光一直在伤害我。",#char@1:a1,#char@2:b1,#istalking:b1
-3_a,"但现在灯几乎灭了。所以你没事。",#char@1:a1,#char@2:b1,#istalking:b1
-4_b,"……你是说，明亮的神殿反而在害你？",#char@1:a1,#char@2:b1,#istalking:a1
-5_a,"这个星球的电能对我们有辐射。我在灯亮着的时候待了太久了。",#char@1:a1,#char@2:b1,#istalking:b1
-6_b,"……",#char@1:a1,#char@2:b1
-7_b,"那我们快走。离开这里你会好起来的。",#char@1:a1,#char@2:b1,#istalking:a1
-8_a,"_99[k]r。走之前……前面还有最后一个区域。",#char@1:a1,#char@2:b1,#istalking:b1
-9_a,"这个神殿的核心……有什么东西在等着我们。",#char@1:a1,#char@2:b1,#istalking:b1
+1_b,"你身体怎么样？",#cgid:cg_now,#char@1:a1,#char@2:b1,#istalking:a1,#texten:How are you feeling?
+2_a,"……不太好。这里的灯光一直在伤害我。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:...Not good. The lights here have been hurting me all along.
+3_a,"但现在灯几乎灭了。所以你没事。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:But now the lights are almost gone. So you're safe.
+4_b,"……你是说，明亮的神殿反而在害你？",#char@1:a1,#char@2:b1,#istalking:a1,"#texten:...You mean the bright temple was actually harming you?"
+5_a,"这个星球的电能对我们有辐射。我在灯亮着的时候待了太久了。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:This planet's electric energy is toxic to us. I was in the lit areas too long.
+6_b,"……",#char@1:a1,#char@2:b1,#texten:......
+7_b,"那我们快走。离开这里你会好起来的。",#char@1:a1,#char@2:b1,#istalking:a1,#texten:Then let's go. You'll get better once we leave.
+8_a,"_99[k]r。走之前……前面还有最后一个区域。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:_99[k]r. Before we go... there's one last area ahead.
+9_a,"这个神殿的核心……有什么东西在等着我们。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:Something in the temple's core... is waiting for us.

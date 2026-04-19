@@ -1,25 +1,36 @@
 id,text,tags
-1_na,"守门人关闭了。神殿安静下来。",#cgid:cg_now_dark
-2_b,"§Ø_∆.µΩ！",#char@1:a1,#char@2:b1,#istalking:a1
-3_a,"……别喊了。我听得见。",#char@1:a1,#char@2:b1,#istalking:b1
-4_b,"我们走。我带你离开这里。离开了你就会好的。",#char@1:a1,#char@2:b1,#istalking:a1
-5_a,"_99[k]r。",#char@1:a1,#char@2:b1,#istalking:b1
-6_a,"你知道来不及了。",#char@1:a1,#char@2:b1,#istalking:b1
-7_b,"……",#char@1:a1,#char@2:b1
-8_a,"帮我把笔记都带回去。",#char@1:a1,#char@2:b1,#istalking:b1
-9_a,"还有那个理论……相对论。让大家知道时间的真相。",#char@1:a1,#char@2:b1,#istalking:b1
-10_a,"这样以后就不会有人像我一样，走了几年却错过了几十年。",#char@1:a1,#char@2:b1,#istalking:b1
-11_b,"§Ø_∆.µΩ……",#char@1:a1,#char@2:b1,#istalking:a1
-12_a,"_99[k]r，谢谢你来找我。",#char@1:a1,#char@2:b1,#istalking:b1
-13_a,"我写'不用找我'的时候……其实特别希望你来。",#char@1:a1,#char@2:b1,#istalking:b1
-14_b,"我知道。",#char@1:a1,#char@2:b1,#istalking:a1
-15_a,"嗯。",#char@1:a1,#char@2:b1,#istalking:b1
-16_a,"你一直都懂。",#char@1:a1,#char@2:b1,#istalking:b1
-17_na,"§Ø_∆.µΩ闭上了眼睛。"
-18_na,"……"
-19_na,"很久以后。",#cgid:cg_now
-20_na,"_99[k]r带着所有的笔记、人类的遗产和相对论的知识，踏上了回西格纳鲁的归途。"
-21_na,"_99[k]r带回了两份遗产——"
-22_na,"一个灭绝文明的记忆。"
-23_na,"和一个朋友走过的路。"
-24_na,"身后，数字神殿熄灭了最后一盏灯。"
+1_na,"战斗中，§Ø_∆.µΩ用尽了最后的力气。",#cgid:cg_now_dark,"#texten:In the battle, §Ø_∆.µΩ spent the very last reserves of strength."
+2_a,"_99[k]r……左边……用那个编码……",#char@1:a1,#char@2:b1,#istalking:b1,#texten:_99[k]r... on the left... use that encoding...
+3_b,"§Ø_∆.µΩ！你别动了！",#char@1:a1,#char@2:b1,#istalking:a1,#texten:§Ø_∆.µΩ! Stop moving!
+4_a,"没事……我还能帮你……",#char@1:a1,#char@2:b1,#istalking:b1,#texten:It's fine... I can still help you...
+5_na,"守门人停止了攻击。",#texten:The Gatekeeper ceased its attack.
+6_na,"『……够了。』",#texten:'...Enough.'
+7_na,"『你们的技术并不成熟。你们的文明离我们还很远。』",#texten:'Your technology is not mature. Your civilization is still far from ours.'
+8_na,"『但是——』",#texten:'But—'
+9_na,"『§Ø_∆.µΩ为你留下了路。你为§Ø_∆.µΩ穿过了黑暗。』",#texten:'§Ø_∆.µΩ left you the path. You crossed the darkness for §Ø_∆.µΩ.'
+10_na,"『这是任何文明中最珍贵的东西。』",#texten:'That is the most precious thing in any civilization.'
+11_na,"『带走吧。这些遗产是你们的了。』",#texten:'Take it. This legacy is yours now.'
+12_na,"守门人关闭了。神殿安静下来。",#texten:The Gatekeeper shut down. The temple fell silent.
+13_b,"§Ø_∆.µΩ！",#char@1:a1,#char@2:b1,#istalking:a1,#texten:§Ø_∆.µΩ!
+14_a,"……别喊了。我听得见。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:...Don't shout. I can hear you.
+15_b,"我们走。我带你离开这里。离开了你就会好的。",#char@1:a1,#char@2:b1,#istalking:a1,#texten:We're leaving. I'll carry you out. You'll be fine once we're out.
+16_a,"_99[k]r。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:_99[k]r.
+17_a,"你知道来不及了。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:You know there's no time left.
+18_b,"……",#char@1:a1,#char@2:b1,#texten:......
+19_a,"帮我把笔记都带回去。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:Take all the notes back for me.
+20_a,"还有那个理论……相对论。让大家知道时间的真相。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:And that theory... relativity. Let everyone know the truth about time.
+21_a,"这样以后就不会有人像我一样，走了几年却错过了几十年。",#char@1:a1,#char@2:b1,#istalking:b1,"#texten:So no one else will ever leave for a few years and miss a few decades."
+22_b,"§Ø_∆.µΩ……",#char@1:a1,#char@2:b1,#istalking:a1,#texten:§Ø_∆.µΩ...
+23_a,"_99[k]r，谢谢你来找我。",#char@1:a1,#char@2:b1,#istalking:b1,"#texten:_99[k]r, thank you for coming to find me."
+24_a,"我写'不用找我'的时候……其实特别希望你来。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:When I wrote 'don't come looking for me'... I was really hoping you would.
+25_b,"我知道。",#char@1:a1,#char@2:b1,#istalking:a1,#texten:I know.
+26_a,"嗯。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:Mm.
+27_a,"你一直都懂。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:You always did understand.
+28_na,"§Ø_∆.µΩ闭上了眼睛。",#texten:§Ø_∆.µΩ closed those eyes.
+29_na,"……",#texten:......
+30_na,"很久以后。",#cgid:cg_now,#texten:A long time later.
+31_na,"_99[k]r带着所有的笔记、人类的遗产和相对论的知识，踏上了回西格纳鲁的归途。","#texten:_99[k]r carried all the notes, humanity's legacy, and the knowledge of relativity on the journey back to Signalru."
+32_na,"_99[k]r带回了两份遗产——",#texten:_99[k]r brought back two legacies—
+33_na,"一个灭绝文明的记忆。",#texten:The memory of an extinct civilization.
+34_na,"和一个朋友走过的路。",#texten:And the path a friend once walked.
+35_na,"身后，数字神殿熄灭了最后一盏灯。",#texten:Behind — the digital temple extinguished its final light.

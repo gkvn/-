@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "这个区域的墙壁上，记录着这个文明关于分离和等待的故事。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The walls of this area hold records about separation and waiting from this civilization.",
       "cgId": "cg_now",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "战争中的家书，远航者的日志。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Letters from wars. Journals from long voyages.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -36,7 +36,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "原来每个文明都要面对这种事。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Every civilization faces this kind of thing.",
       "cgId": null,
       "charDisplays": [
         {
@@ -58,7 +58,7 @@
     "4_b": {
       "id": "4_b",
       "dlgText": "§Ø_∆.µΩ，我不怪你。我只想快点见到你。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ, I don't blame you. I just want to see you soon.",
       "cgId": null,
       "charDisplays": [
         {

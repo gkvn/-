@@ -1,12 +1,8 @@
 id,text,tags
-1_na,"神殿最深处的核心区域。",#cgid:cg_now_dark
-2_na,"最后一点能源在这里汇聚，维持着某个系统的运转。"
-3_na,"突然，核心亮了起来。"
-4_na,"一个声音响起——"
-5_na,"不是任何已知的语言，但通过§Ø_∆.µΩ之前的翻译笔记，能大致理解。"
-6_na,"『有人来了。』"
-7_na,"『我等了很久。』"
-8_b,"这是什么……？",#char@1:a1,#char@2:b1,#istalking:a1
-9_a,"是这个文明留下的……某种智能。",#char@1:a1,#char@2:b1,#istalking:b1
-10_na,"『我是守门人。我的职责是判断——你们的文明，是否配得上带走我们的遗产。』"
-11_na,"『证明给我看。』"
+1_na,"神殿的最终区域。灯光在这里亮得刺眼。",#cgid:cg_past2,#texten:The final area of the temple. The lights here are blindingly bright.
+2_a,"到了……最深处了。",#char@1:b1,#istalking:b1,#texten:I made it... the very deepest point.
+3_a,"中央有一个巨大的装置……",#char@1:b1,#istalking:b1,#texten:There's a massive device in the center...
+4_a,"好像在休眠。但我能感觉到，里面有什么东西。",#char@1:b1,#istalking:b1,"#texten:It seems dormant. But I can feel something inside it."
+5_a,"……头好疼。这里的灯光太强了。",#char@1:b1,#istalking:b1,#texten:...My head hurts so much. The lights here are too strong.
+6_a,"把最后的发现记录完吧。",#char@1:b1,#istalking:b1,#texten:Let me finish recording the last discoveries.
+7_a,"不管谁来到这里，都会需要这些笔记的。",#char@1:b1,#istalking:b1,"#texten:Whoever comes here next will need these notes."

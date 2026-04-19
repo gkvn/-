@@ -1,4 +1,4 @@
 id,text,tags
-1_b,"创造了那么美的东西，最后却毁于自己的争斗。",#cgid:cg_now,#char@1:a1,#istalking:a1
-2_b,"我们西格纳鲁会不会也……",#char@1:a1,#istalking:a1
-3_b,"……不想了。先找到§Ø_∆.µΩ再说。",#char@1:a1,#istalking:a1
+1_b,"创造了那么美的东西，最后却毁于自己的争斗。",#cgid:cg_now,#char@1:a1,#istalking:a1,"#texten:Created such beautiful things, yet destroyed by their own fighting."
+2_b,"我们西格纳鲁会不会也……",#char@1:a1,#istalking:a1,#texten:Could Signalru end up the same way...
+3_b,"……不想了。先找到§Ø_∆.µΩ再说。",#char@1:a1,#istalking:a1,#texten:...Never mind. Finding §Ø_∆.µΩ comes first.

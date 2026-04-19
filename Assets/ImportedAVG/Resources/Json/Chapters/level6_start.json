@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "神殿深层。这里存放着这个文明最核心的科学记录。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Deep layer of the temple. Core scientific records of this civilization are stored here.",
       "cgId": "cg_past1",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这些数据……是某种物理学体系。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This data... some kind of physics framework.",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "光速……时间膨胀……",
-      "dlgTextEN": null,
+      "dlgTextEN": "Speed of light... time dilation...",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "等等。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Wait.",
       "cgId": null,
       "charDisplays": [
         {
@@ -86,7 +86,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "如果这个理论是对的……",
-      "dlgTextEN": null,
+      "dlgTextEN": "If this theory is correct...",
       "cgId": null,
       "charDisplays": [
         {
@@ -108,7 +108,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "我们的飞船在接近光速飞行的时候……",
-      "dlgTextEN": null,
+      "dlgTextEN": "When our ship was traveling near the speed of light...",
       "cgId": null,
       "charDisplays": [
         {
@@ -130,7 +130,7 @@
     "7_a": {
       "id": "7_a",
       "dlgText": "船上的时间会比外面慢很多……",
-      "dlgTextEN": null,
+      "dlgTextEN": "Time on board would pass much slower than outside...",
       "cgId": null,
       "charDisplays": [
         {
@@ -152,7 +152,7 @@
     "8_a": {
       "id": "8_a",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [
         {
@@ -174,7 +174,7 @@
     "9_a": {
       "id": "9_a",
       "dlgText": "我离开西格纳鲁才过了几年。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I've only been away from Signalru for a few years.",
       "cgId": null,
       "charDisplays": [
         {
@@ -196,7 +196,7 @@
     "10_a": {
       "id": "10_a",
       "dlgText": "但西格纳鲁那边……已经过了几十年了？",
-      "dlgTextEN": null,
+      "dlgTextEN": "But back on Signalru... decades have passed?",
       "cgId": null,
       "charDisplays": [
         {

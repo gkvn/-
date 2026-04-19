@@ -198,6 +198,14 @@ public static class CSVToJSONConverter {
     for (int j = 2; j < fields.Length; j++) {
       string tagsField = fields[j].Trim();
       if (string.IsNullOrEmpty(tagsField)) continue;
+
+      if (tagsField.StartsWith("#texten:", StringComparison.OrdinalIgnoreCase) ||
+          tagsField.StartsWith("#texten：", StringComparison.OrdinalIgnoreCase)) {
+        int colonIdx = tagsField.IndexOfAny(new[] { ':', '：' });
+        if (colonIdx >= 0)
+          dialog.dlgTextEN = tagsField.Substring(colonIdx + 1);
+        continue;
+      }
       
       string[] tags = tagsField.Split(',');
       foreach (string tag in tags) {
@@ -298,6 +306,7 @@ public static class CSVToJSONConverter {
           DlgOption sourceOption = allOptionsMap[optionId];
           DlgOption option = new DlgOption {
             optText = sourceOption.optText,
+            optTextEN = sourceOption.optTextEN,
             nextId = sourceOption.nextId,
             condId = sourceOption.condId,
             nextChapter = sourceOption.nextChapter,
@@ -603,6 +612,7 @@ public static class CSVToJSONConverter {
       charDisplay.charBody = _GetField(fields, columnMap, "charbody");
       charDisplay.charFace = _GetField(fields, columnMap, "charface");
       charDisplay.charAvatar = _GetField(fields, columnMap, "charavatar");
+      charDisplay.charNameEN = _GetField(fields, columnMap, "charnameen");
 
       charDisplays.Add(charDisplay.charDisplayId, charDisplay);
     }

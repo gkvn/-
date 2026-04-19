@@ -1,5 +1,5 @@
 id,text,tags
-1_na,"新的区域。",#cgid:cg_past
-2_a,"这个地方太大了，走过的路很容易忘记。",#char@1:b1,#istalking:b1
-3_a,"我应该把路线和发现记录下来。",#char@1:b1,#istalking:b1
-4_a,"万一之后还要回来，或者有人来接应，这些笔记会有用的。",#char@1:b1,#istalking:b1
+1_na,"新的区域。",#cgid:cg_past,#texten:A new area.
+2_a,"这个地方太大了，走过的路很容易忘记。",#char@1:b1,#istalking:b1,"#texten:This place is too big — easy to forget the paths I've taken."
+3_a,"我应该把路线和发现记录下来。",#char@1:b1,#istalking:b1,#texten:I should record the routes and discoveries.
+4_a,"万一之后还要回来，或者有人来接应，这些笔记会有用的。",#char@1:b1,#istalking:b1,"#texten:If I need to come back, or someone comes to find me, these notes will help."

@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "又顺利通过了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Another room cleared.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "§Ø_∆.µΩ，等我。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ, wait for me.",
       "cgId": null,
       "charDisplays": [
         {

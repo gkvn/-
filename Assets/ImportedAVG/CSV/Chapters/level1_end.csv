@@ -1,4 +1,4 @@
 id,text,tags
-1_b,"有了笔记，顺利多了。",#cgid:cg_now,#char@1:a1,#istalking:a1
-2_b,"§Ø_∆.µΩ，你还记得给后面的人留下记录。",#char@1:a1,#istalking:a1
-3_b,"我一定会找到你的。",#char@1:a1,#istalking:a1
+1_b,"有了笔记，顺利多了。",#cgid:cg_now,#char@1:a1,#istalking:a1,"#texten:Much smoother with the notes."
+2_b,"§Ø_∆.µΩ，你还记得给后面的人留下记录。",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ — you even thought to leave records for those who come after.
+3_b,"我一定会找到你的。",#char@1:a1,#istalking:a1,#texten:I will find you.

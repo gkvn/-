@@ -1,5 +1,5 @@
 id,text,tags
-1_na,"这个区域的墙壁上，刻满了这个文明关于爱与羁绊的记录。",#cgid:cg_now
-2_na,"§Ø_∆.µΩ在旁边留了一行歪歪扭扭的批注——"
-3_na,"'原来每个星球都有这种东西。'"
-4_b,"……我来了。等着我。",#char@1:a1,#istalking:a1
+1_na,"这个区域的墙壁上，刻满了这个文明关于爱与羁绊的记录。",#cgid:cg_now,"#texten:The walls of this area are covered with records about love and bonds from this civilization."
+2_na,"§Ø_∆.µΩ在旁边留了一行歪歪扭扭的批注——",#texten:§Ø_∆.µΩ left a shaky annotation beside them—
+3_na,"'原来每个星球都有这种东西。'",#texten:'So every planet has this kind of thing.'
+4_b,"……我来了。等着我。",#char@1:a1,#istalking:a1,#texten:...I'm coming. Wait for me.

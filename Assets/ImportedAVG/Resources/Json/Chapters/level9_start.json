@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "神殿最深处——文明核心。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The deepest core of the temple.",
       "cgId": "cg_past2",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "这里的灯光最为强烈。能源最集中的地方。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The brightest lights. Where energy is most concentrated.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -36,7 +36,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "到了……这就是最里面了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I made it... this is the very center.",
       "cgId": null,
       "charDisplays": [
         {
@@ -58,7 +58,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "……好亮。头好痛。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...So bright. My head hurts so much.",
       "cgId": null,
       "charDisplays": [
         {
@@ -80,7 +80,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "墙上有一段话……是这个文明最后留下的东西。",
-      "dlgTextEN": null,
+      "dlgTextEN": "There's something on the wall... the last thing this civilization left behind.",
       "cgId": null,
       "charDisplays": [
         {
@@ -102,7 +102,7 @@
     "6_na": {
       "id": "6_na",
       "dlgText": "——我们存在过。",
-      "dlgTextEN": null,
+      "dlgTextEN": "— We existed.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -118,7 +118,7 @@
     "7_a": {
       "id": "7_a",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [
         {
@@ -140,7 +140,7 @@
     "8_a": {
       "id": "8_a",
       "dlgText": "我也存在过。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I existed too.",
       "cgId": null,
       "charDisplays": [
         {
@@ -162,7 +162,7 @@
     "9_a": {
       "id": "9_a",
       "dlgText": "把该记的都记在笔记里了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Everything worth recording is in the notes now.",
       "cgId": null,
       "charDisplays": [
         {
@@ -184,7 +184,7 @@
     "10_a": {
       "id": "10_a",
       "dlgText": "_99[k]r……对不起，大概没办法当面告诉你了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "_99[k]r... sorry. I probably can't tell you in person.",
       "cgId": null,
       "charDisplays": [
         {

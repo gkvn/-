@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "数据密集的区域。这里存放着大量历史记录。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Data-dense area. Massive amounts of historical records stored here.",
       "cgId": "cg_past1",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这些记录……是这个文明的历史。",
-      "dlgTextEN": null,
+      "dlgTextEN": "These records... this civilization's history.",
       "cgId": null,
       "charDisplays": [
         {
@@ -41,8 +41,8 @@
     },
     "3_a": {
       "id": "3_a",
-      "dlgText": "他们曾经遍布整个星球，建造了无数壮观的东西。",
-      "dlgTextEN": null,
+      "dlgText": "这个文明曾经遍布整个星球，建造了无数壮观的东西。",
+      "dlgTextEN": "This civilization once spanned the entire planet, building countless magnificent things.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "但后来……能源开始枯竭。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But then... their energy began to run out.",
       "cgId": null,
       "charDisplays": [
         {
@@ -85,8 +85,8 @@
     },
     "5_a": {
       "id": "5_a",
-      "dlgText": "为了争夺剩余的能源，他们彼此开战。",
-      "dlgTextEN": null,
+      "dlgText": "为了争夺剩余的能源，彼此开战。",
+      "dlgTextEN": "They fought each other over what remained.",
       "cgId": null,
       "charDisplays": [
         {
@@ -108,7 +108,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "最后……就没有然后了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "And then... that was it.",
       "cgId": null,
       "charDisplays": [
         {
@@ -130,7 +130,7 @@
     "7_a": {
       "id": "7_a",
       "dlgText": "一个能创造出那种声波艺术的文明，亲手毁掉了自己。",
-      "dlgTextEN": null,
+      "dlgTextEN": "A civilization that created such beautiful sound art, destroyed itself.",
       "cgId": null,
       "charDisplays": [
         {

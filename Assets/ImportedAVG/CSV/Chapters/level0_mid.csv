@@ -1,10 +1,10 @@
 id,text,tags
-1_a,"这些东西……完全无法辨认。",#cgid:cg_past,#char@1:b1,#istalking:b1
-2_a,"但能感觉到，建造它们的一定是高度发达的文明。",#char@1:b1,#istalking:b1
-3_a,"继续深入探索吧。",#char@1:b1,#istalking:b1
-4_na,"……"
-5_na,"四十多年后。（西格纳鲁星时间）"
-6_na,"救援队抵达了地球。",#cgid:cg_now_dark
-7_b,"§Ø_∆.µΩ和科考队已经失联四十多年了……",#char@1:a1,#istalking:a1
-8_b,"这座建筑……灯全灭了。",#char@1:a1,#istalking:a1
-9_b,"里面一片漆黑……但我一定要找到§Ø_∆.µΩ。",#char@1:a1,#istalking:a1
+1_a,"这些东西……完全无法辨认。",#cgid:cg_past,#char@1:b1,#istalking:b1,#texten:These objects... completely unrecognizable.
+2_a,"但能感觉到，建造它们的一定是高度发达的文明。",#char@1:b1,#istalking:b1,"#texten:But you can tell — whatever built them was highly advanced."
+3_a,"继续深入探索吧。",#char@1:b1,#istalking:b1,#texten:Let's keep going deeper.
+4_na,"……",#texten:......
+5_na,"四十多年后。（西格纳鲁星时间）",#texten:Over forty years later. (Signalru Standard Time)
+6_na,"救援队抵达了地球。",#cgid:cg_now_dark,#texten:The rescue team arrived on Earth.
+7_b,"§Ø_∆.µΩ和科考队已经失联四十多年了……",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ and the expedition have been out of contact for over forty years...
+8_b,"这座建筑……灯全灭了。",#char@1:a1,#istalking:a1,#texten:This building... all the lights are dead.
+9_b,"里面一片漆黑……但我一定要找到§Ø_∆.µΩ。",#char@1:a1,#istalking:a1,#texten:Total darkness... but I will find §Ø_∆.µΩ.

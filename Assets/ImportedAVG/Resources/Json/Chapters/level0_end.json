@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "呼……总算穿过来了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Phew... made it through.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "什么都看不见，完全是摸黑在走。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Couldn't see a thing — completely feeling my way through.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "§Ø_∆.µΩ……你到底在哪里。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ... where are you.",
       "cgId": null,
       "charDisplays": [
         {

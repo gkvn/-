@@ -1,16 +1,16 @@
 id,text,tags
-1_na,"§Ø_∆.µΩ在核心区的地面上留下了最后的笔记。",#cgid:cg_past2
-2_na,"然后倒下了。"
-3_na,"……",#cgid:cg_now_dark
-4_na,"黑暗中，_99[k]r拼命向最深处跑去。"
-5_b,"§Ø_∆.µΩ！！",#char@1:a1,#istalking:a1
-6_na,"核心区域还残留着最后一点微弱的光。"
-7_na,"光里面，有一个人影。"
-8_b,"§Ø_∆.µΩ……？",#char@1:a1,#istalking:a1
-9_b,"§Ø_∆.µΩ！你还活着！",#char@1:a1,#istalking:a1
-10_a,"……_99[k]r？",#char@1:a1,#char@2:b1,#istalking:b1
-11_a,"真的是你……",#char@1:a1,#char@2:b1,#istalking:b1
-12_b,"我找到你了。我终于找到你了。",#char@1:a1,#char@2:b1,#istalking:a1
-13_a,"你怎么来了……我不是说了不用找我吗。",#char@1:a1,#char@2:b1,#istalking:b1
-14_b,"你觉得我看到那句话会听话吗。",#char@1:a1,#char@2:b1,#istalking:a1
-15_a,"……也是。你一直都这样。",#char@1:a1,#char@2:b1,#istalking:b1
+1_na,"§Ø_∆.µΩ在核心区的地面上留下了最后的笔记。",#cgid:cg_past2,#texten:§Ø_∆.µΩ left the final note on the floor of the core area.
+2_na,"然后倒下了。",#texten:Then collapsed.
+3_na,"……",#cgid:cg_now_dark,#texten:......
+4_na,"黑暗中，_99[k]r拼命向最深处跑去。","#texten:In the darkness, _99[k]r sprinted toward the deepest point."
+5_b,"§Ø_∆.µΩ！！",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ!!
+6_na,"核心区域还残留着最后一点微弱的光。",#texten:A faint trace of light still lingered in the core area.
+7_na,"光里面，有一个人影。","#texten:In that light, a figure."
+8_b,"§Ø_∆.µΩ……？",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ...?
+9_b,"§Ø_∆.µΩ！你还活着！",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ! You're alive!
+10_a,"……_99[k]r？",#char@1:a1,#char@2:b1,#istalking:b1,#texten:..._99[k]r?
+11_a,"真的是你……",#char@1:a1,#char@2:b1,#istalking:b1,#texten:It's really you...
+12_b,"我找到你了。我终于找到你了。",#char@1:a1,#char@2:b1,#istalking:a1,#texten:I found you. I finally found you.
+13_a,"你怎么来了……我不是说了不用找我吗。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:Why did you come... I said don't come looking for me.
+14_b,"你觉得我看到那句话会听话吗。",#char@1:a1,#char@2:b1,#istalking:a1,#texten:Did you really think I'd listen to that?
+15_a,"……也是。你一直都这样。",#char@1:a1,#char@2:b1,#istalking:b1,#texten:...Fair enough. You've always been like that.

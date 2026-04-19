@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "更深处。§Ø_∆.µΩ的脚步明显变慢了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Deeper. §Ø_∆.µΩ's pace has noticeably slowed.",
       "cgId": "cg_past2",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "越往深处走，灯越亮……",
-      "dlgTextEN": null,
+      "dlgTextEN": "The deeper I go, the brighter the lights...",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "可我的身体越来越沉。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But my body keeps getting heavier.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "也许真的是这些灯光在让我生病。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Maybe the lights really are making me sick.",
       "cgId": null,
       "charDisplays": [
         {
@@ -86,7 +86,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "但我不能停。我要把所有东西都记录完。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But I can't stop. I have to record everything.",
       "cgId": null,
       "charDisplays": [
         {

@@ -1,8 +1,8 @@
 id,text,tags
-1_a,"好，笔记做好了。",#cgid:cg_past,#char@1:b1,#istalking:b1
-2_a,"这样应该够清楚了。",#char@1:b1,#istalking:b1
-3_na,"……",#cgid:cg_now_dark
-4_b,"咦……这里有个母星制式的智能面板！",#char@1:a1,#istalking:a1
-5_b,"这一定是§Ø_∆.µΩ留下的！",#char@1:a1,#istalking:a1
-6_b,"上面记录了路线和机关的信息……",#char@1:a1,#istalking:a1
-7_b,"§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",#char@1:a1,#istalking:a1
+1_a,"好，笔记做好了。",#cgid:cg_past,#char@1:b1,#istalking:b1,#texten:Done. Notes are ready.
+2_a,"这样应该够清楚了。",#char@1:b1,#istalking:b1,#texten:That should be clear enough.
+3_na,"……",#cgid:cg_now_dark,#texten:......
+4_b,"咦……这里有个母星制式的智能面板！",#char@1:a1,#istalking:a1,#texten:Wait... there's a home-standard smart panel here!
+5_b,"这一定是§Ø_∆.µΩ留下的！",#char@1:a1,#istalking:a1,#texten:This must be from §Ø_∆.µΩ!
+6_b,"上面记录了路线和机关的信息……",#char@1:a1,#istalking:a1,#texten:It has route and mechanism information recorded...
+7_b,"§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",#char@1:a1,#istalking:a1,"#texten:§Ø_∆.µΩ, thank you. With this I'm not stumbling blind anymore."

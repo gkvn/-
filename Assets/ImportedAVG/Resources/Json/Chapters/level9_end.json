@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "你身体怎么样？",
-      "dlgTextEN": null,
+      "dlgTextEN": "How are you feeling?",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -31,7 +31,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "……不太好。这里的灯光一直在伤害我。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...Not good. The lights here have been hurting me all along.",
       "cgId": null,
       "charDisplays": [
         {
@@ -58,7 +58,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "但现在灯几乎灭了。所以你没事。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But now the lights are almost gone. So you're safe.",
       "cgId": null,
       "charDisplays": [
         {
@@ -85,7 +85,7 @@
     "4_b": {
       "id": "4_b",
       "dlgText": "……你是说，明亮的神殿反而在害你？",
-      "dlgTextEN": null,
+      "dlgTextEN": "...You mean the bright temple was actually harming you?",
       "cgId": null,
       "charDisplays": [
         {
@@ -112,7 +112,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "这个星球的电能对我们有辐射。我在灯亮着的时候待了太久了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This planet's electric energy is toxic to us. I was in the lit areas too long.",
       "cgId": null,
       "charDisplays": [
         {
@@ -139,7 +139,7 @@
     "6_b": {
       "id": "6_b",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [
         {
@@ -166,7 +166,7 @@
     "7_b": {
       "id": "7_b",
       "dlgText": "那我们快走。离开这里你会好起来的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Then let's go. You'll get better once we leave.",
       "cgId": null,
       "charDisplays": [
         {
@@ -193,7 +193,7 @@
     "8_a": {
       "id": "8_a",
       "dlgText": "_99[k]r。走之前……前面还有最后一个区域。",
-      "dlgTextEN": null,
+      "dlgTextEN": "_99[k]r. Before we go... there's one last area ahead.",
       "cgId": null,
       "charDisplays": [
         {
@@ -220,7 +220,7 @@
     "9_a": {
       "id": "9_a",
       "dlgText": "这个神殿的核心……有什么东西在等着我们。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Something in the temple's core... is waiting for us.",
       "cgId": null,
       "charDisplays": [
         {

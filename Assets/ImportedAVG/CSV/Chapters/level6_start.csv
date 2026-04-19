@@ -1,11 +1,11 @@
 id,text,tags
-1_na,"神殿深层。这里存放着这个文明最核心的科学记录。",#cgid:cg_past1
-2_a,"这些数据……是某种物理学体系。",#char@1:b1,#istalking:b1
-3_a,"光速……时间膨胀……",#char@1:b1,#istalking:b1
-4_a,"等等。",#char@1:b1,#istalking:b1
-5_a,"如果这个理论是对的……",#char@1:b1,#istalking:b1
-6_a,"我们的飞船在接近光速飞行的时候……",#char@1:b1,#istalking:b1
-7_a,"船上的时间会比外面慢很多……",#char@1:b1,#istalking:b1
-8_a,"……",#char@1:b1
-9_a,"我离开西格纳鲁才过了几年。",#char@1:b1,#istalking:b1
-10_a,"但西格纳鲁那边……已经过了几十年了？",#char@1:b1,#istalking:b1
+1_na,"神殿深层。这里存放着这个文明最核心的科学记录。",#cgid:cg_past1,#texten:Deep layer of the temple. Core scientific records of this civilization are stored here.
+2_a,"这些数据……是某种物理学体系。",#char@1:b1,#istalking:b1,#texten:This data... some kind of physics framework.
+3_a,"光速……时间膨胀……",#char@1:b1,#istalking:b1,#texten:Speed of light... time dilation...
+4_a,"等等。",#char@1:b1,#istalking:b1,#texten:Wait.
+5_a,"如果这个理论是对的……",#char@1:b1,#istalking:b1,#texten:If this theory is correct...
+6_a,"我们的飞船在接近光速飞行的时候……",#char@1:b1,#istalking:b1,#texten:When our ship was traveling near the speed of light...
+7_a,"船上的时间会比外面慢很多……",#char@1:b1,#istalking:b1,#texten:Time on board would pass much slower than outside...
+8_a,"……",#char@1:b1,#texten:......
+9_a,"我离开西格纳鲁才过了几年。",#char@1:b1,#istalking:b1,#texten:I've only been away from Signalru for a few years.
+10_a,"但西格纳鲁那边……已经过了几十年了？",#char@1:b1,#istalking:b1,#texten:But back on Signalru... decades have passed?

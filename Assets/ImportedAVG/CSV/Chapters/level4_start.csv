@@ -1,9 +1,9 @@
 id,text,tags
-1_na,"更深的区域。墙壁上开始出现密集的图案和符号。",#cgid:cg_past1
-2_a,"这些是……图画？",#char@1:b1,#istalking:b1
-3_a,"还有某种波形记录……像是被编码保存的声波。",#char@1:b1,#istalking:b1
-4_a,"我试着解码了一段……",#char@1:b1,#istalking:b1
-5_a,"……",#char@1:b1
-6_a,"好美。",#char@1:b1,#istalking:b1
-7_a,"这个星球上的生物，把声波变成了一种……我不知道该怎么形容。",#char@1:b1,#istalking:b1
-8_a,"这个文明管这个叫什么呢。",#char@1:b1,#istalking:b1
+1_na,"更深的区域。墙壁上开始出现密集的图案和符号。",#cgid:cg_past1,#texten:Deeper area. Dense patterns and symbols cover the walls.
+2_a,"这些是……图画？",#char@1:b1,#istalking:b1,#texten:These are... paintings?
+3_a,"还有某种波形记录……像是被编码保存的声波。",#char@1:b1,#istalking:b1,#texten:And some kind of waveform recordings... like encoded sound waves.
+4_a,"我试着解码了一段……",#char@1:b1,#istalking:b1,#texten:I tried decoding one...
+5_a,"……",#char@1:b1,#texten:......
+6_a,"好美。",#char@1:b1,#istalking:b1,#texten:Beautiful.
+7_a,"这个星球上的生物，把声波变成了一种……我不知道该怎么形容。",#char@1:b1,#istalking:b1,#texten:The beings on this planet turned sound waves into something... I don't know how to describe it.
+8_a,"这个文明管这个叫什么呢。",#char@1:b1,#istalking:b1,#texten:What did this civilization call it.

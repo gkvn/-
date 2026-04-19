@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "这个文明……真了不起。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This civilization... truly remarkable.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "怪不得§Ø_∆.µΩ在笔记里写了那么多感想。",
-      "dlgTextEN": null,
+      "dlgTextEN": "No wonder §Ø_∆.µΩ wrote so many reflections in the notes.",
       "cgId": null,
       "charDisplays": [
         {
@@ -47,8 +47,8 @@
     },
     "3_b": {
       "id": "3_b",
-      "dlgText": "她平时可不是会感慨的人啊。",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ平时可不是会感慨的啊。",
+      "dlgTextEN": "§Ø_∆.µΩ doesn't usually get sentimental like that.",
       "cgId": null,
       "charDisplays": [
         {
