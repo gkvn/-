@@ -3,6 +3,6 @@ id,text,tags
 2_a,"……嗯，有点头疼。大概是太久没休息了。",#char@1:b1,#istalking:b1
 3_a,"没什么大碍，继续吧。",#char@1:b1,#istalking:b1
 4_na,"……",#cgid:cg_now_dark
-5_b,"§Ø_∆.µΩ在笔记里说她发现了这个星球的声波艺术……",#char@1:a1,#istalking:a1
+5_b,"§Ø_∆.µΩ在笔记里说发现了这个星球的声波艺术……",#char@1:a1,#istalking:a1
 6_b,"原来这里曾经有过这么美的文明。",#char@1:a1,#istalking:a1
-7_b,"对了，她说有点头疼……应该只是累了吧。",#char@1:a1,#istalking:a1
+7_b,"对了，§Ø_∆.µΩ说有点头疼……应该只是累了吧。",#char@1:a1,#istalking:a1

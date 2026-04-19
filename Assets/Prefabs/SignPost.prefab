@@ -52,6 +52,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -145,11 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c58159f59aebfd46a48fa63505528ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupBackground: {fileID: 21300000, guid: 67b490ff0c12eb8428fd6ef7b6b86c97, type: 3}
-  displayText: "\u8DEF\u724C\u5185\u5BB9"
-  fontSize: 28
+  popupBackground: {fileID: 0}
+  displayTextCN: "\u8DEF\u724C\u5185\u5BB9"
+  displayTextEN: Sign Content
+  fontSize: 3
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  popupOffset: {x: 0, y: 1.5}
+  popupOffset: {x: 0, y: 1}
   popupWidth: 2.5
   popupHeight: 1.2
   displayDuration: 3

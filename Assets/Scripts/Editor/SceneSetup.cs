@@ -268,6 +268,9 @@ public static class SceneSetup
         lp.GetArrayElementAtIndex(1).stringValue = "Level_02";
         so.ApplyModifiedPropertiesWithoutUndo();
 
+        var bgmGO = new GameObject("BgmManager");
+        bgmGO.AddComponent<BgmManager>();
+
         EditorSceneManager.SaveScene(scene, "Assets/Scenes/MainMenu.unity");
     }
 

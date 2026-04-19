@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.Events;
@@ -178,38 +179,47 @@ public static class EditorTools
             if (monster != null)
             {
                 var so = new SerializedObject(monster);
-                var framesProp = so.FindProperty("animFrames");
+                var catFramesProp = so.FindProperty("catFrames");
+                var dogFramesProp = so.FindProperty("dogFrames");
                 var fpsProp = so.FindProperty("animFps");
 
-                var catFrames = LoadSortedSprites("Assets/Art/animation/猫");
+                var catSprites = LoadSortedSprites("Assets/Art/animation/猫");
+                var dogSprites = LoadSortedSprites("Assets/Art/animation/狗");
 
-                if (catFrames.Length > 0)
+                if (catSprites.Length > 0)
                 {
-                    framesProp.arraySize = catFrames.Length;
-                    for (int i = 0; i < catFrames.Length; i++)
-                        framesProp.GetArrayElementAtIndex(i).objectReferenceValue = catFrames[i];
+                    catFramesProp.arraySize = catSprites.Length;
+                    for (int i = 0; i < catSprites.Length; i++)
+                        catFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = catSprites[i];
+                }
+
+                if (dogSprites.Length > 0)
+                {
+                    dogFramesProp.arraySize = dogSprites.Length;
+                    for (int i = 0; i < dogSprites.Length; i++)
+                        dogFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = dogSprites[i];
                 }
 
                 fpsProp.floatValue = 3f;
                 so.ApplyModifiedProperties();
 
                 var sr = monsterPrefab.GetComponent<SpriteRenderer>();
-                if (sr != null && catFrames.Length > 0)
+                if (sr != null && catSprites.Length > 0)
                 {
-                    sr.sprite = catFrames[0];
+                    sr.sprite = catSprites[0];
                     sr.color = Color.white;
                     EditorUtility.SetDirty(sr);
                 }
 
                 EditorUtility.SetDirty(monsterPrefab);
                 changes++;
-                Debug.Log($"[Monster] 默认使用\"猫\"帧动画 frames={catFrames.Length}, fps=3");
+                Debug.Log($"[Monster] catFrames={catSprites.Length}, dogFrames={dogSprites.Length}, fps=3");
             }
         }
 
         AssetDatabase.SaveAssets();
         Debug.Log($"帧动画配置完成，修改了 {changes} 个 Prefab。\n" +
-                  "如需给特定 Monster 换\"狗\"图组，在场景中选中该 Monster，把 Art/animation/狗 的图拖到 Anim Frames。");
+                  "Monster 已挂好猫和狗两组帧动画，在 Inspector 中切换 Monster Type 即可。");
     }
 
     private static void EnsureSpritesImported(string[] folders)
@@ -506,14 +516,36 @@ public static class EditorTools
     [MenuItem("Tools/同步 LevelGlobals 到所有关卡场景")]
     public static void SyncLevelGlobalsToAllScenes()
     {
-        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(LevelGlobalsPrefabPath);
-        if (prefab == null)
+        const string sourceScenePath = "Assets/Scenes/level_xm_1.unity";
+        if (!System.IO.File.Exists(sourceScenePath))
         {
-            Debug.LogError("找不到 LevelGlobals Prefab，请先运行 Tools → 创建 LevelGlobals Prefab");
+            Debug.LogError("找不到源场景 level_xm_1，请确认 Assets/Scenes/level_xm_1.unity 存在");
             return;
         }
 
         var currentScene = EditorSceneManager.GetActiveScene().path;
+
+        var srcScene = EditorSceneManager.OpenScene(sourceScenePath, OpenSceneMode.Single);
+        GameObject srcGlobals = null;
+        foreach (var root in srcScene.GetRootGameObjects())
+        {
+            if (root.GetComponent<LevelPhaseManager>() != null)
+            {
+                srcGlobals = root;
+                break;
+            }
+        }
+
+        if (srcGlobals == null)
+        {
+            Debug.LogError("level_xm_1 场景中没有找到 LevelGlobals（含 LevelPhaseManager 的根物体）");
+            return;
+        }
+
+        var tempPrefabPath = "Assets/Prefabs/_TempLevelGlobalsSync.prefab";
+        PrefabUtility.SaveAsPrefabAsset(srcGlobals, tempPrefabPath);
+        var tempPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(tempPrefabPath);
+
         var sceneGuids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets/Scenes" });
         int updated = 0;
 
@@ -522,14 +554,13 @@ public static class EditorTools
             string scenePath = AssetDatabase.GUIDToAssetPath(guid);
             string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
 
-            if (sceneName == "MainMenu" || sceneName == "SampleScene")
+            if (sceneName == "MainMenu" || sceneName == "SampleScene" || scenePath == sourceScenePath)
                 continue;
 
             var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
-            var roots = scene.GetRootGameObjects();
 
             GameObject oldGlobals = null;
-            foreach (var root in roots)
+            foreach (var root in scene.GetRootGameObjects())
             {
                 if (root.GetComponent<LevelPhaseManager>() != null)
                 {
@@ -539,40 +570,51 @@ public static class EditorTools
             }
 
             if (oldGlobals != null)
-            {
-                var oldSo = new SerializedObject(oldGlobals.GetComponent<LevelPhaseManager>());
-                bool isPrefabInstance = PrefabUtility.IsPartOfPrefabInstance(oldGlobals);
-
-                if (isPrefabInstance)
-                {
-                    var src = PrefabUtility.GetCorrespondingObjectFromSource(oldGlobals);
-                    if (src != null && AssetDatabase.GetAssetPath(src) == LevelGlobalsPrefabPath)
-                    {
-                        PrefabUtility.RevertPrefabInstance(oldGlobals, InteractionMode.AutomatedAction);
-                        Debug.Log($"  [{sceneName}] 已还原 prefab 覆盖");
-                        EditorSceneManager.MarkSceneDirty(scene);
-                        EditorSceneManager.SaveScene(scene);
-                        updated++;
-                        continue;
-                    }
-                }
-
                 Object.DestroyImmediate(oldGlobals);
-            }
 
-            var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(tempPrefab, scene);
+            PrefabUtility.UnpackPrefabInstance(instance, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
             instance.name = "LevelGlobals";
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             updated++;
-            Debug.Log($"  [{sceneName}] 已同步 LevelGlobals");
+            Debug.Log($"  [{sceneName}] 已从 level_xm_1 同步 LevelGlobals");
         }
+
+        AssetDatabase.DeleteAsset(tempPrefabPath);
+        var metaPath = tempPrefabPath + ".meta";
+        if (System.IO.File.Exists(metaPath))
+            AssetDatabase.DeleteAsset(metaPath);
 
         if (!string.IsNullOrEmpty(currentScene))
             EditorSceneManager.OpenScene(currentScene, OpenSceneMode.Single);
 
-        Debug.Log($"已同步 LevelGlobals 到 {updated} 个关卡场景。修改 Prefab 后再次运行即可全部更新。");
+        Debug.Log($"已将 level_xm_1 的 LevelGlobals 同步到 {updated} 个关卡场景。");
+    }
+
+    [MenuItem("Tools/批量设置 Monster Combo Sequence")]
+    public static void OpenMonsterComboEditor()
+    {
+        MonsterComboWindow.Open();
+    }
+
+    [MenuItem("Tools/添加 BgmManager 到 MainMenu 场景")]
+    public static void AddBgmManager()
+    {
+        if (Object.FindObjectOfType<BgmManager>() != null)
+        {
+            Debug.Log("场景中已存在 BgmManager");
+            Selection.activeGameObject = Object.FindObjectOfType<BgmManager>().gameObject;
+            return;
+        }
+
+        var go = new GameObject("BgmManager");
+        go.AddComponent<BgmManager>();
+        Undo.RegisterCreatedObjectUndo(go, "Create BgmManager");
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+        Selection.activeGameObject = go;
+        Debug.Log("已创建 BgmManager，请在 Inspector 中拖入 BGM AudioClip（主菜单、白天、黑夜）");
     }
 
     public static void SetHumanoidAgentRadius(float radius)
@@ -667,5 +709,202 @@ public class PixelsPerUnitWindow : EditorWindow
             Debug.Log($"已将 {count} 张动画图片的 Pixels Per Unit 设为 {ppu}");
             Close();
         }
+    }
+}
+
+public class MonsterComboWindow : EditorWindow
+{
+    private Vector2 scrollPos;
+    private List<BulletType> templateCombo = new List<BulletType> { BulletType.Dot, BulletType.Dot, BulletType.Line };
+    private float templateDetectRange = 5f;
+
+    private struct MonsterEntry
+    {
+        public Monster monster;
+        public List<BulletType> combo;
+        public float detectRange;
+        public bool foldout;
+    }
+
+    private List<MonsterEntry> entries = new List<MonsterEntry>();
+
+    public static void Open()
+    {
+        var win = GetWindow<MonsterComboWindow>("批量设置 Monster Combo");
+        win.minSize = new Vector2(420, 350);
+        win.RefreshMonsters();
+    }
+
+    private void OnEnable()
+    {
+        RefreshMonsters();
+    }
+
+    private void RefreshMonsters()
+    {
+        entries.Clear();
+        var monsters = Object.FindObjectsOfType<Monster>(true);
+        foreach (var m in monsters)
+        {
+            var so = new SerializedObject(m);
+            var prop = so.FindProperty("requiredCombo");
+            var combo = new List<BulletType>();
+            for (int i = 0; i < prop.arraySize; i++)
+                combo.Add((BulletType)prop.GetArrayElementAtIndex(i).enumValueIndex);
+            float dr = so.FindProperty("detectRange").floatValue;
+            entries.Add(new MonsterEntry { monster = m, combo = combo, detectRange = dr, foldout = true });
+        }
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Space(6);
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label($"场景中共 {entries.Count} 个 Monster", EditorStyles.boldLabel);
+        if (GUILayout.Button("刷新列表", GUILayout.Width(80)))
+            RefreshMonsters();
+        EditorGUILayout.EndHorizontal();
+
+        GUILayout.Space(6);
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+        EditorGUILayout.LabelField("批量模板", EditorStyles.boldLabel);
+        DrawComboList(templateCombo, "模板");
+        templateDetectRange = EditorGUILayout.FloatField("Detect Range", templateDetectRange);
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("应用模板到全部 Monster"))
+        {
+            for (int i = 0; i < entries.Count; i++)
+            {
+                var e = entries[i];
+                e.combo = new List<BulletType>(templateCombo);
+                e.detectRange = templateDetectRange;
+                entries[i] = e;
+            }
+            ApplyAll();
+        }
+        EditorGUILayout.EndHorizontal();
+
+        GUILayout.Space(4);
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.LabelField("逐个设置", EditorStyles.boldLabel);
+
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+
+        for (int idx = 0; idx < entries.Count; idx++)
+        {
+            var e = entries[idx];
+            if (e.monster == null) continue;
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            EditorGUILayout.BeginHorizontal();
+            e.foldout = EditorGUILayout.Foldout(e.foldout, e.monster.gameObject.name, true, EditorStyles.foldoutHeader);
+            if (GUILayout.Button("选中", GUILayout.Width(42)))
+                Selection.activeGameObject = e.monster.gameObject;
+            if (GUILayout.Button("用模板", GUILayout.Width(52)))
+            {
+                e.combo = new List<BulletType>(templateCombo);
+                e.detectRange = templateDetectRange;
+                ApplyEntry(e);
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (e.foldout)
+            {
+                EditorGUI.indentLevel++;
+                bool changed = DrawComboList(e.combo, e.monster.gameObject.name);
+
+                float newRange = EditorGUILayout.FloatField("Detect Range", e.detectRange);
+                if (newRange != e.detectRange)
+                {
+                    e.detectRange = newRange;
+                    changed = true;
+                }
+
+                if (changed) ApplyEntry(e);
+                EditorGUI.indentLevel--;
+            }
+
+            entries[idx] = e;
+            EditorGUILayout.EndVertical();
+            GUILayout.Space(2);
+        }
+
+        EditorGUILayout.EndScrollView();
+    }
+
+    private bool DrawComboList(List<BulletType> combo, string label)
+    {
+        bool changed = false;
+
+        for (int i = 0; i < combo.Count; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(EditorGUI.indentLevel * 15);
+            GUILayout.Label($"[{i}]", GUILayout.Width(28));
+
+            var newVal = (BulletType)EditorGUILayout.EnumPopup(combo[i], GUILayout.Width(80));
+            if (newVal != combo[i]) { combo[i] = newVal; changed = true; }
+
+            if (GUILayout.Button("×", GUILayout.Width(22)))
+            {
+                combo.RemoveAt(i);
+                changed = true;
+                GUILayout.EndHorizontal();
+                break;
+            }
+
+            if (i > 0 && GUILayout.Button("↑", GUILayout.Width(22)))
+            {
+                (combo[i], combo[i - 1]) = (combo[i - 1], combo[i]);
+                changed = true;
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Space(EditorGUI.indentLevel * 15 + 30);
+        if (GUILayout.Button("+ Dot", GUILayout.Width(60)))
+        {
+            combo.Add(BulletType.Dot);
+            changed = true;
+        }
+        if (GUILayout.Button("+ Line", GUILayout.Width(60)))
+        {
+            combo.Add(BulletType.Line);
+            changed = true;
+        }
+        EditorGUILayout.EndHorizontal();
+
+        return changed;
+    }
+
+    private void ApplyEntry(MonsterEntry entry)
+    {
+        if (entry.monster == null) return;
+        Undo.RecordObject(entry.monster, "Set Monster Properties");
+        var so = new SerializedObject(entry.monster);
+
+        var comboProp = so.FindProperty("requiredCombo");
+        comboProp.arraySize = entry.combo.Count;
+        for (int i = 0; i < entry.combo.Count; i++)
+            comboProp.GetArrayElementAtIndex(i).enumValueIndex = (int)entry.combo[i];
+
+        so.FindProperty("detectRange").floatValue = entry.detectRange;
+
+        so.ApplyModifiedProperties();
+        EditorUtility.SetDirty(entry.monster);
+        EditorSceneManager.MarkSceneDirty(entry.monster.gameObject.scene);
+    }
+
+    private void ApplyAll()
+    {
+        foreach (var e in entries)
+            ApplyEntry(e);
+        Debug.Log($"已将模板应用到 {entries.Count} 个 Monster（Combo + Detect Range）");
     }
 }
