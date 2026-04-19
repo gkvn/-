@@ -19,6 +19,7 @@ public class SquashStretch : MonoBehaviour
     private Vector3 targetScale = Vector3.one;
     private bool wasMoving;
     private bool punching;
+    private bool reachedTarget;
 
     private void Start()
     {
@@ -28,41 +29,48 @@ public class SquashStretch : MonoBehaviour
 
     public void Tick(bool isMoving, Vector2 moveDir)
     {
-        if (isMoving && !wasMoving)
+        if (!punching)
         {
-            float sx = Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)
-                ? baseScale.x * (1f + stretchAmount)
-                : baseScale.x * (1f - stretchAmount);
-            float sy = Mathf.Abs(moveDir.y) >= Mathf.Abs(moveDir.x)
-                ? baseScale.y * (1f + stretchAmount)
-                : baseScale.y * (1f - stretchAmount);
-            targetScale = new Vector3(sx, sy, baseScale.z);
-        }
-        else if (!isMoving && wasMoving)
-        {
-            targetScale = new Vector3(
-                baseScale.x * (1f - squashAmount),
-                baseScale.y * (1f + squashAmount),
-                baseScale.z);
+            if (isMoving && !wasMoving)
+            {
+                float sx = Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)
+                    ? baseScale.x * (1f + stretchAmount)
+                    : baseScale.x * (1f - stretchAmount);
+                float sy = Mathf.Abs(moveDir.y) >= Mathf.Abs(moveDir.x)
+                    ? baseScale.y * (1f + stretchAmount)
+                    : baseScale.y * (1f - stretchAmount);
+                targetScale = new Vector3(sx, sy, baseScale.z);
+                reachedTarget = false;
+            }
+            else if (!isMoving && wasMoving)
+            {
+                targetScale = new Vector3(
+                    baseScale.x * (1f - squashAmount),
+                    baseScale.y * (1f + squashAmount),
+                    baseScale.z);
+                reachedTarget = false;
+            }
         }
 
         wasMoving = isMoving;
 
         float speed = punching ? shootPunchSpeed : returnSpeed;
-        transform.localScale = Vector3.Lerp(transform.localScale, baseScale, Time.deltaTime * speed);
 
-        if (targetScale != baseScale)
+        if (!reachedTarget && targetScale != baseScale)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed * 2f);
-            if (Vector3.Distance(transform.localScale, baseScale) < 0.01f)
-            {
-                targetScale = baseScale;
-                punching = false;
-            }
+            if (Vector3.Distance(transform.localScale, targetScale) < 0.01f)
+                reachedTarget = true;
         }
         else
         {
-            punching = false;
+            transform.localScale = Vector3.Lerp(transform.localScale, baseScale, Time.deltaTime * speed);
+            if (Vector3.Distance(transform.localScale, baseScale) < 0.005f)
+            {
+                transform.localScale = baseScale;
+                targetScale = baseScale;
+                punching = false;
+            }
         }
     }
 
@@ -76,5 +84,6 @@ public class SquashStretch : MonoBehaviour
             : baseScale.y * (1f + shootPunchAmount * 0.5f);
         targetScale = new Vector3(dx, dy, baseScale.z);
         punching = true;
+        reachedTarget = false;
     }
 }
