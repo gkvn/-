@@ -99,6 +99,172 @@ public static class EditorTools
         Debug.Log("已创建 GlowPoint Prefab：" + path);
     }
 
+    [MenuItem("Tools/配置帧动画到 Player 和 Monster Prefab")]
+    public static void AssignFrameAnimations()
+    {
+        string[] animFolders = new[]
+        {
+            "Assets/Art/animation/角色1",
+            "Assets/Art/animation/角色2",
+            "Assets/Art/animation/猫",
+            "Assets/Art/animation/狗"
+        };
+        EnsureSpritesImported(animFolders);
+
+        int changes = 0;
+
+        // Player prefab
+        string playerPath = "Assets/Resources/Prefabs/Player.prefab";
+        var playerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(playerPath);
+        if (playerPrefab != null)
+        {
+            var pc = playerPrefab.GetComponent<PlayerController>();
+            if (pc != null)
+            {
+                var so = new SerializedObject(pc);
+
+                var darkFramesProp = so.FindProperty("darkFrames");
+                var lightFramesProp = so.FindProperty("lightFrames");
+                var animFpsProp = so.FindProperty("animFps");
+                var lightSpriteProp = so.FindProperty("lightSprite");
+                var darkSpriteProp = so.FindProperty("darkSprite");
+
+                var dark = LoadSortedSprites("Assets/Art/animation/角色1");
+                var light = LoadSortedSprites("Assets/Art/animation/角色2");
+
+                if (dark.Length > 0)
+                {
+                    darkFramesProp.arraySize = dark.Length;
+                    for (int i = 0; i < dark.Length; i++)
+                        darkFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = dark[i];
+                    darkSpriteProp.objectReferenceValue = null;
+                }
+
+                if (light.Length > 0)
+                {
+                    lightFramesProp.arraySize = light.Length;
+                    for (int i = 0; i < light.Length; i++)
+                        lightFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = light[i];
+                    lightSpriteProp.objectReferenceValue = null;
+                }
+
+                animFpsProp.floatValue = 3f;
+                so.ApplyModifiedProperties();
+
+                var sr = playerPrefab.GetComponent<SpriteRenderer>();
+                if (sr != null && light.Length > 0)
+                {
+                    sr.sprite = light[0];
+                    sr.color = Color.white;
+                    EditorUtility.SetDirty(sr);
+                }
+
+                EditorUtility.SetDirty(playerPrefab);
+                changes++;
+                Debug.Log($"[Player] darkFrames={dark.Length}, lightFrames={light.Length}, fps=3, 旧单张贴图已清除");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("找不到 Player Prefab: " + playerPath);
+        }
+
+        // Monster prefab
+        string monsterPath = "Assets/Prefabs/Monster.prefab";
+        var monsterPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(monsterPath);
+        if (monsterPrefab != null)
+        {
+            var monster = monsterPrefab.GetComponent<Monster>();
+            if (monster != null)
+            {
+                var so = new SerializedObject(monster);
+                var framesProp = so.FindProperty("animFrames");
+                var fpsProp = so.FindProperty("animFps");
+
+                var catFrames = LoadSortedSprites("Assets/Art/animation/猫");
+
+                if (catFrames.Length > 0)
+                {
+                    framesProp.arraySize = catFrames.Length;
+                    for (int i = 0; i < catFrames.Length; i++)
+                        framesProp.GetArrayElementAtIndex(i).objectReferenceValue = catFrames[i];
+                }
+
+                fpsProp.floatValue = 3f;
+                so.ApplyModifiedProperties();
+
+                var sr = monsterPrefab.GetComponent<SpriteRenderer>();
+                if (sr != null && catFrames.Length > 0)
+                {
+                    sr.sprite = catFrames[0];
+                    sr.color = Color.white;
+                    EditorUtility.SetDirty(sr);
+                }
+
+                EditorUtility.SetDirty(monsterPrefab);
+                changes++;
+                Debug.Log($"[Monster] 默认使用\"猫\"帧动画 frames={catFrames.Length}, fps=3");
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        Debug.Log($"帧动画配置完成，修改了 {changes} 个 Prefab。\n" +
+                  "如需给特定 Monster 换\"狗\"图组，在场景中选中该 Monster，把 Art/animation/狗 的图拖到 Anim Frames。");
+    }
+
+    private static void EnsureSpritesImported(string[] folders)
+    {
+        bool reimport = false;
+        foreach (var folder in folders)
+        {
+            var guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folder });
+            foreach (var guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) continue;
+
+                if (importer.textureType != TextureImporterType.Sprite
+                    || importer.spriteImportMode != SpriteImportMode.Single)
+                {
+                    importer.textureType = TextureImporterType.Sprite;
+                    importer.spriteImportMode = SpriteImportMode.Single;
+                    importer.filterMode = FilterMode.Point;
+                    importer.textureCompression = TextureImporterCompression.Uncompressed;
+                    importer.SaveAndReimport();
+                    reimport = true;
+                }
+            }
+        }
+        if (reimport)
+        {
+            AssetDatabase.Refresh();
+            Debug.Log("已将动画图片全部设为 Sprite 格式并重新导入");
+        }
+    }
+
+    [MenuItem("Tools/设置动画图片 Pixels Per Unit")]
+    public static void SetAnimationPPU()
+    {
+        PixelsPerUnitWindow.Open();
+    }
+
+    private static Sprite[] LoadSortedSprites(string folderPath)
+    {
+        var guids = AssetDatabase.FindAssets("t:Sprite", new[] { folderPath });
+        var sprites = new System.Collections.Generic.List<Sprite>();
+
+        foreach (var guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            var spr = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (spr != null) sprites.Add(spr);
+        }
+
+        sprites.Sort((a, b) => string.Compare(a.name, b.name, System.StringComparison.OrdinalIgnoreCase));
+        return sprites.ToArray();
+    }
+
     [MenuItem("Tools/在 MainMenu 添加语言切换按钮")]
     public static void AddLanguageButton()
     {
@@ -448,6 +614,58 @@ public class NavAgentRadiusWindow : EditorWindow
             AssetDatabase.Refresh();
             Close();
             EditorTools.CreateAndBakeNavMesh2D();
+        }
+    }
+}
+
+public class PixelsPerUnitWindow : EditorWindow
+{
+    private float ppu = 200f;
+
+    public static void Open()
+    {
+        var win = GetWindow<PixelsPerUnitWindow>("设置 Pixels Per Unit");
+        win.minSize = new Vector2(320, 120);
+        win.maxSize = new Vector2(420, 140);
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Space(10);
+        GUILayout.Label("修改 Art/animation 下所有图片的 Pixels Per Unit\n数值越大，Sprite 在场景中越小", EditorStyles.wordWrappedLabel);
+        GUILayout.Space(5);
+        ppu = EditorGUILayout.FloatField("Pixels Per Unit", ppu);
+        GUILayout.Space(5);
+
+        if (GUILayout.Button("应用到所有动画图片"))
+        {
+            string[] folders = new[]
+            {
+                "Assets/Art/animation/角色1",
+                "Assets/Art/animation/角色2",
+                "Assets/Art/animation/猫",
+                "Assets/Art/animation/狗"
+            };
+
+            int count = 0;
+            foreach (var folder in folders)
+            {
+                var guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folder });
+                foreach (var guid in guids)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(guid);
+                    var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                    if (importer == null) continue;
+
+                    importer.spritePixelsPerUnit = ppu;
+                    importer.SaveAndReimport();
+                    count++;
+                }
+            }
+
+            AssetDatabase.Refresh();
+            Debug.Log($"已将 {count} 张动画图片的 Pixels Per Unit 设为 {ppu}");
+            Close();
         }
     }
 }

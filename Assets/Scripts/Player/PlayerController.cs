@@ -19,10 +19,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bulletWallMargin = 0.05f;
 
     [Header("Appearance")]
-    [Tooltip("亮灯阶段角色贴图")]
+    [Tooltip("亮灯阶段角色贴图（单张或留空）")]
     [SerializeField] private Sprite lightSprite;
-    [Tooltip("黑灯阶段角色贴图")]
+    [Tooltip("黑灯阶段角色贴图（单张或留空）")]
     [SerializeField] private Sprite darkSprite;
+    [Tooltip("亮灯阶段帧动画序列（优先于单张贴图）")]
+    [SerializeField] private Sprite[] lightFrames;
+    [Tooltip("黑灯阶段帧动画序列（优先于单张贴图）")]
+    [SerializeField] private Sprite[] darkFrames;
+    [Tooltip("帧动画播放速度(帧/秒)")]
+    [SerializeField] private float animFps = 8f;
 
     [Header("Charge Indicator")]
     [Tooltip("蓄力条相对角色的位置")]
@@ -51,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 facingDirection = Vector2.down;
     private bool isDead;
+    private bool wasMoving;
 
     private Camera gameCamera;
     private float mouseDownTime;
@@ -123,6 +130,20 @@ public class PlayerController : MonoBehaviour
     private void ApplyPhaseSprite(LevelPhase phase)
     {
         if (spriteRenderer == null) return;
+
+        Sprite[] targetFrames = phase == LevelPhase.Dark ? darkFrames : lightFrames;
+        if (targetFrames != null && targetFrames.Length > 0)
+        {
+            var fa = GetComponent<FrameAnimator>();
+            if (fa == null) fa = gameObject.AddComponent<FrameAnimator>();
+            fa.FPS = animFps;
+            fa.SetFramesAndPlay(targetFrames);
+            return;
+        }
+
+        var animator = GetComponent<FrameAnimator>();
+        if (animator != null) animator.Stop();
+
         Sprite target = phase == LevelPhase.Dark ? darkSprite : lightSprite;
         if (target != null)
             spriteRenderer.sprite = target;
@@ -208,6 +229,8 @@ public class PlayerController : MonoBehaviour
         var squash = GetComponent<SquashStretch>();
         if (squash != null)
             squash.Tick(moving, moveInput);
+
+        wasMoving = moving;
     }
 
     // ── Movement ──

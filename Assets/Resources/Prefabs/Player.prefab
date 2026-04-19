@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: a5ed5ea709d061140b3b90e7d4be7b09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ef7e795f9b72264e85c9facc8cd8dc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,8 +133,27 @@ MonoBehaviour:
   holdThreshold: 0.25
   bulletSpawnOffset: {x: 0, y: 0}
   bulletWallMargin: 0.1
-  lightSprite: {fileID: 21300000, guid: bd7dbd75cd8a8544791369c7fc8971ee, type: 3}
-  darkSprite: {fileID: 21300000, guid: a5ed5ea709d061140b3b90e7d4be7b09, type: 3}
+  lightSprite: {fileID: 0}
+  darkSprite: {fileID: 0}
+  lightFrames:
+  - {fileID: 21300000, guid: 9ef7e795f9b72264e85c9facc8cd8dc6, type: 3}
+  - {fileID: 21300000, guid: 4ac9bf627b82f52409ad514c8f5eaffc, type: 3}
+  - {fileID: 21300000, guid: 047e1f2c6b9e3274284e77bd41826b51, type: 3}
+  - {fileID: 21300000, guid: 33956cac0a1823b47b542da8d858afa8, type: 3}
+  - {fileID: 21300000, guid: 47446af9da76e094792a50c2d03555d1, type: 3}
+  - {fileID: 21300000, guid: b590576d4845cb84b9a2495e6e5e5530, type: 3}
+  - {fileID: 21300000, guid: 1a6cd77b51fa91a45955e4551cf59b71, type: 3}
+  darkFrames:
+  - {fileID: 21300000, guid: 3a54d084b84db5c41951a8afd61b50a5, type: 3}
+  - {fileID: 21300000, guid: 1374974e7484a9d4e842cb146f514fd4, type: 3}
+  - {fileID: 21300000, guid: 5b9fe6c1b6f922d4c9e9ef398926728e, type: 3}
+  - {fileID: 21300000, guid: 83bb6f989b0f1d544b11f128681340e2, type: 3}
+  - {fileID: 21300000, guid: 9e80fcc97a3b74249a21579d7741ada0, type: 3}
+  - {fileID: 21300000, guid: 4c57d901e360db24aa9d2e726e7885ee, type: 3}
+  - {fileID: 21300000, guid: b116f045aebef7941bc2fd55aab907af, type: 3}
+  - {fileID: 21300000, guid: 7a15b666405f495469eb1154d15395dc, type: 3}
+  - {fileID: 21300000, guid: b2c2c1a3d2dbdde4ea4a70355fb44f1a, type: 3}
+  animFps: 3
   chargeBarOffset: {x: 0, y: -0.35}
   chargeBarWidth: 0.7
   chargeBarHeight: 0.1
@@ -181,8 +200,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0036637783, y: -0.14364988}
-  m_Radius: 0.13318166
+  m_Offset: {x: 0.04465419, y: -0.13830137}
+  m_Radius: 0.122485876
 --- !u!114 &8005448509924318779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +237,5 @@ MonoBehaviour:
   stretchAmount: 0.16
   squashAmount: 0
   returnSpeed: 8
+  shootPunchAmount: 0.2
+  shootPunchSpeed: 16

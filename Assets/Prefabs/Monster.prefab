@@ -53,8 +53,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f4939487ab769843ad88328c1c2cb4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c72cfd81d46c54543af24f6276036ccc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.755, y: 0.635}
+    oldSize: {x: 19, y: 10.8}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,6 +149,13 @@ MonoBehaviour:
   requiredCombo: 000000000000000001000000
   showInLight: 1
   showComboInLight: 0
+  animFrames:
+  - {fileID: 21300000, guid: c72cfd81d46c54543af24f6276036ccc, type: 3}
+  - {fileID: 21300000, guid: 8e8fa2bbef56ae64ca5509557ec5babf, type: 3}
+  - {fileID: 21300000, guid: 6eedea0187a3f634ba14fb7b33644713, type: 3}
+  - {fileID: 21300000, guid: 966a7c64fe286164a96cbe3b33fcde08, type: 3}
+  - {fileID: 21300000, guid: 59aa9292e15bd1b408e2b5b000eb236a, type: 3}
+  animFps: 3
   detectRange: 5
   chaseSpeed: 2
   comboOffset: {x: 0, y: 1.4}
@@ -159,9 +164,11 @@ MonoBehaviour:
   comboLineSize: {x: 0.7, y: 0.25}
   comboDotSprite: {fileID: 0}
   comboLineSprite: {fileID: 0}
+  knockbackDistance: 0.3
   healthBarOffset: {x: 0, y: 1.4}
   healthBarWidth: 1.2
   healthBarHeight: 0.15
+  deathFadeDuration: 0.6
 --- !u!50 &5608940423197402747
 Rigidbody2D:
   serializedVersion: 4

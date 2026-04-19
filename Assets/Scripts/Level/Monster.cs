@@ -20,6 +20,12 @@ public class Monster : MonoBehaviour, IResettable
     [Tooltip("亮灯阶段是否显示打击提示（点和线）")]
     [SerializeField] private bool showComboInLight = true;
 
+    [Header("Appearance")]
+    [Tooltip("怪物帧动画序列（拖入多张 Sprite，留空则使用 SpriteRenderer 的默认贴图）")]
+    [SerializeField] private Sprite[] animFrames;
+    [Tooltip("帧动画播放速度(帧/秒)")]
+    [SerializeField] private float animFps = 6f;
+
     [Header("AI")]
     [Tooltip("开始追踪玩家的距离")]
     [SerializeField] private float detectRange = 5f;
@@ -98,6 +104,7 @@ public class Monster : MonoBehaviour, IResettable
         if (!agent.isOnNavMesh)
             Debug.LogWarning("[Monster] 不在 NavMesh 上！请运行 Tools → 创建并烘焙 NavMesh 2D");
 
+        SetupFrameAnimator();
         CreateComboDisplay();
         UpdateComboDisplay();
         CreateHealthBar();
@@ -267,6 +274,24 @@ public class Monster : MonoBehaviour, IResettable
         }
     }
 
+    private void SetupFrameAnimator()
+    {
+        if (animFrames == null || animFrames.Length == 0) return;
+
+        var fa = GetComponent<FrameAnimator>();
+        if (fa == null) fa = gameObject.AddComponent<FrameAnimator>();
+        fa.FPS = animFps;
+        fa.SetFramesAndPlay(animFrames);
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.white;
+    }
+
+    private Color GetBaseColor()
+    {
+        return (animFrames != null && animFrames.Length > 0) ? Color.white : Color.magenta;
+    }
+
     private void FlashRed()
     {
         if (spriteRenderer == null) return;
@@ -278,7 +303,7 @@ public class Monster : MonoBehaviour, IResettable
     private void ResetColor()
     {
         if (spriteRenderer != null)
-            spriteRenderer.color = Color.magenta;
+            spriteRenderer.color = GetBaseColor();
     }
 
     // ── Health bar ──
@@ -442,7 +467,11 @@ public class Monster : MonoBehaviour, IResettable
         UpdateComboDisplay();
         UpdateHealthBar();
         if (spriteRenderer != null)
-            spriteRenderer.color = Color.magenta;
+            spriteRenderer.color = GetBaseColor();
+
+        var fa = GetComponent<FrameAnimator>();
+        if (fa != null && animFrames != null && animFrames.Length > 0)
+            fa.SetFramesAndPlay(animFrames);
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)

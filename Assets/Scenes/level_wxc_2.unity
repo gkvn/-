@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089ed3d138c1be4095065a86c71b4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showDrawingCanvas: 1
   availableIcons:
   - {fileID: 0}
   - {fileID: 0}
@@ -1039,11 +1040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5957533314125866397, guid: 7a169719cbf8bd24d879256cea8ccaf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1748415
+      value: -1.74
       objectReference: {fileID: 0}
     - target: {fileID: 5957533314125866397, guid: 7a169719cbf8bd24d879256cea8ccaf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.942582
+      value: -3.36
       objectReference: {fileID: 0}
     - target: {fileID: 5957533314125866397, guid: 7a169719cbf8bd24d879256cea8ccaf7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2002,7 +2003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512773258459100133, guid: d32338fb1bcafcc47b826bf2e9666c91, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.009950781
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8512773258459100133, guid: d32338fb1bcafcc47b826bf2e9666c91, type: 3}
       propertyPath: m_LocalRotation.w
