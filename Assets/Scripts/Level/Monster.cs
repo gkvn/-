@@ -180,6 +180,15 @@ public class Monster : MonoBehaviour, IResettable
         SetMonsterActive(true);
         SetComboDisplayVisible(!isDark && showComboInLight);
         SetHealthBarVisible(isDark);
+
+        var fa = GetComponent<FrameAnimator>();
+        if (fa != null)
+        {
+            if (isDark)
+                fa.Resume();
+            else
+                fa.Pause();
+        }
     }
 
     private void SetMonsterActive(bool active)
@@ -282,6 +291,10 @@ public class Monster : MonoBehaviour, IResettable
         if (fa == null) fa = gameObject.AddComponent<FrameAnimator>();
         fa.FPS = animFps;
         fa.SetFramesAndPlay(animFrames);
+
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null && pm.CurrentPhase != LevelPhase.Dark)
+            fa.Pause();
 
         if (spriteRenderer != null)
             spriteRenderer.color = Color.white;
@@ -471,7 +484,12 @@ public class Monster : MonoBehaviour, IResettable
 
         var fa = GetComponent<FrameAnimator>();
         if (fa != null && animFrames != null && animFrames.Length > 0)
+        {
             fa.SetFramesAndPlay(animFrames);
+            var pmCheck = LevelPhaseManager.Instance;
+            if (pmCheck != null && pmCheck.CurrentPhase != LevelPhase.Dark)
+                fa.Pause();
+        }
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null)

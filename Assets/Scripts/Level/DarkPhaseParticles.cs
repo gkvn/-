@@ -5,8 +5,10 @@ public class DarkPhaseParticles : MonoBehaviour
 {
     [Tooltip("粒子数量")]
     [SerializeField] private int particleCount = 30;
-    [Tooltip("粒子颜色")]
-    [SerializeField] private Color particleColor = new Color(0.5f, 0.7f, 1f, 0.5f);
+    [Tooltip("黑夜阶段粒子颜色")]
+    [SerializeField] private Color darkColor = new Color(0.5f, 0.7f, 1f, 0.5f);
+    [Tooltip("白天阶段粒子颜色")]
+    [SerializeField] private Color lightColor = new Color(1f, 0.95f, 0.7f, 0.3f);
     [Tooltip("粒子分布范围(场景中心为原点)")]
     [SerializeField] private float range = 12f;
     [Tooltip("粒子飘动速度")]
@@ -15,6 +17,13 @@ public class DarkPhaseParticles : MonoBehaviour
     [SerializeField] private float particleSize = 0.08f;
     [Tooltip("分布中心偏移")]
     [SerializeField] private Vector2 centerOffset = Vector2.zero;
+
+    private Color currentColor;
+    public Color CurrentColor => currentColor;
+    public Color DarkColorValue => darkColor;
+    public Color LightColorValue => lightColor;
+    public float DriftSpeedValue => driftSpeed;
+    public float ParticleSizeValue => particleSize;
 
     private List<ParticleData> particles = new List<ParticleData>();
     private bool active;
@@ -34,8 +43,10 @@ public class DarkPhaseParticles : MonoBehaviour
         if (pm != null)
             pm.OnPhaseChanged += OnPhaseChanged;
 
+        LevelPhase phase = (pm != null) ? pm.CurrentPhase : LevelPhase.Dark;
+        currentColor = (phase == LevelPhase.Dark) ? darkColor : lightColor;
         CreateParticles();
-        SetActive(pm != null && pm.CurrentPhase == LevelPhase.Dark);
+        SetActive(true);
     }
 
     private void OnDestroy()
@@ -47,7 +58,17 @@ public class DarkPhaseParticles : MonoBehaviour
 
     private void OnPhaseChanged(LevelPhase phase)
     {
-        SetActive(phase == LevelPhase.Dark);
+        currentColor = (phase == LevelPhase.Dark) ? darkColor : lightColor;
+        ApplyColor();
+    }
+
+    private void ApplyColor()
+    {
+        foreach (var p in particles)
+        {
+            if (p.sr != null)
+                p.sr.color = currentColor;
+        }
     }
 
     private void SetActive(bool on)
@@ -61,14 +82,14 @@ public class DarkPhaseParticles : MonoBehaviour
 
     private void CreateParticles()
     {
-        var sprite = RuntimeSprite.Get();
+        var sprite = RuntimeSprite.GetCircle();
         for (int i = 0; i < particleCount; i++)
         {
             var go = new GameObject("DarkParticle_" + i);
             go.transform.SetParent(transform);
             var sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = sprite;
-            sr.color = particleColor;
+            sr.color = currentColor;
             sr.sortingOrder = 15;
             go.transform.localScale = Vector3.one * particleSize;
 
@@ -108,9 +129,8 @@ public class DarkPhaseParticles : MonoBehaviour
 
             p.go.transform.position = (Vector3)(p.worldPos);
 
-            float alpha = particleColor.a * (0.5f + 0.5f * Mathf.Sin(Time.time * 1.5f + p.breathPhase));
-            var c = p.sr.color;
-            p.sr.color = new Color(c.r, c.g, c.b, alpha);
+            float alpha = currentColor.a * (0.5f + 0.5f * Mathf.Sin(Time.time * 1.5f + p.breathPhase));
+            p.sr.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
         }
     }
 }

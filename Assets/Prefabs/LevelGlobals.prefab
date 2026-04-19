@@ -76,7 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleCount: 30
-  particleColor: {r: 0.5, g: 0.7, b: 1, a: 0.5}
+  darkColor: {r: 0.5, g: 0.7, b: 1, a: 0.5}
+  lightColor: {r: 1, g: 1, b: 1, a: 0.3}
   range: 15
   driftSpeed: 0.3
   particleSize: 0.05

@@ -26,6 +26,7 @@ public class DrawingCanvas : MonoBehaviour
         }
 
         CreateBackground();
+        CreateCanvasParticles();
 
         if (config != null && toolbar != null)
             toolbar.Initialize(config.AvailableIcons, canvasArea);
@@ -70,6 +71,13 @@ public class DrawingCanvas : MonoBehaviour
         img.type = backgroundImage != null ? Image.Type.Sliced : Image.Type.Simple;
         img.color = backgroundColor;
         img.raycastTarget = false;
+    }
+
+    private void CreateCanvasParticles()
+    {
+        if (canvasArea == null) return;
+        if (canvasArea.GetComponent<CanvasParticles>() == null)
+            canvasArea.gameObject.AddComponent<CanvasParticles>();
     }
 
     public void ClearAllMarkers()

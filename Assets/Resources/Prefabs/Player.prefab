@@ -161,8 +161,8 @@ MonoBehaviour:
   chargeBarChargingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   chargeBarReadyColor: {r: 0.4, g: 0.8, b: 1, a: 1}
   interactRange: 0.5
-  promptOffset: {x: 0, y: 0.5}
-  promptScale: 0.4
+  promptOffset: {x: 0.06, y: 0.5}
+  promptScale: 0.2
   promptSprite: {fileID: 21300000, guid: 20d3deb82d6b7734f9d50554670aa1b5, type: 3}
   deathLightRadius: 1.5
   deathShrinkDuration: 1
