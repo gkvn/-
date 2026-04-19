@@ -160,9 +160,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 59aa9292e15bd1b408e2b5b000eb236a, type: 3}
   dogFrames:
   - {fileID: 21300000, guid: 3d8a38db685154c43a56ce0e6ee44954, type: 3}
-  - {fileID: 21300000, guid: 3d8a38db685154c43a56ce0e6ee44954, type: 3}
+  - {fileID: 21300000, guid: cd1b68a8018025b4f8aabec9c22f4c31, type: 3}
   - {fileID: 21300000, guid: 027260f0e5a757341a9a35129171709d, type: 3}
   - {fileID: 21300000, guid: 383c6ba36b12da54caaece5b1c64b26f, type: 3}
+  birdFrames:
+  - {fileID: 21300000, guid: 0a1894a76ba2dcd4fbc0ac25a194065e, type: 3}
+  - {fileID: 21300000, guid: 81ad8f601359ee743ae063c1ba28d84d, type: 3}
+  - {fileID: 21300000, guid: 1a94bb8fea0f2a849871e8784362aae2, type: 3}
+  - {fileID: 21300000, guid: 638df599dc46253469e48b677885e8fa, type: 3}
+  - {fileID: 21300000, guid: 42bc3182cfae5e14589b10c969144ecf, type: 3}
   animFps: 3
   detectRange: 5
   chaseSpeed: 2

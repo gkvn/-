@@ -108,7 +108,8 @@ public static class EditorTools
             "Assets/Art/animation/角色1",
             "Assets/Art/animation/角色2",
             "Assets/Art/animation/猫",
-            "Assets/Art/animation/狗"
+            "Assets/Art/animation/狗",
+            "Assets/Art/animation/鸟"
         };
         EnsureSpritesImported(animFolders);
 
@@ -181,10 +182,12 @@ public static class EditorTools
                 var so = new SerializedObject(monster);
                 var catFramesProp = so.FindProperty("catFrames");
                 var dogFramesProp = so.FindProperty("dogFrames");
+                var birdFramesProp = so.FindProperty("birdFrames");
                 var fpsProp = so.FindProperty("animFps");
 
                 var catSprites = LoadSortedSprites("Assets/Art/animation/猫");
                 var dogSprites = LoadSortedSprites("Assets/Art/animation/狗");
+                var birdSprites = LoadSortedSprites("Assets/Art/animation/鸟");
 
                 if (catSprites.Length > 0)
                 {
@@ -200,6 +203,13 @@ public static class EditorTools
                         dogFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = dogSprites[i];
                 }
 
+                if (birdSprites.Length > 0)
+                {
+                    birdFramesProp.arraySize = birdSprites.Length;
+                    for (int i = 0; i < birdSprites.Length; i++)
+                        birdFramesProp.GetArrayElementAtIndex(i).objectReferenceValue = birdSprites[i];
+                }
+
                 fpsProp.floatValue = 3f;
                 so.ApplyModifiedProperties();
 
@@ -213,7 +223,7 @@ public static class EditorTools
 
                 EditorUtility.SetDirty(monsterPrefab);
                 changes++;
-                Debug.Log($"[Monster] catFrames={catSprites.Length}, dogFrames={dogSprites.Length}, fps=3");
+                Debug.Log($"[Monster] catFrames={catSprites.Length}, dogFrames={dogSprites.Length}, birdFrames={birdSprites.Length}, fps=3");
             }
         }
 
@@ -686,7 +696,8 @@ public class PixelsPerUnitWindow : EditorWindow
                 "Assets/Art/animation/角色1",
                 "Assets/Art/animation/角色2",
                 "Assets/Art/animation/猫",
-                "Assets/Art/animation/狗"
+                "Assets/Art/animation/狗",
+                "Assets/Art/animation/鸟"
             };
 
             int count = 0;

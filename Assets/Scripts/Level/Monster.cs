@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
 
-public enum MonsterType { Cat, Dog }
+public enum MonsterType { Cat, Dog, Bird }
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -29,6 +29,8 @@ public class Monster : MonoBehaviour, IResettable
     [SerializeField] private Sprite[] catFrames;
     [Tooltip("狗帧动画序列")]
     [SerializeField] private Sprite[] dogFrames;
+    [Tooltip("鸟帧动画序列")]
+    [SerializeField] private Sprite[] birdFrames;
     [Tooltip("帧动画播放速度(帧/秒)")]
     [SerializeField] private float animFps = 6f;
 
@@ -64,7 +66,18 @@ public class Monster : MonoBehaviour, IResettable
     [Tooltip("血条高度")]
     [SerializeField] private float healthBarHeight = 0.15f;
 
-    private Sprite[] ActiveFrames => monsterType == MonsterType.Dog ? dogFrames : catFrames;
+    private Sprite[] ActiveFrames
+    {
+        get
+        {
+            switch (monsterType)
+            {
+                case MonsterType.Dog:  return dogFrames;
+                case MonsterType.Bird: return birdFrames;
+                default:               return catFrames;
+            }
+        }
+    }
 
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
