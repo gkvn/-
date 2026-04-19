@@ -533,6 +533,40 @@ public static class SceneSetup
         rt.offsetMax = Vector2.zero;
     }
 
+    // ═══════════════════════════ LevelCompletePanel Prefab ═══════════════════════════
+
+    [MenuItem("Tools/生成通关面板 Prefab")]
+    public static void CreateLevelCompletePanelPrefab()
+    {
+        EnsureResourcesPrefabFolder();
+
+        const string path = "Assets/Resources/Prefabs/LevelCompletePanel.prefab";
+
+        var root = new GameObject("LevelCompletePanel");
+        var rootRT = root.AddComponent<RectTransform>();
+        rootRT.anchorMin = new Vector2(0.3f, 0.35f);
+        rootRT.anchorMax = new Vector2(0.7f, 0.65f);
+        rootRT.offsetMin = Vector2.zero;
+        rootRT.offsetMax = Vector2.zero;
+        root.AddComponent<Image>().color = new Color(0.1f, 0.1f, 0.15f, 0.95f);
+
+        CreateUIText("CompleteTitle", root.transform, "关卡通关！",
+            36, new Vector2(0, 40), new Vector2(300, 60));
+
+        CreateUIButton("NextLevelButton", root.transform, "下一关",
+            new Vector2(-80, -40), new Vector2(140, 50));
+        CreateUIButton("FinishButton", root.transform, "完成",
+            new Vector2(80, -40), new Vector2(140, 50));
+
+        var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        if (existing != null) AssetDatabase.DeleteAsset(path);
+
+        PrefabUtility.SaveAsPrefabAsset(root, path);
+        Object.DestroyImmediate(root);
+
+        Debug.Log("LevelCompletePanel prefab 已生成 → Assets/Resources/Prefabs/LevelCompletePanel.prefab");
+    }
+
     // ═══════════════════════════ Build Settings ═══════════════════════════
 
     [MenuItem("Tools/同步关卡到 Build Settings")]
