@@ -1,0 +1,8 @@
+id,text,tags
+1_na,"数据密集的区域。这里存放着大量历史记录。",#cgid:cg_past1
+2_a,"这些记录……是这个文明的历史。",#char@1:b1,#istalking:b1
+3_a,"他们曾经遍布整个星球，建造了无数壮观的东西。",#char@1:b1,#istalking:b1
+4_a,"但后来……能源开始枯竭。",#char@1:b1,#istalking:b1
+5_a,"为了争夺剩余的能源，他们彼此开战。",#char@1:b1,#istalking:b1
+6_a,"最后……就没有然后了。",#char@1:b1,#istalking:b1
+7_a,"一个能创造出那种声波艺术的文明，亲手毁掉了自己。",#char@1:b1,#istalking:b1

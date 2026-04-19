@@ -1,8 +1,5 @@
 id,text,tags
-1_na,"一个荒芜但恢弘的房间",#cgid:cg_past
-2_na,"里面充满了无法辨识的陌生文明的造物"
-3_na,"§Ø_∆.µΩ感到惊奇",#char@1:b1
-4_a,"那么我们继续往前探索吧",#char@1:b1,#istalking:b1
-5_a,"出发。",#char@1:b1,#istalking:b1
-
-
+1_na,"新的区域。",#cgid:cg_past
+2_a,"这个地方太大了，走过的路很容易忘记。",#char@1:b1,#istalking:b1
+3_a,"我应该把路线和发现记录下来。",#char@1:b1,#istalking:b1
+4_a,"万一之后还要回来，或者有人来接应，这些笔记会有用的。",#char@1:b1,#istalking:b1

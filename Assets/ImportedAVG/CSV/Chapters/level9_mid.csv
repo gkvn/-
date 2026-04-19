@@ -1,0 +1,16 @@
+id,text,tags
+1_na,"§Ø_∆.µΩ在核心区的地面上留下了最后的笔记。",#cgid:cg_past2
+2_na,"然后倒下了。"
+3_na,"……",#cgid:cg_now_dark
+4_na,"黑暗中，_99[k]r拼命向最深处跑去。"
+5_b,"§Ø_∆.µΩ！！",#char@1:a1,#istalking:a1
+6_na,"核心区域还残留着最后一点微弱的光。"
+7_na,"光里面，有一个人影。"
+8_b,"§Ø_∆.µΩ……？",#char@1:a1,#istalking:a1
+9_b,"§Ø_∆.µΩ！你还活着！",#char@1:a1,#istalking:a1
+10_a,"……_99[k]r？",#char@1:a1,#char@2:b1,#istalking:b1
+11_a,"真的是你……",#char@1:a1,#char@2:b1,#istalking:b1
+12_b,"我找到你了。我终于找到你了。",#char@1:a1,#char@2:b1,#istalking:a1
+13_a,"你怎么来了……我不是说了不用找我吗。",#char@1:a1,#char@2:b1,#istalking:b1
+14_b,"你觉得我看到那句话会听话吗。",#char@1:a1,#char@2:b1,#istalking:a1
+15_a,"……也是。你一直都这样。",#char@1:a1,#char@2:b1,#istalking:b1

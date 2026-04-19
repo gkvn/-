@@ -1,0 +1,12 @@
+id,text,tags
+1_a,"如果来找我的人是_99[k]r就好了。",#cgid:cg_past2,#char@1:b1,#istalking:b1
+2_a,"……我在说什么。都这种时候了。",#char@1:b1,#istalking:b1
+3_a,"不对。我就是想说这个。",#char@1:b1,#istalking:b1
+4_a,"_99[k]r，如果你看到这条笔记——",#char@1:b1,#istalking:b1
+5_a,"把这里的发现带回西格纳鲁就够了。",#char@1:b1,#istalking:b1
+6_a,"不用找我。",#char@1:b1,#istalking:b1
+7_na,"……",#cgid:cg_now_dark
+8_b,"这条笔记……她写了我的名字。",#char@1:a1,#istalking:a1
+9_b,"……",#char@1:a1
+10_b,"她说'不用找我'。",#char@1:a1,#istalking:a1
+11_b,"我偏要找。",#char@1:a1,#istalking:a1
