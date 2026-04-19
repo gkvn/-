@@ -8,6 +8,14 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Button finishButton;
     [SerializeField] private Text phaseText;
 
+    [Header("重开按钮")]
+    [Tooltip("重开按钮贴图（留空使用默认样式）")]
+    [SerializeField] private Sprite restartButtonSprite;
+    [Tooltip("重开按钮大小")]
+    [SerializeField] private Vector2 restartButtonSize = new Vector2(50, 50);
+    [Tooltip("重开按钮位置偏移（相对右上角）")]
+    [SerializeField] private Vector2 restartButtonOffset = new Vector2(-30, -30);
+
     private GameObject blackOverlay;
 
     private void Awake()
@@ -24,6 +32,8 @@ public class LevelUI : MonoBehaviour
 
         if (phaseText != null)
             phaseText.gameObject.SetActive(false);
+
+        CreateRestartButton();
     }
 
     private void CreateBlackOverlay()
@@ -50,6 +60,57 @@ public class LevelUI : MonoBehaviour
             Destroy(blackOverlay);
             blackOverlay = null;
         }
+    }
+
+    private void CreateRestartButton()
+    {
+        var go = new GameObject("RestartButton");
+        go.transform.SetParent(transform, false);
+
+        var rt = go.AddComponent<RectTransform>();
+        rt.anchorMin = new Vector2(1, 1);
+        rt.anchorMax = new Vector2(1, 1);
+        rt.pivot = new Vector2(1, 1);
+        rt.anchoredPosition = restartButtonOffset;
+        rt.sizeDelta = restartButtonSize;
+
+        var img = go.AddComponent<Image>();
+        if (restartButtonSprite != null)
+        {
+            img.sprite = restartButtonSprite;
+            img.color = Color.white;
+        }
+        else
+        {
+            img.color = new Color(0.2f, 0.2f, 0.2f, 0.7f);
+        }
+
+        var btn = go.AddComponent<Button>();
+        btn.onClick.AddListener(OnRestartLevel);
+
+        if (restartButtonSprite == null)
+        {
+            var textGo = new GameObject("Text");
+            textGo.transform.SetParent(go.transform, false);
+            var textRt = textGo.AddComponent<RectTransform>();
+            textRt.anchorMin = Vector2.zero;
+            textRt.anchorMax = Vector2.one;
+            textRt.offsetMin = Vector2.zero;
+            textRt.offsetMax = Vector2.zero;
+            var txt = textGo.AddComponent<Text>();
+            txt.text = "↺";
+            txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            txt.fontSize = (int)(restartButtonSize.y * 0.5f);
+            txt.alignment = TextAnchor.MiddleCenter;
+            txt.color = Color.white;
+        }
+    }
+
+    public void OnRestartLevel()
+    {
+        var pm = LevelPhaseManager.Instance;
+        if (pm != null)
+            pm.RestartLevel();
     }
 
     private void OnDestroy()
