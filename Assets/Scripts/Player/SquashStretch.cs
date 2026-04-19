@@ -9,9 +9,16 @@ public class SquashStretch : MonoBehaviour
     [Tooltip("回弹速度")]
     [SerializeField] private float returnSpeed = 8f;
 
+    [Header("Shoot Punch")]
+    [Tooltip("射击时压缩幅度")]
+    [SerializeField] private float shootPunchAmount = 0.2f;
+    [Tooltip("射击弹回速度")]
+    [SerializeField] private float shootPunchSpeed = 16f;
+
     private Vector3 baseScale = Vector3.one;
     private Vector3 targetScale = Vector3.one;
     private bool wasMoving;
+    private bool punching;
 
     private void Start()
     {
@@ -40,13 +47,34 @@ public class SquashStretch : MonoBehaviour
         }
 
         wasMoving = isMoving;
-        transform.localScale = Vector3.Lerp(transform.localScale, baseScale, Time.deltaTime * returnSpeed);
+
+        float speed = punching ? shootPunchSpeed : returnSpeed;
+        transform.localScale = Vector3.Lerp(transform.localScale, baseScale, Time.deltaTime * speed);
 
         if (targetScale != baseScale)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * returnSpeed * 2f);
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed * 2f);
             if (Vector3.Distance(transform.localScale, baseScale) < 0.01f)
+            {
                 targetScale = baseScale;
+                punching = false;
+            }
         }
+        else
+        {
+            punching = false;
+        }
+    }
+
+    public void ShootPunch(Vector2 shootDir)
+    {
+        float dx = Mathf.Abs(shootDir.x) >= Mathf.Abs(shootDir.y)
+            ? baseScale.x * (1f - shootPunchAmount)
+            : baseScale.x * (1f + shootPunchAmount * 0.5f);
+        float dy = Mathf.Abs(shootDir.y) > Mathf.Abs(shootDir.x)
+            ? baseScale.y * (1f - shootPunchAmount)
+            : baseScale.y * (1f + shootPunchAmount * 0.5f);
+        targetScale = new Vector3(dx, dy, baseScale.z);
+        punching = true;
     }
 }

@@ -307,6 +307,9 @@ public class PlayerController : MonoBehaviour
 
         var p = proj.GetComponent<Projectile>();
         if (p != null) p.Launch(dir, type);
+
+        var squash = GetComponent<SquashStretch>();
+        if (squash != null) squash.ShootPunch(dir);
     }
 
     private Vector2 GetSafeBulletSpawn(Vector2 playerCenter, Vector2 desiredOrigin, Vector2 dir)
