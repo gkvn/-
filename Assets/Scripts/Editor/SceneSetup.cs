@@ -487,7 +487,9 @@ public static class SceneSetup
 
     static Font GetFont()
     {
-        var f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        var f = Resources.Load<Font>("Fonts/NotoSansSC-Regular");
+        if (f != null) return f;
+        f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         return f != null ? f : Resources.GetBuiltinResource<Font>("Arial.ttf");
     }
 
