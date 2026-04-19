@@ -151,12 +151,11 @@ public class Monster : MonoBehaviour, IResettable
 
         agent.isStopped = false;
         float dist = Vector2.Distance(transform.position, playerTransform.position);
-        isChasing = dist <= detectRange;
+        if (!isChasing && dist <= detectRange)
+            isChasing = true;
 
         if (isChasing)
             agent.SetDestination(playerTransform.position);
-        else if (agent.hasPath)
-            agent.ResetPath();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float holdThreshold = 0.25f;
     [Tooltip("子弹发射点相对角色的偏移")]
     [SerializeField] private Vector2 bulletSpawnOffset = new Vector2(0, 0.5f);
+    [Tooltip("点射子弹贴图（无 Prefab 时使用）")]
+    [SerializeField] private Sprite dotBulletSprite;
+    [Tooltip("长按子弹贴图（无 Prefab 时使用）")]
+    [SerializeField] private Sprite lineBulletSprite;
     [Tooltip("子弹生成点离墙壁的安全距离")]
     [SerializeField] private float bulletWallMargin = 0.05f;
 
@@ -329,7 +333,12 @@ public class PlayerController : MonoBehaviour
         }
 
         var p = proj.GetComponent<Projectile>();
-        if (p != null) p.Launch(dir, type);
+        if (p != null)
+        {
+            if (projectilePrefab == null)
+                p.SetSprites(dotBulletSprite, lineBulletSprite);
+            p.Launch(dir, type);
+        }
 
         var squash = GetComponent<SquashStretch>();
         if (squash != null) squash.ShootPunch(dir);

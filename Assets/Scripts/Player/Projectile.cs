@@ -19,6 +19,12 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D rb;
     private bool hasHit;
 
+    public void SetSprites(Sprite dot, Sprite line)
+    {
+        if (dot != null) dotSprite = dot;
+        if (line != null) lineSprite = line;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

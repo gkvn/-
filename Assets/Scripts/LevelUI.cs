@@ -22,11 +22,8 @@ public class LevelUI : MonoBehaviour
         if (levelCompletePanel != null)
             levelCompletePanel.SetActive(false);
 
-        var pm = LevelPhaseManager.Instance;
-        if (pm != null)
-            pm.OnPhaseChanged += UpdatePhaseText;
-
-        UpdatePhaseText(LevelPhase.Light);
+        if (phaseText != null)
+            phaseText.gameObject.SetActive(false);
     }
 
     private void CreateBlackOverlay()
@@ -57,19 +54,6 @@ public class LevelUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        var pm = LevelPhaseManager.Instance;
-        if (pm != null)
-            pm.OnPhaseChanged -= UpdatePhaseText;
-    }
-
-    private void UpdatePhaseText(LevelPhase phase)
-    {
-        if (phaseText == null) return;
-        var lm = LanguageManager.Instance;
-        if (phase == LevelPhase.Light)
-            phaseText.text = lm != null ? lm.Pick("阶段一：亮灯探索", "Phase 1: Lights On") : "阶段一：亮灯探索";
-        else
-            phaseText.text = lm != null ? lm.Pick("阶段二：黑灯挑战", "Phase 2: Lights Off") : "阶段二：黑灯挑战";
     }
 
     public void ShowLevelComplete()
