@@ -18,6 +18,7 @@ public class LevelConfig : MonoBehaviour
     [Tooltip("是否在工具栏显示标记图标")]
     [SerializeField] private bool showIcons = true;
 
+
     [Header("AVG 章节序号")]
     [Tooltip("仅在直接运行单个场景（无 LevelManager）时使用的回退序号，-1 表示不播放 AVG。从 MainMenu 启动时自动使用 LevelManager 中的关卡索引。")]
     [SerializeField] private int avgLevelIndexOverride = -1;

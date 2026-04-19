@@ -11,6 +11,12 @@ public class LocalizedImage : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Image uiImage;
 
+    public void Initialize(Sprite chinese, Sprite english)
+    {
+        chineseSprite = chinese;
+        englishSprite = english;
+    }
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -46,8 +52,18 @@ public class LocalizedImage : MonoBehaviour
     private void Apply(GameLanguage lang)
     {
         Sprite spr = lang == GameLanguage.Chinese ? chineseSprite : englishSprite;
+        if (spr == null) spr = chineseSprite != null ? chineseSprite : englishSprite;
         if (spr == null) return;
-        if (spriteRenderer != null) spriteRenderer.sprite = spr;
-        if (uiImage != null) uiImage.sprite = spr;
+
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = spr;
+
+        if (uiImage != null)
+        {
+            uiImage.sprite = spr;
+            if (uiImage.color.a < 0.01f)
+                uiImage.color = Color.white;
+            uiImage.SetNativeSize();
+        }
     }
 }
