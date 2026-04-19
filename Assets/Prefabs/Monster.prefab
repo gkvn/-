@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4219041143887126339}
   - component: {fileID: 6522521979243182400}
   - component: {fileID: 9148216967939258886}
+  - component: {fileID: 5608940423197402747}
+  - component: {fileID: 2984392238238184369}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -51,6 +53,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -124,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.51, y: 1.27}
+    oldSize: {x: 0.755, y: 0.635}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,3 +149,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredCombo: 000000000000000001000000
+  showInLight: 1
+  showComboInLight: 0
+  detectRange: 5
+  chaseSpeed: 2
+  comboOffset: {x: 0, y: 1.4}
+  comboSpacing: 0.5
+  comboDotSize: 0.35
+  comboLineSize: {x: 0.7, y: 0.25}
+  comboDotSprite: {fileID: 0}
+  comboLineSprite: {fileID: 0}
+  healthBarOffset: {x: 0, y: 1.4}
+  healthBarWidth: 1.2
+  healthBarHeight: 0.15
+--- !u!50 &5608940423197402747
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152253366476011619}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!195 &2984392238238184369
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152253366476011619}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

@@ -77,6 +77,9 @@ public static class EditorTools
     {
         PrepareNavMeshScene();
 
+        foreach (var wallCol in Object.FindObjectsOfType<WallSpriteCollider2D>(true))
+            wallCol.SyncColliderNow();
+
         var surface = Object.FindObjectOfType<NavMeshSurface>();
         if (surface == null)
         {

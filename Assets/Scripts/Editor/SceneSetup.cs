@@ -38,7 +38,7 @@ public static class SceneSetup
         SyncBuildSettings();
 
         EditorSceneManager.OpenScene("Assets/Scenes/Test.unity");
-        Debug.Log("生成完毕！Prefabs 在 Assets/Prefabs/，已打开 Test 场景。");
+        Debug.Log("生成完毕！Player/GameCamera 在 Assets/Resources/Prefabs/，其余在 Assets/Prefabs/。已打开 Test 场景。");
     }
 
     // ═══════════════════════════ Sprite creation ═══════════════════════════
@@ -195,12 +195,44 @@ public static class SceneSetup
             go.AddComponent<DarkPhaseHideable>();
         });
 
-        Debug.Log($"已创建 9 个 Prefab 到 Assets/Prefabs/");
+        EnsureGameCameraPrefab();
+
+        Debug.Log("已创建 Prefab：Player、GameCamera → Assets/Resources/Prefabs/；其余 → Assets/Prefabs/");
+    }
+
+    static void EnsureResourcesPrefabFolder()
+    {
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/Prefabs"))
+            AssetDatabase.CreateFolder("Assets/Resources", "Prefabs");
+    }
+
+    static void EnsureGameCameraPrefab()
+    {
+        const string path = "Assets/Resources/Prefabs/GameCamera.prefab";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(path) != null)
+            return;
+
+        var camGO = new GameObject("GameCamera");
+        camGO.tag = "MainCamera";
+        camGO.transform.position = new Vector3(0f, 0f, -10f);
+        var cam = camGO.AddComponent<Camera>();
+        cam.clearFlags = CameraClearFlags.SolidColor;
+        cam.backgroundColor = new Color(0.15f, 0.18f, 0.15f);
+        cam.orthographic = true;
+        camGO.AddComponent<AudioListener>();
+        camGO.AddComponent<TopDownCamera>();
+        PrefabUtility.SaveAsPrefabAsset(camGO, path);
+        Object.DestroyImmediate(camGO);
     }
 
     static GameObject MakePrefab(string name, System.Action<GameObject> setup)
     {
-        string path = $"Assets/Prefabs/{name}.prefab";
+        EnsureResourcesPrefabFolder();
+        string path = name == "Player"
+            ? $"Assets/Resources/Prefabs/{name}.prefab"
+            : $"Assets/Prefabs/{name}.prefab";
         var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
         if (existing != null) AssetDatabase.DeleteAsset(path);
 
@@ -307,21 +339,14 @@ public static class SceneSetup
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         var iconSprites = CreateTestIconSprites();
 
-        // Camera
-        var camGO = new GameObject("GameCamera");
-        camGO.transform.position = new Vector3(5, 5, -10);
-        var cam = camGO.AddComponent<Camera>();
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = new Color(0.15f, 0.18f, 0.15f);
-        camGO.AddComponent<AudioListener>();
-        var topDown = camGO.AddComponent<TopDownCamera>();
-
         // EventSystem
         new GameObject("EventSystem").AddComponent<EventSystem>()
             .gameObject.AddComponent<StandaloneInputModule>();
 
+        new GameObject("GameplayBootstrap").AddComponent<GameplayBootstrap>();
+
         // ── Game objects (all from prefabs) ──
-        Spawn(_prefabPlayer,     new Vector2(2, 2));
+        // Player / GameCamera：运行时由 GameplayBootstrap 从 Resources 加载
         Spawn(_prefabSpawnPoint, new Vector2(2, 2));
         Spawn(_prefabExitPoint,  new Vector2(9, 9));
 
@@ -339,10 +364,9 @@ public static class SceneSetup
 
         Spawn(_prefabMonster, new Vector2(8, 4));
 
-        // LevelPhaseManager
+        // LevelPhaseManager（相机引用由 GameplayBootstrap 注入）
         var pmGO = new GameObject("LevelPhaseManager");
-        var pm = pmGO.AddComponent<LevelPhaseManager>();
-        SetRef(pm, "topDownCamera", topDown);
+        pmGO.AddComponent<LevelPhaseManager>();
 
         // LevelConfig
         var configGO = new GameObject("LevelConfig");
@@ -355,7 +379,7 @@ public static class SceneSetup
         cfgSO.ApplyModifiedPropertiesWithoutUndo();
 
         // UI
-        BuildGameUI(topDown);
+        BuildGameUI();
 
         EditorSceneManager.SaveScene(scene, "Assets/Scenes/Test.unity");
     }
@@ -377,7 +401,7 @@ public static class SceneSetup
 
     // ═══════════════════════════ Game UI (for level scenes) ═══════════════════════════
 
-    static void BuildGameUI(TopDownCamera topDown)
+    static void BuildGameUI()
     {
         var canvasGO = new GameObject("UICanvas");
         var canvas = canvasGO.AddComponent<Canvas>();
