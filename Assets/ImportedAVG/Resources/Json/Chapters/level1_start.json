@@ -1,9 +1,10 @@
-﻿{
+{
   "chapterId": "level1_start",
   "dialogs": {
     "1_na": {
       "id": "1_na",
       "dlgText": "一个荒芜但恢弘的房间",
+      "dlgTextEN": "A desolate yet magnificent chamber",
       "cgId": "cg_past",
       "charDisplays": [],
       "options": [],
@@ -19,6 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "里面充满了无法辨识的陌生文明的造物",
+      "dlgTextEN": "Filled with unrecognizable artifacts of an unknown civilization",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -34,6 +36,7 @@
     "3_na": {
       "id": "3_na",
       "dlgText": "§Ø_∆.µΩ感到惊奇",
+      "dlgTextEN": "§Ø_∆.µΩ is amazed",
       "cgId": null,
       "charDisplays": [
         {
@@ -55,6 +58,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "那么我们继续往前探索吧",
+      "dlgTextEN": "Then let's keep exploring ahead",
       "cgId": null,
       "charDisplays": [
         {
@@ -76,6 +80,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "出发。",
+      "dlgTextEN": "Let's go.",
       "cgId": null,
       "charDisplays": [
         {

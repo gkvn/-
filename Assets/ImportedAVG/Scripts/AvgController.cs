@@ -371,7 +371,9 @@ namespace AVG {
         m_dialogView.Render(m_model.currDlg);
         _imageView.Render(m_model.currDlg);
         
-        string dialogText = m_model.currDlg.dialogData.dlgText ?? "";
+        string dialogText = AvgLocale.Pick(
+            m_model.currDlg.dialogData.dlgText,
+            m_model.currDlg.dialogData.dlgTextEN);
         _ChangeState(AvgState.TYPING);
         m_typingCoroutine = StartCoroutine(_TypeText(dialogText));
       } else {
@@ -557,7 +559,9 @@ namespace AVG {
 
     private void _FillTextImmediately() {
       _StopTypingCoroutine();
-      string fullText = m_model?.currDlg?.dialogData?.dlgText ?? "";
+      string fullText = m_model?.currDlg?.dialogData != null
+          ? AvgLocale.Pick(m_model.currDlg.dialogData.dlgText, m_model.currDlg.dialogData.dlgTextEN)
+          : "";
       m_dialogView?.SetDialogText(fullText);
         
       _ChangeState(AvgState.WAITING);

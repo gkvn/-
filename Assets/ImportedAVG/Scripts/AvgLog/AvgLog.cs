@@ -20,13 +20,13 @@ namespace AVG {
         charName = dlgModel.talkingCharName;
       }
       
-      text = dlgData.dlgText ?? "";
+      text = AvgLocale.Pick(dlgData.dlgText, dlgData.dlgTextEN);
       if (dlgData.options != null && dlgData.options.Count > 0) {
         options = new List<AvgLogOptionModel>();
         for(int i =  0; i < dlgData.options.Count; i++) {
           var option = dlgData.options[i];
           AvgLogOptionModel logOption = new AvgLogOptionModel {
-            text = option.optText ?? "",
+            text = AvgLocale.Pick(option.optText, option.optTextEN),
             selected = false, 
           };
           options.Add(logOption);

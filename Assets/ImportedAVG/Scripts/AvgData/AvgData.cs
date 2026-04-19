@@ -35,6 +35,7 @@ public class CondData {
 [Serializable]
 public class DlgOption {
   public string optText;
+  public string optTextEN;
   public string nextId;
   public string condId;
   public string nextChapter;
@@ -57,6 +58,7 @@ public class EventData {
 public class DialogData {
   public string id;
   public string dlgText;
+  public string dlgTextEN;
   public string cgId;
   public List<CharSlotData> charDisplays = new();
   public List<DlgOption> options = new();
@@ -79,9 +81,21 @@ public class CharSlotData {
 public class CharDisplayData {
   public string charDisplayId;
   public string charName;
+  public string charNameEN;
   public string charAvatar;
   public string charBody;
   public string charFace;
+}
+
+public static class AvgLocale {
+  public static string Pick(string cn, string en)
+  {
+    var lm = LanguageManager.Instance;
+    if (lm != null && lm.CurrentLanguage == GameLanguage.English
+        && !string.IsNullOrEmpty(en))
+      return en;
+    return cn ?? "";
+  }
 }
 
 [Serializable]

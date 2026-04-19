@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Events;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using NavMeshPlus.Components;
 using NavMeshPlus.Extensions;
@@ -70,6 +72,82 @@ public static class EditorTools
 
         Selection.activeObject = prefab;
         Debug.Log("已创建 SignPost Prefab：" + path);
+    }
+
+    [MenuItem("Tools/在 MainMenu 添加语言切换按钮")]
+    public static void AddLanguageButton()
+    {
+        var menuUI = Object.FindObjectOfType<MainMenuUI>();
+        if (menuUI == null)
+        {
+            Debug.LogError("当前场景没有 MainMenuUI，请先打开 MainMenu 场景");
+            return;
+        }
+
+        if (Object.FindObjectOfType<LanguageManager>() == null)
+        {
+            var lmGo = new GameObject("LanguageManager");
+            lmGo.AddComponent<LanguageManager>();
+            Undo.RegisterCreatedObjectUndo(lmGo, "Create LanguageManager");
+            Debug.Log("已创建 LanguageManager 物体");
+        }
+
+        var canvas = Object.FindObjectOfType<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogError("场景中没有 Canvas");
+            return;
+        }
+
+        var btnGo = new GameObject("LanguageButton");
+        Undo.RegisterCreatedObjectUndo(btnGo, "Create Language Button");
+        btnGo.transform.SetParent(canvas.transform, false);
+
+        var rt = btnGo.AddComponent<RectTransform>();
+        rt.anchorMin = new Vector2(1, 1);
+        rt.anchorMax = new Vector2(1, 1);
+        rt.pivot = new Vector2(1, 1);
+        rt.anchoredPosition = new Vector2(-20, -20);
+        rt.sizeDelta = new Vector2(200, 50);
+
+        var img = btnGo.AddComponent<Image>();
+        img.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+
+        var btn = btnGo.AddComponent<Button>();
+        var colors = btn.colors;
+        colors.highlightedColor = new Color(0.35f, 0.35f, 0.35f, 0.9f);
+        btn.colors = colors;
+
+        var textGo = new GameObject("Text");
+        textGo.transform.SetParent(btnGo.transform, false);
+        var textRt = textGo.AddComponent<RectTransform>();
+        textRt.anchorMin = Vector2.zero;
+        textRt.anchorMax = Vector2.one;
+        textRt.offsetMin = Vector2.zero;
+        textRt.offsetMax = Vector2.zero;
+
+        var text = textGo.AddComponent<Text>();
+        text.text = "中文 / English";
+        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        if (text.font == null) text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        text.fontSize = 22;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.white;
+
+        UnityEventTools.AddPersistentListener(btn.onClick,
+            new UnityEngine.Events.UnityAction(menuUI.OnToggleLanguage));
+
+        var so = new SerializedObject(menuUI);
+        var prop = so.FindProperty("languageButtonText");
+        if (prop != null)
+        {
+            prop.objectReferenceValue = text;
+            so.ApplyModifiedProperties();
+        }
+
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+        Selection.activeGameObject = btnGo;
+        Debug.Log("已添加语言切换按钮并自动关联 MainMenuUI");
     }
 
     [MenuItem("Tools/创建并烘焙 NavMesh 2D")]

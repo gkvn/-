@@ -18,7 +18,7 @@ namespace AVG {
       m_optionIndex = index;
       
       if (option != null) {
-        _optionText.text = option.optText ?? "";
+        _optionText.text = AvgLocale.Pick(option.optText, option.optTextEN);
       }
       
       gameObject.SetActive(option != null);

@@ -177,7 +177,7 @@ namespace AVG {
         dlgModel.charImageModels[slotData.slotIndex] = charImageModel;
         
         if (slotData.isTalking) {
-          dlgModel.talkingCharName = charDisplay.charName;
+          dlgModel.talkingCharName = AvgLocale.Pick(charDisplay.charName, charDisplay.charNameEN);
           dlgModel.talkingCharAvatar = charDisplay.charAvatar;
         }
       }
