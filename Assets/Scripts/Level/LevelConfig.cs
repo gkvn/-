@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using AVG;
 
 /// <summary>
-/// 每关放置一份：画布图标 + 三处可选 AVG 章节（与 ImportedAVG Resources/Json/Chapters 下的 chapter id 一致）。
+/// 每关放置一份：画布图标 + AVG 章节序号。
+/// 根据序号自动拼接 chapterId：level{N}_start / level{N}_mid / level{N}_end。
 /// </summary>
 [DefaultExecutionOrder(100)]
 public class LevelConfig : MonoBehaviour
@@ -17,13 +18,9 @@ public class LevelConfig : MonoBehaviour
     [Tooltip("本关卡可用的标记图标")]
     [SerializeField] private List<Sprite> availableIcons = new List<Sprite>();
 
-    [Header("AVG（chapterId；留空则不播放）")]
-    [Tooltip("关卡场景加载后、流程开始前播放")]
-    [SerializeField] private string avgChapterOnLevelStart;
-    [Tooltip("玩家在白天阶段到达出口、即将切换黑夜前播放")]
-    [SerializeField] private string avgChapterBeforeNight;
-    [Tooltip("玩家在黑夜阶段到达出口、即将显示通关 UI 前播放")]
-    [SerializeField] private string avgChapterOnLevelComplete;
+    [Header("AVG 章节序号")]
+    [Tooltip("仅在直接运行单个场景（无 LevelManager）时使用的回退序号，-1 表示不播放 AVG。从 MainMenu 启动时自动使用 LevelManager 中的关卡索引。")]
+    [SerializeField] private int avgLevelIndexOverride = -1;
 
     [Header("AVG 与操作")]
     [Tooltip("播 AVG 期间禁用 PlayerController，结束后恢复")]
@@ -40,13 +37,28 @@ public class LevelConfig : MonoBehaviour
 
     public bool ShowDrawingCanvas => showDrawingCanvas;
     public List<Sprite> AvailableIcons => availableIcons;
-    public string AvgChapterOnLevelStart => avgChapterOnLevelStart;
-    public string AvgChapterBeforeNight => avgChapterBeforeNight;
-    public string AvgChapterOnLevelComplete => avgChapterOnLevelComplete;
+
+    /// <summary>
+    /// 有 LevelManager 且已开始游戏时，使用其 CurrentLevelIndex；否则回退到 Inspector 配置的 avgLevelIndexOverride。
+    /// </summary>
+    private int EffectiveLevelIndex
+    {
+        get
+        {
+            if (LevelManager.Instance != null && LevelManager.Instance.CurrentLevelIndex >= 0)
+                return LevelManager.Instance.CurrentLevelIndex;
+            return avgLevelIndexOverride;
+        }
+    }
+
+    public bool HasAvg => EffectiveLevelIndex >= 0;
+    public string AvgChapterOnLevelStart => HasAvg ? $"level{EffectiveLevelIndex}_start" : "";
+    public string AvgChapterBeforeNight => HasAvg ? $"level{EffectiveLevelIndex}_mid" : "";
+    public string AvgChapterOnLevelComplete => HasAvg ? $"level{EffectiveLevelIndex}_end" : "";
 
     private void Start()
     {
-        if (string.IsNullOrWhiteSpace(avgChapterOnLevelStart))
+        if (!HasAvg)
             return;
         StartCoroutine(RunIntroAvgWhenReady());
     }
@@ -57,7 +69,7 @@ public class LevelConfig : MonoBehaviour
         if (AvgController.Instance == null)
             yield break;
         yield return null;
-        RunAvgChapterIfConfigured(avgChapterOnLevelStart, null);
+        RunAvgChapterIfConfigured(AvgChapterOnLevelStart, null);
     }
 
     /// <summary>

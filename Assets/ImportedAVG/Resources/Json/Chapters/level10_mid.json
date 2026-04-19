@@ -1,0 +1,212 @@
+﻿{
+  "chapterId": "level10_mid",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "战斗中，§Ø_∆.µΩ用尽了最后的力气。",
+      "dlgTextEN": null,
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "_99[k]r……左边……用那个编码……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "§Ø_∆.µΩ！你别动了！",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "没事……我还能帮你……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_na": {
+      "id": "5_na",
+      "dlgText": "守门人停止了攻击。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_na": {
+      "id": "6_na",
+      "dlgText": "『……够了。』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_na": {
+      "id": "7_na",
+      "dlgText": "『你们的技术并不成熟。你们的文明离我们还很远。』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_na": {
+      "id": "8_na",
+      "dlgText": "『但是——』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_na": {
+      "id": "9_na",
+      "dlgText": "『她为你留下了路。你为她穿过了黑暗。』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "10_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "10_na": {
+      "id": "10_na",
+      "dlgText": "『这是任何文明中最珍贵的东西。』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "11_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "11_na": {
+      "id": "11_na",
+      "dlgText": "『带走吧。这些遗产是你们的了。』",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

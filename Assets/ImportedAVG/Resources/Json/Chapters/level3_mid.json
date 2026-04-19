@@ -1,9 +1,9 @@
 ﻿{
-  "chapterId": "level1_mid",
+  "chapterId": "level3_mid",
   "dialogs": {
     "1_a": {
       "id": "1_a",
-      "dlgText": "好，笔记做好了。",
+      "dlgText": "好了，继续出发。",
       "dlgTextEN": null,
       "cgId": "cg_past",
       "charDisplays": [
@@ -18,39 +18,39 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "2_a"
+        "2_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "2_a": {
-      "id": "2_a",
-      "dlgText": "这样应该够清楚了。",
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "……",
       "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "3_na"
+        "3_b"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "3_na": {
-      "id": "3_na",
-      "dlgText": "……",
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "§Ø_∆.µΩ的笔记越来越详细了。",
       "dlgTextEN": null,
-      "cgId": "cg_now_dark",
-      "charDisplays": [],
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
       "options": [],
       "events": [],
       "setFlags": [],
@@ -63,7 +63,7 @@
     },
     "4_b": {
       "id": "4_b",
-      "dlgText": "咦……这里有个母星制式的智能面板！",
+      "dlgText": "连'先往左看'这种小提示都有……",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -85,7 +85,7 @@
     },
     "5_b": {
       "id": "5_b",
-      "dlgText": "这一定是§Ø_∆.µΩ留下的！",
+      "dlgText": "感觉她就在前面不远处，一路牵着我走一样。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -107,7 +107,7 @@
     },
     "6_b": {
       "id": "6_b",
-      "dlgText": "上面记录了路线和机关的信息……",
+      "dlgText": "我们真是心有灵犀，我遇到的每个问题她都提前想到了。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -129,7 +129,7 @@
     },
     "7_b": {
       "id": "7_b",
-      "dlgText": "§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",
+      "dlgText": "照这样下去，一定能找到她的。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [

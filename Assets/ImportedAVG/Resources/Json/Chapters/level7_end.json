@@ -1,31 +1,41 @@
 ﻿{
-  "chapterId": "level1_end",
+  "chapterId": "level7_end",
   "dialogs": {
-    "1_b": {
-      "id": "1_b",
-      "dlgText": "有了笔记，顺利多了。",
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "这个区域的墙壁上，记录着这个文明关于分离和等待的故事。",
       "dlgTextEN": null,
       "cgId": "cg_now",
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
+      "charDisplays": [],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "2_b"
+        "2_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "2_b": {
-      "id": "2_b",
-      "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "战争中的家书，远航者的日志。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "原来每个文明都要面对这种事。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -40,14 +50,14 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "3_b"
+        "4_b"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "3_b": {
-      "id": "3_b",
-      "dlgText": "我一定会找到你的。",
+    "4_b": {
+      "id": "4_b",
+      "dlgText": "§Ø_∆.µΩ，我不怪你。我只想快点见到你。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [

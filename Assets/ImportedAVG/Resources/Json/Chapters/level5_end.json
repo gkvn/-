@@ -1,9 +1,9 @@
 ﻿{
-  "chapterId": "level1_end",
+  "chapterId": "level5_end",
   "dialogs": {
     "1_b": {
       "id": "1_b",
-      "dlgText": "有了笔记，顺利多了。",
+      "dlgText": "创造了那么美的东西，最后却毁于自己的争斗。",
       "dlgTextEN": null,
       "cgId": "cg_now",
       "charDisplays": [
@@ -25,7 +25,7 @@
     },
     "2_b": {
       "id": "2_b",
-      "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
+      "dlgText": "我们西格纳鲁会不会也……",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -47,7 +47,7 @@
     },
     "3_b": {
       "id": "3_b",
-      "dlgText": "我一定会找到你的。",
+      "dlgText": "……不想了。先找到§Ø_∆.µΩ再说。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [

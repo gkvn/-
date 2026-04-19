@@ -1,0 +1,246 @@
+﻿{
+  "chapterId": "level9_end",
+  "dialogs": {
+    "1_b": {
+      "id": "1_b",
+      "dlgText": "你身体怎么样？",
+      "dlgTextEN": null,
+      "cgId": "cg_now",
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "……不太好。这里的灯光一直在伤害我。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "但现在灯几乎灭了。所以你没事。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_b": {
+      "id": "4_b",
+      "dlgText": "……你是说，明亮的神殿反而在害你？",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "这个星球的电能对我们有辐射。我在灯亮着的时候待了太久了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_b": {
+      "id": "6_b",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_b": {
+      "id": "7_b",
+      "dlgText": "那我们快走。离开这里你会好起来的。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_a": {
+      "id": "8_a",
+      "dlgText": "_99[k]r。走之前……前面还有最后一个区域。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_a": {
+      "id": "9_a",
+      "dlgText": "这个神殿的核心……有什么东西在等着我们。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

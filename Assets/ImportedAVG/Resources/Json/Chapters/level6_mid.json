@@ -1,16 +1,16 @@
 ﻿{
-  "chapterId": "level1_mid",
+  "chapterId": "level6_mid",
   "dialogs": {
     "1_a": {
       "id": "1_a",
-      "dlgText": "好，笔记做好了。",
+      "dlgText": "……",
       "dlgTextEN": null,
-      "cgId": "cg_past",
+      "cgId": "cg_past1",
       "charDisplays": [
         {
           "charDisplayId": "b1",
           "slotIndex": 0,
-          "isTalking": true
+          "isTalking": false
         }
       ],
       "options": [],
@@ -25,7 +25,7 @@
     },
     "2_a": {
       "id": "2_a",
-      "dlgText": "这样应该够清楚了。",
+      "dlgText": "大家一定以为我失联了。失踪了。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -40,61 +40,61 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "3_na"
+        "3_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "3_na": {
-      "id": "3_na",
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "但我只是……不知道时间过了那么久。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "我认识的人……现在还好吗。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_na": {
+      "id": "5_na",
       "dlgText": "……",
       "dlgTextEN": null,
       "cgId": "cg_now_dark",
       "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "4_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "4_b": {
-      "id": "4_b",
-      "dlgText": "咦……这里有个母星制式的智能面板！",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "5_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "5_b": {
-      "id": "5_b",
-      "dlgText": "这一定是§Ø_∆.µΩ留下的！",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
       "options": [],
       "events": [],
       "setFlags": [],
@@ -107,7 +107,7 @@
     },
     "6_b": {
       "id": "6_b",
-      "dlgText": "上面记录了路线和机关的信息……",
+      "dlgText": "这一页的笔记……笔迹在发抖。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -129,7 +129,51 @@
     },
     "7_b": {
       "id": "7_b",
-      "dlgText": "§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",
+      "dlgText": "§Ø_∆.µΩ写了什么'光速''时间膨胀'之类的词。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_b": {
+      "id": "8_b",
+      "dlgText": "我看不太懂……但她的语气突然变了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_b": {
+      "id": "9_b",
+      "dlgText": "§Ø_∆.µΩ，你到底怎么了。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [

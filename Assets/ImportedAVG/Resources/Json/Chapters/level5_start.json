@@ -1,18 +1,12 @@
 ﻿{
-  "chapterId": "level1_mid",
+  "chapterId": "level5_start",
   "dialogs": {
-    "1_a": {
-      "id": "1_a",
-      "dlgText": "好，笔记做好了。",
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "数据密集的区域。这里存放着大量历史记录。",
       "dlgTextEN": null,
-      "cgId": "cg_past",
-      "charDisplays": [
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
+      "cgId": "cg_past1",
+      "charDisplays": [],
       "options": [],
       "events": [],
       "setFlags": [],
@@ -25,7 +19,7 @@
     },
     "2_a": {
       "id": "2_a",
-      "dlgText": "这样应该够清楚了。",
+      "dlgText": "这些记录……是这个文明的历史。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -40,35 +34,19 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "3_na"
+        "3_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "3_na": {
-      "id": "3_na",
-      "dlgText": "……",
-      "dlgTextEN": null,
-      "cgId": "cg_now_dark",
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "4_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "4_b": {
-      "id": "4_b",
-      "dlgText": "咦……这里有个母星制式的智能面板！",
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "他们曾经遍布整个星球，建造了无数壮观的东西。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -78,19 +56,19 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "5_b"
+        "4_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "5_b": {
-      "id": "5_b",
-      "dlgText": "这一定是§Ø_∆.µΩ留下的！",
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "但后来……能源开始枯竭。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -100,19 +78,19 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "6_b"
+        "5_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "6_b": {
-      "id": "6_b",
-      "dlgText": "上面记录了路线和机关的信息……",
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "为了争夺剩余的能源，他们彼此开战。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -122,19 +100,41 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "7_b"
+        "6_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "7_b": {
-      "id": "7_b",
-      "dlgText": "§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "最后……就没有然后了。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "一个能创造出那种声波艺术的文明，亲手毁掉了自己。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }

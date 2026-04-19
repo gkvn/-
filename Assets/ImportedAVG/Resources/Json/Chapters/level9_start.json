@@ -1,74 +1,46 @@
 ﻿{
-  "chapterId": "level1_mid",
+  "chapterId": "level9_start",
   "dialogs": {
-    "1_a": {
-      "id": "1_a",
-      "dlgText": "好，笔记做好了。",
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "神殿最深处——文明核心。",
       "dlgTextEN": null,
-      "cgId": "cg_past",
-      "charDisplays": [
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "2_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "2_a": {
-      "id": "2_a",
-      "dlgText": "这样应该够清楚了。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "3_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "3_na": {
-      "id": "3_na",
-      "dlgText": "……",
-      "dlgTextEN": null,
-      "cgId": "cg_now_dark",
+      "cgId": "cg_past2",
       "charDisplays": [],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "4_b"
+        "2_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "4_b": {
-      "id": "4_b",
-      "dlgText": "咦……这里有个母星制式的智能面板！",
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "这里的灯光最为强烈。能源最集中的地方。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "到了……这就是最里面了。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -78,19 +50,19 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "5_b"
+        "4_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "5_b": {
-      "id": "5_b",
-      "dlgText": "这一定是§Ø_∆.µΩ留下的！",
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "……好亮。头好痛。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -100,19 +72,19 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "6_b"
+        "5_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "6_b": {
-      "id": "6_b",
-      "dlgText": "上面记录了路线和机关的信息……",
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "墙上有一段话……是这个文明最后留下的东西。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }
@@ -122,19 +94,101 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "7_b"
+        "6_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "7_b": {
-      "id": "7_b",
-      "dlgText": "§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",
+    "6_na": {
+      "id": "6_na",
+      "dlgText": "——我们存在过。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "……",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_a": {
+      "id": "8_a",
+      "dlgText": "我也存在过。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_a": {
+      "id": "9_a",
+      "dlgText": "把该记的都记在笔记里了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "10_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "10_a": {
+      "id": "10_a",
+      "dlgText": "_99[k]r……对不起，大概没办法当面告诉你了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
           "slotIndex": 0,
           "isTalking": true
         }

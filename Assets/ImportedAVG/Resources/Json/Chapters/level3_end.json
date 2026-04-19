@@ -1,9 +1,9 @@
 ﻿{
-  "chapterId": "level1_end",
+  "chapterId": "level3_end",
   "dialogs": {
     "1_b": {
       "id": "1_b",
-      "dlgText": "有了笔记，顺利多了。",
+      "dlgText": "又顺利通过了。",
       "dlgTextEN": null,
       "cgId": "cg_now",
       "charDisplays": [
@@ -25,29 +25,7 @@
     },
     "2_b": {
       "id": "2_b",
-      "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "3_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "3_b": {
-      "id": "3_b",
-      "dlgText": "我一定会找到你的。",
+      "dlgText": "§Ø_∆.µΩ，等我。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [

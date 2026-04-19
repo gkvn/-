@@ -1,9 +1,9 @@
 ﻿{
-  "chapterId": "level1_end",
+  "chapterId": "level0_end",
   "dialogs": {
     "1_b": {
       "id": "1_b",
-      "dlgText": "有了笔记，顺利多了。",
+      "dlgText": "呼……总算穿过来了。",
       "dlgTextEN": null,
       "cgId": "cg_now",
       "charDisplays": [
@@ -25,7 +25,7 @@
     },
     "2_b": {
       "id": "2_b",
-      "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
+      "dlgText": "什么都看不见，完全是摸黑在走。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
@@ -47,7 +47,7 @@
     },
     "3_b": {
       "id": "3_b",
-      "dlgText": "我一定会找到你的。",
+      "dlgText": "§Ø_∆.µΩ……你到底在哪里。",
       "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
