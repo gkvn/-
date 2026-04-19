@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
 
+public enum MonsterType { Cat, Dog }
+
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(NavMeshAgent))]
@@ -21,8 +23,12 @@ public class Monster : MonoBehaviour, IResettable
     [SerializeField] private bool showComboInLight = true;
 
     [Header("Appearance")]
-    [Tooltip("怪物帧动画序列（拖入多张 Sprite，留空则使用 SpriteRenderer 的默认贴图）")]
-    [SerializeField] private Sprite[] animFrames;
+    [Tooltip("选择怪物外观类型")]
+    [SerializeField] private MonsterType monsterType = MonsterType.Cat;
+    [Tooltip("猫帧动画序列")]
+    [SerializeField] private Sprite[] catFrames;
+    [Tooltip("狗帧动画序列")]
+    [SerializeField] private Sprite[] dogFrames;
     [Tooltip("帧动画播放速度(帧/秒)")]
     [SerializeField] private float animFps = 6f;
 
@@ -57,6 +63,8 @@ public class Monster : MonoBehaviour, IResettable
     [SerializeField] private float healthBarWidth = 1.2f;
     [Tooltip("血条高度")]
     [SerializeField] private float healthBarHeight = 0.15f;
+
+    private Sprite[] ActiveFrames => monsterType == MonsterType.Dog ? dogFrames : catFrames;
 
     private int comboIndex;
     private List<GameObject> comboIndicators = new List<GameObject>();
@@ -285,12 +293,13 @@ public class Monster : MonoBehaviour, IResettable
 
     private void SetupFrameAnimator()
     {
-        if (animFrames == null || animFrames.Length == 0) return;
+        var frames = ActiveFrames;
+        if (frames == null || frames.Length == 0) return;
 
         var fa = GetComponent<FrameAnimator>();
         if (fa == null) fa = gameObject.AddComponent<FrameAnimator>();
         fa.FPS = animFps;
-        fa.SetFramesAndPlay(animFrames);
+        fa.SetFramesAndPlay(frames);
 
         var pm = LevelPhaseManager.Instance;
         if (pm != null && pm.CurrentPhase != LevelPhase.Dark)
@@ -302,7 +311,8 @@ public class Monster : MonoBehaviour, IResettable
 
     private Color GetBaseColor()
     {
-        return (animFrames != null && animFrames.Length > 0) ? Color.white : Color.magenta;
+        var frames = ActiveFrames;
+        return (frames != null && frames.Length > 0) ? Color.white : Color.magenta;
     }
 
     private void FlashRed()
@@ -483,9 +493,10 @@ public class Monster : MonoBehaviour, IResettable
             spriteRenderer.color = GetBaseColor();
 
         var fa = GetComponent<FrameAnimator>();
-        if (fa != null && animFrames != null && animFrames.Length > 0)
+        var frames = ActiveFrames;
+        if (fa != null && frames != null && frames.Length > 0)
         {
-            fa.SetFramesAndPlay(animFrames);
+            fa.SetFramesAndPlay(frames);
             var pmCheck = LevelPhaseManager.Instance;
             if (pmCheck != null && pmCheck.CurrentPhase != LevelPhase.Dark)
                 fa.Pause();

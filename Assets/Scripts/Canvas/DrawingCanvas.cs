@@ -6,11 +6,7 @@ public class DrawingCanvas : MonoBehaviour
     [SerializeField] private IconToolbar toolbar;
     [SerializeField] private RectTransform canvasArea;
 
-    [Header("画布背景")]
-    [Tooltip("左侧画布背景图（留空则无背景）")]
-    [SerializeField] private Sprite backgroundImage;
-    [Tooltip("背景颜色/透明度（配合背景图使用时为叠加色）")]
-    [SerializeField] private Color backgroundColor = Color.white;
+    private const string BG_RESOURCE_PATH = "Art/ui/note_bg";
 
     public RectTransform CanvasArea => canvasArea;
 
@@ -54,7 +50,21 @@ public class DrawingCanvas : MonoBehaviour
     private void CreateBackground()
     {
         if (canvasArea == null) return;
-        if (backgroundImage == null && backgroundColor.a <= 0f) return;
+
+        var sprite = Resources.Load<Sprite>(BG_RESOURCE_PATH);
+        if (sprite == null)
+        {
+            var tex = Resources.Load<Texture2D>(BG_RESOURCE_PATH);
+            if (tex != null)
+                sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height),
+                    new Vector2(0.5f, 0.5f));
+        }
+
+        if (sprite == null)
+        {
+            Debug.LogWarning($"[DrawingCanvas] 未找到背景图资源: {BG_RESOURCE_PATH}");
+            return;
+        }
 
         var bgGo = new GameObject("CanvasBackground");
         bgGo.transform.SetParent(canvasArea, false);
@@ -67,9 +77,7 @@ public class DrawingCanvas : MonoBehaviour
         rt.offsetMax = Vector2.zero;
 
         var img = bgGo.AddComponent<Image>();
-        img.sprite = backgroundImage;
-        img.type = backgroundImage != null ? Image.Type.Sliced : Image.Type.Simple;
-        img.color = backgroundColor;
+        img.sprite = sprite;
         img.raycastTarget = false;
     }
 
