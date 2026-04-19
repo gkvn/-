@@ -43,6 +43,15 @@ public class WallSpriteCollider2D : MonoBehaviour
         if (_spriteRenderer == null || _box == null || _spriteRenderer.sprite == null)
             return;
 
+        var pos = transform.localPosition;
+        if (!Mathf.Approximately(pos.z, 0f))
+            transform.localPosition = new Vector3(pos.x, pos.y, 0f);
+
+        if (_spriteRenderer.drawMode != SpriteDrawMode.Tiled)
+            _spriteRenderer.drawMode = SpriteDrawMode.Tiled;
+        if (!Mathf.Approximately(_spriteRenderer.adaptiveModeThreshold, 0f))
+            _spriteRenderer.adaptiveModeThreshold = 0f;
+
         Bounds lb = _spriteRenderer.localBounds;
         var targetSize = new Vector2(lb.size.x, lb.size.y);
         var targetOffset = new Vector2(lb.center.x, lb.center.y);
