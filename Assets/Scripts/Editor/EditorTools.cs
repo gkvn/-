@@ -281,6 +281,109 @@ public static class EditorTools
         return count;
     }
 
+    // ── LevelGlobals Prefab ──
+
+    private const string LevelGlobalsPrefabPath = "Assets/Prefabs/LevelGlobals.prefab";
+
+    [MenuItem("Tools/创建 LevelGlobals Prefab")]
+    public static void CreateLevelGlobalsPrefab()
+    {
+        string folder = "Assets/Prefabs";
+        if (!AssetDatabase.IsValidFolder(folder))
+            AssetDatabase.CreateFolder("Assets", "Prefabs");
+
+        var existing = AssetDatabase.LoadAssetAtPath<GameObject>(LevelGlobalsPrefabPath);
+        if (existing != null)
+        {
+            Debug.Log("LevelGlobals.prefab 已存在：" + LevelGlobalsPrefabPath);
+            Selection.activeObject = existing;
+            return;
+        }
+
+        var go = new GameObject("LevelGlobals");
+        go.AddComponent<LevelPhaseManager>();
+        go.AddComponent<CursorManager>();
+        go.AddComponent<DarkPhaseParticles>();
+
+        var prefab = PrefabUtility.SaveAsPrefabAsset(go, LevelGlobalsPrefabPath);
+        Object.DestroyImmediate(go);
+
+        Selection.activeObject = prefab;
+        Debug.Log("已创建 LevelGlobals Prefab，包含 LevelPhaseManager + CursorManager + DarkPhaseParticles");
+    }
+
+    [MenuItem("Tools/同步 LevelGlobals 到所有关卡场景")]
+    public static void SyncLevelGlobalsToAllScenes()
+    {
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(LevelGlobalsPrefabPath);
+        if (prefab == null)
+        {
+            Debug.LogError("找不到 LevelGlobals Prefab，请先运行 Tools → 创建 LevelGlobals Prefab");
+            return;
+        }
+
+        var currentScene = EditorSceneManager.GetActiveScene().path;
+        var sceneGuids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets/Scenes" });
+        int updated = 0;
+
+        foreach (var guid in sceneGuids)
+        {
+            string scenePath = AssetDatabase.GUIDToAssetPath(guid);
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+
+            if (sceneName == "MainMenu" || sceneName == "SampleScene")
+                continue;
+
+            var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            var roots = scene.GetRootGameObjects();
+
+            GameObject oldGlobals = null;
+            foreach (var root in roots)
+            {
+                if (root.GetComponent<LevelPhaseManager>() != null)
+                {
+                    oldGlobals = root;
+                    break;
+                }
+            }
+
+            if (oldGlobals != null)
+            {
+                var oldSo = new SerializedObject(oldGlobals.GetComponent<LevelPhaseManager>());
+                bool isPrefabInstance = PrefabUtility.IsPartOfPrefabInstance(oldGlobals);
+
+                if (isPrefabInstance)
+                {
+                    var src = PrefabUtility.GetCorrespondingObjectFromSource(oldGlobals);
+                    if (src != null && AssetDatabase.GetAssetPath(src) == LevelGlobalsPrefabPath)
+                    {
+                        PrefabUtility.RevertPrefabInstance(oldGlobals, InteractionMode.AutomatedAction);
+                        Debug.Log($"  [{sceneName}] 已还原 prefab 覆盖");
+                        EditorSceneManager.MarkSceneDirty(scene);
+                        EditorSceneManager.SaveScene(scene);
+                        updated++;
+                        continue;
+                    }
+                }
+
+                Object.DestroyImmediate(oldGlobals);
+            }
+
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);
+            instance.name = "LevelGlobals";
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            updated++;
+            Debug.Log($"  [{sceneName}] 已同步 LevelGlobals");
+        }
+
+        if (!string.IsNullOrEmpty(currentScene))
+            EditorSceneManager.OpenScene(currentScene, OpenSceneMode.Single);
+
+        Debug.Log($"已同步 LevelGlobals 到 {updated} 个关卡场景。修改 Prefab 后再次运行即可全部更新。");
+    }
+
     public static void SetHumanoidAgentRadius(float radius)
     {
         const string path = "ProjectSettings/NavMeshAreas.asset";

@@ -2,6 +2,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(AfterImageEffect))]
+[RequireComponent(typeof(SquashStretch))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -196,6 +198,16 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
         rb.velocity = moveInput * moveSpeed;
+
+        bool moving = moveInput != Vector2.zero;
+
+        var afterImage = GetComponent<AfterImageEffect>();
+        if (afterImage != null)
+            afterImage.Tick(moving);
+
+        var squash = GetComponent<SquashStretch>();
+        if (squash != null)
+            squash.Tick(moving, moveInput);
     }
 
     // ── Movement ──

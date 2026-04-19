@@ -40,6 +40,10 @@ public class Monster : MonoBehaviour, IResettable
     [Tooltip("\"线\"图标贴图（留空用默认方块）")]
     [SerializeField] private Sprite comboLineSprite;
 
+    [Header("Knockback")]
+    [Tooltip("被子弹击中时的击退距离")]
+    [SerializeField] private float knockbackDistance = 0.3f;
+
     [Header("Health Bar")]
     [Tooltip("血条相对怪物的偏移位置")]
     [SerializeField] private Vector2 healthBarOffset = new Vector2(0, 1.4f);
@@ -60,6 +64,13 @@ public class Monster : MonoBehaviour, IResettable
     private GameObject healthBarBg;
     private GameObject healthBarFill;
     private List<GameObject> healthBarDividers = new List<GameObject>();
+
+    [Header("Death Animation")]
+    [Tooltip("死亡变黑动画时长(秒)")]
+    [SerializeField] private float deathFadeDuration = 0.6f;
+
+    private bool isDying;
+    private float deathTimer;
 
     private void Start()
     {
@@ -109,6 +120,8 @@ public class Monster : MonoBehaviour, IResettable
 
     private void Update()
     {
+        UpdateDeathAnimation();
+
         if (playerTransform == null || agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
         var pm = LevelPhaseManager.Instance;
@@ -133,6 +146,7 @@ public class Monster : MonoBehaviour, IResettable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDying) return;
         if (!collision.collider.CompareTag("Player")) return;
         var player = collision.collider.GetComponent<PlayerController>();
         if (player != null)
@@ -181,7 +195,7 @@ public class Monster : MonoBehaviour, IResettable
 
     // ── Combo system ──
 
-    public bool OnBulletHit(BulletType type)
+    public bool OnBulletHit(BulletType type, Vector2 hitDirection = default)
     {
         var pm = LevelPhaseManager.Instance;
         if (pm != null && pm.CurrentPhase == LevelPhase.Light) return false;
@@ -189,6 +203,9 @@ public class Monster : MonoBehaviour, IResettable
         if (comboIndex >= requiredCombo.Length) return false;
 
         FlashRed();
+
+        if (knockbackDistance > 0f && hitDirection != Vector2.zero && agent != null && agent.enabled)
+            agent.Move(hitDirection * knockbackDistance);
 
         bool correct = requiredCombo[comboIndex] == type;
         if (correct)
@@ -218,7 +235,36 @@ public class Monster : MonoBehaviour, IResettable
     {
         Debug.Log("[Monster] Defeated!");
         if (agent != null && agent.isOnNavMesh) agent.ResetPath();
-        gameObject.SetActive(false);
+        if (agent != null) agent.enabled = false;
+
+        isDying = true;
+        deathTimer = 0f;
+        SetComboDisplayVisible(false);
+        SetHealthBarVisible(false);
+
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+    }
+
+    private void UpdateDeathAnimation()
+    {
+        if (!isDying) return;
+
+        deathTimer += Time.deltaTime;
+        float t = Mathf.Clamp01(deathTimer / deathFadeDuration);
+
+        if (spriteRenderer != null)
+        {
+            float grey = Mathf.Lerp(1f, 0f, t);
+            float alpha = Mathf.Lerp(1f, 0f, t * t);
+            spriteRenderer.color = new Color(grey * 0.5f, grey * 0.1f, grey * 0.5f, alpha);
+        }
+
+        if (t >= 1f)
+        {
+            isDying = false;
+            gameObject.SetActive(false);
+        }
     }
 
     private void FlashRed()
@@ -391,6 +437,8 @@ public class Monster : MonoBehaviour, IResettable
         if (rb != null) rb.velocity = Vector2.zero;
         comboIndex = 0;
         isChasing = false;
+        isDying = false;
+        deathTimer = 0f;
         UpdateComboDisplay();
         UpdateHealthBar();
         if (spriteRenderer != null)

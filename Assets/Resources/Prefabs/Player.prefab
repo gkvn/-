@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1432258110553970010}
   - component: {fileID: 3463723071224547733}
   - component: {fileID: 1126432772876686569}
+  - component: {fileID: 8005448509924318779}
+  - component: {fileID: 64295623135005042}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -52,8 +54,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -183,3 +183,38 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.0036637783, y: -0.14364988}
   m_Radius: 0.13318166
+--- !u!114 &8005448509924318779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650330170407992706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d801219eb449584f99678b89802ea97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 0.05
+  fadeDuration: 0.35
+  startAlpha: 0.35
+  dustSize: 0.07
+  footOffset: {x: 0, y: -0.3}
+  spread: 0.1
+  dustColor: {r: 0.8207547, g: 0.8104307, b: 0.8104307, a: 0.35}
+  riseSpeed: 0.4
+--- !u!114 &64295623135005042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650330170407992706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf60d7fe38dedd4fb3fa3e9f459599b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stretchAmount: 0.16
+  squashAmount: 0
+  returnSpeed: 8

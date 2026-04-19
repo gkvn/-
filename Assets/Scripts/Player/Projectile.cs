@@ -77,7 +77,8 @@ public class Projectile : MonoBehaviour
         var monster = other.GetComponent<Monster>();
         if (monster != null)
         {
-            bool wasCorrect = monster.OnBulletHit(Type);
+            Vector2 hitDir = (other.transform.position - transform.position).normalized;
+            bool wasCorrect = monster.OnBulletHit(Type, hitDir);
             HitStop(wasCorrect ? HitType.MonsterCorrect : HitType.MonsterWrong);
             return;
         }
