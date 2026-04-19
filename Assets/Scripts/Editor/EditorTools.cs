@@ -74,6 +74,31 @@ public static class EditorTools
         Debug.Log("已创建 SignPost Prefab：" + path);
     }
 
+    [MenuItem("Tools/创建 GlowPoint Prefab")]
+    public static void CreateGlowPointPrefab()
+    {
+        string folder = "Assets/Prefabs";
+        if (!AssetDatabase.IsValidFolder(folder))
+            AssetDatabase.CreateFolder("Assets", "Prefabs");
+
+        string path = folder + "/GlowPoint.prefab";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(path) != null)
+        {
+            Debug.Log("GlowPoint.prefab 已存在：" + path);
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            return;
+        }
+
+        var go = new GameObject("GlowPoint");
+        go.AddComponent<GlowPoint>();
+
+        var prefab = PrefabUtility.SaveAsPrefabAsset(go, path);
+        Object.DestroyImmediate(go);
+
+        Selection.activeObject = prefab;
+        Debug.Log("已创建 GlowPoint Prefab：" + path);
+    }
+
     [MenuItem("Tools/在 MainMenu 添加语言切换按钮")]
     public static void AddLanguageButton()
     {

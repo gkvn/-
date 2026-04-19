@@ -16,11 +16,38 @@ public class DrawingCanvas : MonoBehaviour
 
     private void Start()
     {
+        var config = FindObjectOfType<LevelConfig>();
+
+        if (config != null && !config.ShowDrawingCanvas)
+        {
+            gameObject.SetActive(false);
+            ExpandGameView();
+            return;
+        }
+
         CreateBackground();
 
-        var config = FindObjectOfType<LevelConfig>();
         if (config != null && toolbar != null)
             toolbar.Initialize(config.AvailableIcons, canvasArea);
+    }
+
+    private void ExpandGameView()
+    {
+        var parent = transform.parent;
+        if (parent == null) return;
+
+        foreach (Transform sibling in parent)
+        {
+            if (sibling == transform) continue;
+            var rt = sibling.GetComponent<RectTransform>();
+            if (rt != null)
+            {
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.offsetMin = Vector2.zero;
+                rt.offsetMax = Vector2.zero;
+            }
+        }
     }
 
     private void CreateBackground()

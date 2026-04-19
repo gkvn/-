@@ -10,7 +10,10 @@ using AVG;
 [DefaultExecutionOrder(100)]
 public class LevelConfig : MonoBehaviour
 {
-    [Header("画布图标配置")]
+    [Header("画布配置")]
+    [Tooltip("是否显示左半边画图板（关闭则本关无画图板，游戏画面全屏）")]
+    [SerializeField] private bool showDrawingCanvas = true;
+
     [Tooltip("本关卡可用的标记图标")]
     [SerializeField] private List<Sprite> availableIcons = new List<Sprite>();
 
@@ -35,6 +38,7 @@ public class LevelConfig : MonoBehaviour
     /// <summary>正在等待当前 AVG 章节播完（ChapterPlaybackEnded）时为 true，用于防止重复触发出口等。</summary>
     public static bool IsAvgFlowBlocking { get; private set; }
 
+    public bool ShowDrawingCanvas => showDrawingCanvas;
     public List<Sprite> AvailableIcons => availableIcons;
     public string AvgChapterOnLevelStart => avgChapterOnLevelStart;
     public string AvgChapterBeforeNight => avgChapterBeforeNight;

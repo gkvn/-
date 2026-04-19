@@ -16,6 +16,9 @@ public class LevelPhaseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        if (GetComponent<CursorManager>() == null)
+            gameObject.AddComponent<CursorManager>();
     }
 
     private void Start()
