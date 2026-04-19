@@ -125,15 +125,20 @@ public class LevelUI : MonoBehaviour
             var prefab = Resources.Load<GameObject>("Prefabs/LevelCompletePanel");
             if (prefab != null)
             {
-                dynamicCompletePanel = Instantiate(prefab, transform);
+                var canvas = GetComponentInParent<Canvas>();
+                var parent = canvas != null ? canvas.transform : transform;
+
+                dynamicCompletePanel = Instantiate(prefab);
+                dynamicCompletePanel.transform.SetParent(parent, false);
                 dynamicCompletePanel.transform.SetAsLastSibling();
 
-                var nextBtn = dynamicCompletePanel.transform.Find("NextLevelButton");
-                var finishBtn = dynamicCompletePanel.transform.Find("FinishButton");
-                if (nextBtn != null)
-                    nextBtn.GetComponent<Button>().onClick.AddListener(OnNextLevel);
-                if (finishBtn != null)
-                    finishBtn.GetComponent<Button>().onClick.AddListener(OnFinish);
+                foreach (var btn in dynamicCompletePanel.GetComponentsInChildren<Button>(true))
+                {
+                    if (btn.gameObject.name == "NextLevelButton")
+                        btn.onClick.AddListener(OnNextLevel);
+                    else if (btn.gameObject.name == "FinishButton")
+                        btn.onClick.AddListener(OnFinish);
+                }
             }
             else
             {
@@ -146,12 +151,16 @@ public class LevelUI : MonoBehaviour
         if (dynamicCompletePanel != null)
         {
             dynamicCompletePanel.SetActive(true);
+            dynamicCompletePanel.transform.SetAsLastSibling();
 
             bool isLast = LevelManager.Instance != null && LevelManager.Instance.IsLastLevel;
-            var nextBtn = dynamicCompletePanel.transform.Find("NextLevelButton");
-            var finishBtn = dynamicCompletePanel.transform.Find("FinishButton");
-            if (nextBtn != null) nextBtn.gameObject.SetActive(!isLast);
-            if (finishBtn != null) finishBtn.gameObject.SetActive(isLast);
+            foreach (var btn in dynamicCompletePanel.GetComponentsInChildren<Button>(true))
+            {
+                if (btn.gameObject.name == "NextLevelButton")
+                    btn.gameObject.SetActive(!isLast);
+                else if (btn.gameObject.name == "FinishButton")
+                    btn.gameObject.SetActive(isLast);
+            }
         }
         else
         {

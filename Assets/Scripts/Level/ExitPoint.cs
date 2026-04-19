@@ -60,6 +60,9 @@ public class ExitPoint : MonoBehaviour
         {
             System.Action onDone = () =>
             {
+                if (BgmManager.Instance != null)
+                    BgmManager.Instance.PlayLevelEndBgm();
+
                 if (cfg != null)
                     cfg.RunAvgChapterIfConfigured(cfg.AvgChapterOnLevelComplete, () => pm.OnLevelComplete());
                 else

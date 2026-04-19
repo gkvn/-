@@ -63,7 +63,7 @@ public class LocalizedImage : MonoBehaviour
             uiImage.sprite = spr;
             if (uiImage.color.a < 0.01f)
                 uiImage.color = Color.white;
-            uiImage.SetNativeSize();
+            //uiImage.SetNativeSize();
         }
     }
 }
