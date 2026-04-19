@@ -9,7 +9,8 @@ public class BgmManager : MonoBehaviour
     [Header("BGM")]
     [SerializeField] private AudioClip mainMenuBgm;
     [SerializeField] private AudioClip lightPhaseBgm;
-    [SerializeField] private AudioClip darkPhaseBgm;
+    [Tooltip("黑夜阶段结束后 AVG 对话时播放")]
+    [SerializeField] private AudioClip levelEndBgm;
 
     [Header("Settings")]
     [SerializeField] private float crossfadeDuration = 1.5f;
@@ -98,12 +99,17 @@ public class BgmManager : MonoBehaviour
         if (phase == LevelPhase.Light)
             CrossfadeTo(lightPhaseBgm);
         else
-            CrossfadeTo(darkPhaseBgm);
+            FadeOut();
     }
 
     private void PlayMainMenuBgm()
     {
         CrossfadeTo(mainMenuBgm);
+    }
+
+    public void PlayLevelEndBgm()
+    {
+        CrossfadeTo(levelEndBgm);
     }
 
     public void CrossfadeTo(AudioClip clip)
@@ -119,6 +125,14 @@ public class BgmManager : MonoBehaviour
         var incoming = activeSource == sourceA ? sourceB : sourceA;
         crossfadeCoroutine = StartCoroutine(CrossfadeRoutine(activeSource, incoming, clip));
         activeSource = incoming;
+    }
+
+    public void FadeOut()
+    {
+        if (crossfadeCoroutine != null)
+            StopCoroutine(crossfadeCoroutine);
+
+        crossfadeCoroutine = StartCoroutine(FadeOutRoutine(activeSource));
     }
 
     private IEnumerator CrossfadeRoutine(AudioSource outgoing, AudioSource incoming, AudioClip clip)
@@ -142,6 +156,24 @@ public class BgmManager : MonoBehaviour
         outgoing.Stop();
         outgoing.volume = 0f;
         incoming.volume = volume;
+        crossfadeCoroutine = null;
+    }
+
+    private IEnumerator FadeOutRoutine(AudioSource source)
+    {
+        float t = 0f;
+        float startVol = source.volume;
+
+        while (t < crossfadeDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float progress = Mathf.Clamp01(t / crossfadeDuration);
+            source.volume = Mathf.Lerp(startVol, 0f, progress);
+            yield return null;
+        }
+
+        source.Stop();
+        source.volume = 0f;
         crossfadeCoroutine = null;
     }
 

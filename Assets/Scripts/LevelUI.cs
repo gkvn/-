@@ -17,6 +17,7 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Vector2 restartButtonOffset = new Vector2(-30, -30);
 
     private GameObject blackOverlay;
+    private GameObject dynamicCompletePanel;
 
     private void Awake()
     {
@@ -119,14 +120,56 @@ public class LevelUI : MonoBehaviour
 
     public void ShowLevelComplete()
     {
-        if (levelCompletePanel != null)
-            levelCompletePanel.SetActive(true);
+        if (dynamicCompletePanel == null)
+        {
+            var prefab = Resources.Load<GameObject>("Prefabs/LevelCompletePanel");
+            if (prefab != null)
+            {
+                var canvas = GetComponentInParent<Canvas>();
+                var parent = canvas != null ? canvas.transform : transform;
 
-        bool isLast = LevelManager.Instance != null && LevelManager.Instance.IsLastLevel;
-        if (nextLevelButton != null)
-            nextLevelButton.gameObject.SetActive(!isLast);
-        if (finishButton != null)
-            finishButton.gameObject.SetActive(isLast);
+                dynamicCompletePanel = Instantiate(prefab);
+                dynamicCompletePanel.transform.SetParent(parent, false);
+                dynamicCompletePanel.transform.SetAsLastSibling();
+
+                foreach (var btn in dynamicCompletePanel.GetComponentsInChildren<Button>(true))
+                {
+                    if (btn.gameObject.name == "NextLevelButton")
+                        btn.onClick.AddListener(OnNextLevel);
+                    else if (btn.gameObject.name == "FinishButton")
+                        btn.onClick.AddListener(OnFinish);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("LevelCompletePanel prefab 未找到，回退使用场景内版本");
+                if (levelCompletePanel != null)
+                    levelCompletePanel.SetActive(true);
+            }
+        }
+
+        if (dynamicCompletePanel != null)
+        {
+            dynamicCompletePanel.SetActive(true);
+            dynamicCompletePanel.transform.SetAsLastSibling();
+
+            bool isLast = LevelManager.Instance != null && LevelManager.Instance.IsLastLevel;
+            foreach (var btn in dynamicCompletePanel.GetComponentsInChildren<Button>(true))
+            {
+                if (btn.gameObject.name == "NextLevelButton")
+                    btn.gameObject.SetActive(!isLast);
+                else if (btn.gameObject.name == "FinishButton")
+                    btn.gameObject.SetActive(isLast);
+            }
+        }
+        else
+        {
+            bool isLast = LevelManager.Instance != null && LevelManager.Instance.IsLastLevel;
+            if (nextLevelButton != null)
+                nextLevelButton.gameObject.SetActive(!isLast);
+            if (finishButton != null)
+                finishButton.gameObject.SetActive(isLast);
+        }
     }
 
     public void OnNextLevel()

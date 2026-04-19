@@ -31,7 +31,7 @@ public class LevelConfig : MonoBehaviour
     [SerializeField] private float avgControllerWaitTimeout = 15f;
 
     [Tooltip("为 true 时：除 ChapterPlaybackEnded 外，还在「本章最后一句展示完毕」时结束阻塞（不必再点一次下一句）。建议开启，避免卡在 WAITING。")]
-    [SerializeField] private bool completeOnFinalLineReveal = true;
+    [SerializeField] private bool completeOnFinalLineReveal = false;
 
     /// <summary>正在等待当前 AVG 章节播完（ChapterPlaybackEnded）时为 true，用于防止重复触发出口等。</summary>
     public static bool IsAvgFlowBlocking { get; private set; }
