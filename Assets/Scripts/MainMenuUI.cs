@@ -10,12 +10,21 @@ public class MainMenuUI : MonoBehaviour
     [Tooltip("语言切换按钮上的文字")]
     [SerializeField] private Text languageButtonText;
 
+    [Header("图片面板")]
+    [Tooltip("从 Resources/Prefabs/ImagePanel 自动加载，也可手动指定")]
+    [SerializeField] private GameObject imagePanelPrefab;
+
+    private GameObject imagePanelInstance;
+    private GameObject imagePanel;
+
     private void Start()
     {
         UpdateLanguageButtonText();
         var lm = LanguageManager.Instance;
         if (lm != null)
             lm.OnLanguageChanged += OnLanguageChanged;
+
+        SetupImagePanel();
     }
 
     private void OnDestroy()
@@ -55,5 +64,47 @@ public class MainMenuUI : MonoBehaviour
         var lm = LanguageManager.Instance;
         if (lm != null)
             lm.ToggleLanguage();
+    }
+
+    public void OnShowImagePanel()
+    {
+        if (imagePanel != null)
+            imagePanel.SetActive(true);
+    }
+
+    public void OnHideImagePanel()
+    {
+        if (imagePanel != null)
+            imagePanel.SetActive(false);
+    }
+
+    private void SetupImagePanel()
+    {
+        var prefab = imagePanelPrefab;
+        if (prefab == null)
+            prefab = Resources.Load<GameObject>("Prefabs/ImagePanel");
+
+        if (prefab == null)
+        {
+            Debug.LogWarning("ImagePanel prefab 未找到，请先通过 Tools/创建 ImagePanel Prefab 生成");
+            return;
+        }
+
+        var canvas = GetComponent<Canvas>() != null ? transform : transform.root;
+        imagePanelInstance = Instantiate(prefab, canvas);
+
+        var showBtn = imagePanelInstance.transform.Find("ShowButton");
+        if (showBtn != null)
+            showBtn.GetComponent<Button>().onClick.AddListener(OnShowImagePanel);
+
+        imagePanel = imagePanelInstance.transform.Find("Panel")?.gameObject;
+        if (imagePanel != null)
+        {
+            var backBtn = imagePanel.transform.Find("BackButton");
+            if (backBtn != null)
+                backBtn.GetComponent<Button>().onClick.AddListener(OnHideImagePanel);
+
+            imagePanel.SetActive(false);
+        }
     }
 }

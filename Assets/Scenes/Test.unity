@@ -399,7 +399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ecfa29c9229cf43458ae609b072bf4ba, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ecfa29c9229cf43458ae609b072bf4ba, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
@@ -914,6 +914,9 @@ MonoBehaviour:
   nextLevelButton: {fileID: 1785201243}
   finishButton: {fileID: 1534359114}
   phaseText: {fileID: 646582103}
+  restartButtonSprite: {fileID: 0}
+  restartButtonSize: {x: 50, y: 50}
+  restartButtonOffset: {x: -30, y: -30}
 --- !u!114 &850312828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1199,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ecfa29c9229cf43458ae609b072bf4ba, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1432,7 +1435,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ecfa29c9229cf43458ae609b072bf4ba, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -2241,6 +2244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76cc82a07303ce47b6c83f1e27cdbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
   gameCursorSprite: {fileID: 21300000, guid: 265b0c418095a1f43b95070ded31b07f, type: 3}
   gameCursorSize: 32
   canvasCursorSprite: {fileID: 21300000, guid: 6062c207909ce7245b808988c4acdc82, type: 3}

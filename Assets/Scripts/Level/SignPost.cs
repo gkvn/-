@@ -118,9 +118,23 @@ public class SignPost : MonoBehaviour, IInteractable, IResettable
         mesh.alignment = TextAlignment.Center;
         mesh.color = textColor;
 
-        var mr = textGo.GetComponent<MeshRenderer>();
-        if (mr != null)
-            mr.sortingOrder = 31;
+        var customFont = Resources.Load<Font>("Fonts/NotoSansSC-Regular");
+        if (customFont != null)
+        {
+            mesh.font = customFont;
+            var mr = textGo.GetComponent<MeshRenderer>();
+            if (mr != null)
+            {
+                mr.material = customFont.material;
+                mr.sortingOrder = 31;
+            }
+        }
+        else
+        {
+            var mr = textGo.GetComponent<MeshRenderer>();
+            if (mr != null)
+                mr.sortingOrder = 31;
+        }
 
         showing = true;
         hideTimer = displayDuration;

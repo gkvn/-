@@ -100,7 +100,7 @@ public class LevelUI : MonoBehaviour
             textRt.offsetMax = Vector2.zero;
             var txt = textGo.AddComponent<Text>();
             txt.text = "↺";
-            txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            txt.font = Resources.Load<Font>("Fonts/NotoSansSC-Regular") ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             txt.fontSize = (int)(restartButtonSize.y * 0.5f);
             txt.alignment = TextAnchor.MiddleCenter;
             txt.color = Color.white;

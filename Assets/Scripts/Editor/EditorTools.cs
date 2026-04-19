@@ -339,7 +339,8 @@ public static class EditorTools
 
         var text = textGo.AddComponent<Text>();
         text.text = "中文 / English";
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        text.font = Resources.Load<Font>("Fonts/NotoSansSC-Regular");
+        if (text.font == null) text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (text.font == null) text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         text.fontSize = 22;
         text.alignment = TextAnchor.MiddleCenter;
@@ -607,6 +608,129 @@ public static class EditorTools
     public static void OpenMonsterComboEditor()
     {
         MonsterComboWindow.Open();
+    }
+
+    [MenuItem("Tools/创建 ImagePanel Prefab")]
+    public static void CreateImagePanelPrefab()
+    {
+        string folder = "Assets/Resources/Prefabs";
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder(folder))
+            AssetDatabase.CreateFolder("Assets/Resources", "Prefabs");
+
+        string path = folder + "/ImagePanel.prefab";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(path) != null)
+        {
+            Debug.Log("ImagePanel.prefab 已存在：" + path);
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            return;
+        }
+
+        var root = new GameObject("ImagePanel");
+        var rootRect = root.AddComponent<RectTransform>();
+        rootRect.anchorMin = Vector2.zero;
+        rootRect.anchorMax = Vector2.one;
+        rootRect.offsetMin = Vector2.zero;
+        rootRect.offsetMax = Vector2.zero;
+
+        // ── ShowButton: 打开面板的按钮 ──
+        var showBtnGo = new GameObject("ShowButton");
+        showBtnGo.transform.SetParent(root.transform, false);
+        var showRect = showBtnGo.AddComponent<RectTransform>();
+        showRect.anchorMin = new Vector2(0.5f, 0f);
+        showRect.anchorMax = new Vector2(0.5f, 0f);
+        showRect.pivot = new Vector2(0.5f, 0f);
+        showRect.anchoredPosition = new Vector2(0f, 60f);
+        showRect.sizeDelta = new Vector2(300f, 80f);
+
+        var showImg = showBtnGo.AddComponent<Image>();
+        showImg.color = new Color(0.2f, 0.2f, 0.2f, 0.9f);
+        showBtnGo.AddComponent<Button>();
+
+        var showTextGo = new GameObject("Text");
+        showTextGo.transform.SetParent(showBtnGo.transform, false);
+        var showTxtRect = showTextGo.AddComponent<RectTransform>();
+        showTxtRect.anchorMin = Vector2.zero;
+        showTxtRect.anchorMax = Vector2.one;
+        showTxtRect.offsetMin = Vector2.zero;
+        showTxtRect.offsetMax = Vector2.zero;
+        var showText = showTextGo.AddComponent<Text>();
+        showText.text = "查看图片";
+        showText.font = LoadFont();
+        showText.fontSize = 36;
+        showText.alignment = TextAnchor.MiddleCenter;
+        showText.color = Color.white;
+
+        // ── Panel: 全屏图片面板（默认隐藏） ──
+        var panelGo = new GameObject("Panel");
+        panelGo.transform.SetParent(root.transform, false);
+        var panelRect = panelGo.AddComponent<RectTransform>();
+        panelRect.anchorMin = Vector2.zero;
+        panelRect.anchorMax = Vector2.one;
+        panelRect.offsetMin = Vector2.zero;
+        panelRect.offsetMax = Vector2.zero;
+
+        var panelImg = panelGo.AddComponent<Image>();
+        panelImg.color = new Color(0f, 0f, 0f, 0.85f);
+
+        // ── DisplayImage: 中央展示的图片 ──
+        var displayGo = new GameObject("DisplayImage");
+        displayGo.transform.SetParent(panelGo.transform, false);
+        var displayRect = displayGo.AddComponent<RectTransform>();
+        displayRect.anchorMin = new Vector2(0.1f, 0.1f);
+        displayRect.anchorMax = new Vector2(0.9f, 0.9f);
+        displayRect.offsetMin = Vector2.zero;
+        displayRect.offsetMax = Vector2.zero;
+        var displayImg = displayGo.AddComponent<Image>();
+        displayImg.color = new Color(1f, 1f, 1f, 0.9f);
+        displayImg.preserveAspect = true;
+
+        // ── BackButton: 返回按钮 ──
+        var backBtnGo = new GameObject("BackButton");
+        backBtnGo.transform.SetParent(panelGo.transform, false);
+        var backRect = backBtnGo.AddComponent<RectTransform>();
+        backRect.anchorMin = new Vector2(1f, 1f);
+        backRect.anchorMax = new Vector2(1f, 1f);
+        backRect.pivot = new Vector2(1f, 1f);
+        backRect.anchoredPosition = new Vector2(-30f, -30f);
+        backRect.sizeDelta = new Vector2(120f, 60f);
+
+        var backImg = backBtnGo.AddComponent<Image>();
+        backImg.color = new Color(0.8f, 0.2f, 0.2f, 0.9f);
+        backBtnGo.AddComponent<Button>();
+
+        var backTextGo = new GameObject("Text");
+        backTextGo.transform.SetParent(backBtnGo.transform, false);
+        var backTxtRect = backTextGo.AddComponent<RectTransform>();
+        backTxtRect.anchorMin = Vector2.zero;
+        backTxtRect.anchorMax = Vector2.one;
+        backTxtRect.offsetMin = Vector2.zero;
+        backTxtRect.offsetMax = Vector2.zero;
+        var backText = backTextGo.AddComponent<Text>();
+        backText.text = "返回";
+        backText.font = LoadFont();
+        backText.fontSize = 30;
+        backText.alignment = TextAnchor.MiddleCenter;
+        backText.color = Color.white;
+
+        panelGo.SetActive(false);
+
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, path);
+        Object.DestroyImmediate(root);
+
+        Selection.activeObject = prefab;
+        Debug.Log("已创建 ImagePanel Prefab：" + path +
+                  "\n结构：ImagePanel / ShowButton（查看图片按钮）+ Panel / DisplayImage（图片）+ BackButton（返回）" +
+                  "\n双击 Prefab 即可修改美术、调整布局");
+    }
+
+    private static Font LoadFont()
+    {
+        var font = Resources.Load<Font>("Fonts/NotoSansSC-Regular");
+        if (font == null) font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        if (font == null) font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        return font;
     }
 
     [MenuItem("Tools/添加 BgmManager 到 MainMenu 场景")]
