@@ -4,10 +4,16 @@ using System.Collections.Generic;
 
 public class IconToolbar : MonoBehaviour
 {
-    [SerializeField] private float iconSize = 48f;
+    private const float IconSize = 68f;
 
     public void Initialize(List<Sprite> icons, RectTransform canvasArea)
     {
+        var hlg = GetComponent<HorizontalLayoutGroup>();
+        if (hlg != null)
+        {
+            hlg.childAlignment = TextAnchor.MiddleCenter;
+        }
+
         foreach (Transform child in transform)
             Destroy(child.gameObject);
 
@@ -21,14 +27,14 @@ public class IconToolbar : MonoBehaviour
             img.preserveAspect = true;
 
             var rt = go.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(iconSize, iconSize);
+            rt.sizeDelta = new Vector2(IconSize, IconSize);
 
-            var le = go.AddComponent<UnityEngine.UI.LayoutElement>();
-            le.preferredWidth = iconSize;
-            le.preferredHeight = iconSize;
+            var le = go.AddComponent<LayoutElement>();
+            le.preferredWidth = IconSize;
+            le.preferredHeight = IconSize;
 
             var drag = go.AddComponent<DraggableIcon>();
-            drag.Setup(true, canvasArea, sprite, iconSize);
+            drag.Setup(true, canvasArea, sprite, IconSize);
         }
     }
 }

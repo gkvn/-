@@ -3,15 +3,29 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DraggableIcon : MonoBehaviour,
+    IPointerDownHandler, IPointerUpHandler,
     IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private static readonly Color DimColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
     private bool isToolbarSource;
     private RectTransform canvasArea;
     private Sprite sourceSprite;
     private float iconSize;
     private DraggableIcon activeDrag;
+    private Image cachedImage;
 
     public bool IsToolbarSource => isToolbarSource;
+
+    private Image CachedImage
+    {
+        get
+        {
+            if (cachedImage == null)
+                cachedImage = GetComponent<Image>();
+            return cachedImage;
+        }
+    }
 
     public void Setup(bool isSource, RectTransform area, Sprite sprite, float size)
     {
@@ -19,6 +33,16 @@ public class DraggableIcon : MonoBehaviour,
         canvasArea = area;
         sourceSprite = sprite;
         iconSize = size;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        CachedImage.color = DimColor;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        CachedImage.color = Color.white;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -32,6 +56,7 @@ public class DraggableIcon : MonoBehaviour,
             img.sprite = sourceSprite;
             img.preserveAspect = true;
             img.raycastTarget = false;
+            img.color = DimColor;
 
             var rt = go.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(iconSize, iconSize);
@@ -43,7 +68,7 @@ public class DraggableIcon : MonoBehaviour,
         }
         else
         {
-            GetComponent<Image>().raycastTarget = false;
+            CachedImage.raycastTarget = false;
         }
     }
 
@@ -59,14 +84,22 @@ public class DraggableIcon : MonoBehaviour,
     {
         if (isToolbarSource)
         {
+            CachedImage.color = Color.white;
+
             if (activeDrag != null)
             {
                 bool inside = RectTransformUtility.RectangleContainsScreenPoint(
                     canvasArea, eventData.position, eventData.pressEventCamera);
                 if (!inside)
+                {
                     Destroy(activeDrag.gameObject);
+                }
                 else
-                    activeDrag.GetComponent<Image>().raycastTarget = true;
+                {
+                    var img = activeDrag.CachedImage;
+                    img.raycastTarget = true;
+                    img.color = Color.white;
+                }
                 activeDrag = null;
             }
         }
@@ -75,9 +108,14 @@ public class DraggableIcon : MonoBehaviour,
             bool inside = RectTransformUtility.RectangleContainsScreenPoint(
                 canvasArea, eventData.position, eventData.pressEventCamera);
             if (!inside)
+            {
                 Destroy(gameObject);
+            }
             else
-                GetComponent<Image>().raycastTarget = true;
+            {
+                CachedImage.raycastTarget = true;
+                CachedImage.color = Color.white;
+            }
         }
     }
 

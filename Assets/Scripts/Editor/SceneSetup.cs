@@ -67,33 +67,6 @@ public static class SceneSetup
         Debug.Log(_placeholder != null ? "占位 Sprite 创建成功" : "占位 Sprite 创建失败！");
     }
 
-    static Sprite[] CreateTestIconSprites()
-    {
-        string[] names = { "Icon_Trap", "Icon_Door", "Icon_Monster", "Icon_Exit" };
-        Color[] colors = { Color.red, new Color(0.6f, 0.4f, 0.2f), Color.magenta, Color.cyan };
-        var sprites = new Sprite[names.Length];
-
-        for (int i = 0; i < names.Length; i++)
-        {
-            string path = $"Assets/Sprites/{names[i]}.png";
-            sprites[i] = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-            if (sprites[i] != null) continue;
-
-            var tex = new Texture2D(4, 4, TextureFormat.RGBA32, false);
-            var px = tex.GetPixels();
-            for (int j = 0; j < px.Length; j++) px[j] = colors[i];
-            tex.SetPixels(px);
-            tex.Apply();
-            System.IO.File.WriteAllBytes(System.IO.Path.GetFullPath(path), tex.EncodeToPNG());
-            Object.DestroyImmediate(tex);
-
-            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
-            SetSpriteImport(path, 4);
-            sprites[i] = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-        }
-        return sprites;
-    }
-
     static void SetSpriteImport(string path, int ppu)
     {
         var imp = AssetImporter.GetAtPath(path) as TextureImporter;
@@ -337,8 +310,6 @@ public static class SceneSetup
     static void CreateTestScene()
     {
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        var iconSprites = CreateTestIconSprites();
-
         // EventSystem
         new GameObject("EventSystem").AddComponent<EventSystem>()
             .gameObject.AddComponent<StandaloneInputModule>();
@@ -370,13 +341,7 @@ public static class SceneSetup
 
         // LevelConfig
         var configGO = new GameObject("LevelConfig");
-        var config = configGO.AddComponent<LevelConfig>();
-        var cfgSO = new SerializedObject(config);
-        var iconsProp = cfgSO.FindProperty("availableIcons");
-        iconsProp.arraySize = iconSprites.Length;
-        for (int i = 0; i < iconSprites.Length; i++)
-            iconsProp.GetArrayElementAtIndex(i).objectReferenceValue = iconSprites[i];
-        cfgSO.ApplyModifiedPropertiesWithoutUndo();
+        configGO.AddComponent<LevelConfig>();
 
         // UI
         BuildGameUI();
