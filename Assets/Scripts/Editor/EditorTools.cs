@@ -919,3 +919,30 @@ public class MonsterComboWindow : EditorWindow
         Debug.Log($"已将模板应用到 {entries.Count} 个 Monster（Combo + Detect Range）");
     }
 }
+
+public static partial class EditorToolsExtra
+{
+    [MenuItem("Tools/创建 CursorSettings 配置")]
+    public static void CreateCursorSettings()
+    {
+        const string path = "Assets/Resources/CursorSettings.asset";
+        var existing = AssetDatabase.LoadAssetAtPath<CursorSettings>(path);
+        if (existing != null)
+        {
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = existing;
+            Debug.Log("[EditorTools] CursorSettings 已存在，已选中");
+            return;
+        }
+
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+
+        var asset = ScriptableObject.CreateInstance<CursorSettings>();
+        AssetDatabase.CreateAsset(asset, path);
+        AssetDatabase.SaveAssets();
+        EditorUtility.FocusProjectWindow();
+        Selection.activeObject = asset;
+        Debug.Log("[EditorTools] 已创建 CursorSettings: " + path);
+    }
+}

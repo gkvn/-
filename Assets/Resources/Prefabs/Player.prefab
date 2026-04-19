@@ -132,6 +132,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 404603296599366247, guid: a4a0809b917d21c4693b003249c82034, type: 3}
   holdThreshold: 0.25
   bulletSpawnOffset: {x: 0, y: 0}
+  dotBulletSprite: {fileID: 0}
+  lineBulletSprite: {fileID: 0}
   bulletWallMargin: 0.1
   lightSprite: {fileID: 0}
   darkSprite: {fileID: 0}
@@ -158,8 +160,8 @@ MonoBehaviour:
   chargeBarWidth: 0.7
   chargeBarHeight: 0.1
   chargeBarSprite: {fileID: 0}
-  chargeBarChargingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  chargeBarReadyColor: {r: 0.4, g: 0.8, b: 1, a: 1}
+  chargeBarChargingColor: {r: 0.9528302, g: 0.41948494, b: 0.6872201, a: 1}
+  chargeBarReadyColor: {r: 0.45975825, g: 0.06624533, b: 0.7264151, a: 1}
   interactRange: 0.5
   promptOffset: {x: 0.06, y: 0.5}
   promptScale: 0.2

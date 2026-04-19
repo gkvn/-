@@ -3,16 +3,13 @@ using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
-    [Header("右侧（探索场景）")]
-    [Tooltip("探索场景的鼠标贴图")]
-    [SerializeField] private Sprite gameCursorSprite;
-    [Tooltip("探索场景鼠标大小(像素)")]
-    [SerializeField] private float gameCursorSize = 32f;
+    [Tooltip("鼠标样式配置（留空则自动从 Resources/CursorSettings 加载）")]
+    [SerializeField] private CursorSettings settings;
 
-    [Header("左侧（画布）")]
-    [Tooltip("画布的鼠标贴图")]
+    [Header("直接配置（仅当 CursorSettings 未配置时使用）")]
+    [SerializeField] private Sprite gameCursorSprite;
+    [SerializeField] private float gameCursorSize = 32f;
     [SerializeField] private Sprite canvasCursorSprite;
-    [Tooltip("画布鼠标大小(像素)")]
     [SerializeField] private float canvasCursorSize = 32f;
 
     private Canvas cursorCanvas;
@@ -21,9 +18,21 @@ public class CursorManager : MonoBehaviour
     private bool isOnGameSide;
     private bool hasCustomCursor;
 
+    private Sprite GameSprite => settings != null && settings.gameCursorSprite != null
+        ? settings.gameCursorSprite : gameCursorSprite;
+    private Sprite CanvasSprite => settings != null && settings.canvasCursorSprite != null
+        ? settings.canvasCursorSprite : canvasCursorSprite;
+    private float GameSize => settings != null && settings.gameCursorSprite != null
+        ? settings.gameCursorSize : gameCursorSize;
+    private float CanvasSize => settings != null && settings.canvasCursorSprite != null
+        ? settings.canvasCursorSize : canvasCursorSize;
+
     private void Start()
     {
-        hasCustomCursor = gameCursorSprite != null || canvasCursorSprite != null;
+        if (settings == null)
+            settings = Resources.Load<CursorSettings>("CursorSettings");
+
+        hasCustomCursor = GameSprite != null || CanvasSprite != null;
         if (!hasCustomCursor) return;
 
         var go = new GameObject("CursorCanvas");
@@ -60,8 +69,8 @@ public class CursorManager : MonoBehaviour
 
     private void ApplyCursor(bool gameSide)
     {
-        Sprite spr = gameSide ? gameCursorSprite : canvasCursorSprite;
-        float size = gameSide ? gameCursorSize : canvasCursorSize;
+        Sprite spr = gameSide ? GameSprite : CanvasSprite;
+        float size = gameSide ? GameSize : CanvasSize;
 
         if (spr != null)
         {

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 64a52ca0f65b1124ab0da675bccad2ee
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameCursorSprite: {fileID: 21300000, guid: ebac6c37321d2764cb5ac6f5c1d65d1a, type: 3}
+  - canvasCursorSprite: {fileID: 21300000, guid: b44aa1feba67ac54e8a73a57888c9431, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
