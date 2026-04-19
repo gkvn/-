@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "之前的笔记一直都很冷静、很清晰。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The notes were always calm and clear before this.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "从这里开始突然不一样了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "From here everything suddenly changed.",
       "cgId": null,
       "charDisplays": [
         {
@@ -47,8 +47,8 @@
     },
     "3_b": {
       "id": "3_b",
-      "dlgText": "她发现了什么让她这么难过的事……",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ发现了什么难过的事……",
+      "dlgTextEN": "§Ø_∆.µΩ discovered something devastating...",
       "cgId": null,
       "charDisplays": [
         {

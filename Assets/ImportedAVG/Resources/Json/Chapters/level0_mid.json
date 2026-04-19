@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "这些东西……完全无法辨认。",
-      "dlgTextEN": null,
+      "dlgTextEN": "These objects... completely unrecognizable.",
       "cgId": "cg_past",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "但能感觉到，建造它们的一定是高度发达的文明。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But you can tell — whatever built them was highly advanced.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "继续深入探索吧。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Let's keep going deeper.",
       "cgId": null,
       "charDisplays": [
         {
@@ -70,7 +70,7 @@
     "4_na": {
       "id": "4_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -86,7 +86,7 @@
     "5_na": {
       "id": "5_na",
       "dlgText": "四十多年后。（西格纳鲁星时间）",
-      "dlgTextEN": null,
+      "dlgTextEN": "Over forty years later. (Signalru Standard Time)",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -102,7 +102,7 @@
     "6_na": {
       "id": "6_na",
       "dlgText": "救援队抵达了地球。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The rescue team arrived on Earth.",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -118,7 +118,7 @@
     "7_b": {
       "id": "7_b",
       "dlgText": "§Ø_∆.µΩ和科考队已经失联四十多年了……",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ and the expedition have been out of contact for over forty years...",
       "cgId": null,
       "charDisplays": [
         {
@@ -140,7 +140,7 @@
     "8_b": {
       "id": "8_b",
       "dlgText": "这座建筑……灯全灭了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This building... all the lights are dead.",
       "cgId": null,
       "charDisplays": [
         {
@@ -161,8 +161,8 @@
     },
     "9_b": {
       "id": "9_b",
-      "dlgText": "里面一片漆黑……但我一定要找到她们。",
-      "dlgTextEN": null,
+      "dlgText": "里面一片漆黑……但我一定要找到§Ø_∆.µΩ。",
+      "dlgTextEN": "Total darkness... but I will find §Ø_∆.µΩ.",
       "cgId": null,
       "charDisplays": [
         {

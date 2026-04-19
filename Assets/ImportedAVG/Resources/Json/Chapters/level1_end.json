@@ -1,10 +1,10 @@
-{
+﻿{
   "chapterId": "level1_end",
   "dialogs": {
     "1_b": {
       "id": "1_b",
       "dlgText": "有了笔记，顺利多了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Much smoother with the notes.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_b": {
       "id": "2_b",
       "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ — you even thought to leave records for those who come after.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "我一定会找到你的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I will find you.",
       "cgId": null,
       "charDisplays": [
         {

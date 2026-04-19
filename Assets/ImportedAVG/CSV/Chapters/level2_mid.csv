@@ -1,9 +1,9 @@
 id,text,tags
-1_a,"信号编码已经记录在笔记里了。",#cgid:cg_past,#char@1:b1,#istalking:b1
-2_a,"希望之后能派上用场。",#char@1:b1,#istalking:b1
-3_na,"……",#cgid:cg_now_dark
-4_b,"这个区域……有东西在动。",#char@1:a1,#istalking:a1
-5_b,"什么！？",#char@1:a1,#istalking:a1
-6_b,"§Ø_∆.µΩ的笔记里没有提到过这种东西……",#char@1:a1,#istalking:a1
-7_b,"等等，笔记里记录了一组信号编码——",#char@1:a1,#istalking:a1
-8_b,"试试用这个频率射击！",#char@1:a1,#istalking:a1
+1_a,"信号编码已经记录在笔记里了。",#cgid:cg_past,#char@1:b1,#istalking:b1,#texten:Signal encoding recorded in the notes.
+2_a,"希望之后能派上用场。",#char@1:b1,#istalking:b1,#texten:Hope it comes in handy later.
+3_na,"……",#cgid:cg_now_dark,#texten:......
+4_b,"这个区域……有东西在动。",#char@1:a1,#istalking:a1,#texten:This area... something is moving.
+5_b,"什么！？",#char@1:a1,#istalking:a1,#texten:What!?
+6_b,"§Ø_∆.µΩ的笔记里没有提到过这种东西……",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ's notes never mentioned anything like this...
+7_b,"等等，笔记里记录了一组信号编码——",#char@1:a1,#istalking:a1,"#texten:Wait — there's a signal encoding in the notes—"
+8_b,"试试用这个频率射击！",#char@1:a1,#istalking:a1,#texten:Let me try shooting at this frequency!

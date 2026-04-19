@@ -1,11 +1,11 @@
 id,text,tags
-1_na,"神殿最深处——文明核心。",#cgid:cg_past2
-2_na,"这里的灯光最为强烈。能源最集中的地方。"
-3_a,"到了……这就是最里面了。",#char@1:b1,#istalking:b1
-4_a,"……好亮。头好痛。",#char@1:b1,#istalking:b1
-5_a,"墙上有一段话……是这个文明最后留下的东西。",#char@1:b1,#istalking:b1
-6_na,"——我们存在过。"
-7_a,"……",#char@1:b1
-8_a,"我也存在过。",#char@1:b1,#istalking:b1
-9_a,"把该记的都记在笔记里了。",#char@1:b1,#istalking:b1
-10_a,"_99[k]r……对不起，大概没办法当面告诉你了。",#char@1:b1,#istalking:b1
+1_na,"神殿最深处——文明核心。",#cgid:cg_past2,#texten:The deepest core of the temple.
+2_na,"这里的灯光最为强烈。能源最集中的地方。",#texten:The brightest lights. Where energy is most concentrated.
+3_a,"到了……这就是最里面了。",#char@1:b1,#istalking:b1,#texten:I made it... this is the very center.
+4_a,"……好亮。头好痛。",#char@1:b1,#istalking:b1,#texten:...So bright. My head hurts so much.
+5_a,"墙上有一段话……是这个文明最后留下的东西。",#char@1:b1,#istalking:b1,#texten:There's something on the wall... the last thing this civilization left behind.
+6_na,"——我们存在过。",#texten:— We existed.
+7_a,"……",#char@1:b1,#texten:......
+8_a,"我也存在过。",#char@1:b1,#istalking:b1,#texten:I existed too.
+9_a,"把该记的都记在笔记里了。",#char@1:b1,#istalking:b1,#texten:Everything worth recording is in the notes now.
+10_a,"_99[k]r……对不起，大概没办法当面告诉你了。",#char@1:b1,#istalking:b1,"#texten:_99[k]r... sorry. I probably can't tell you in person."

@@ -1,7 +1,7 @@
 id,text,tags
-1_na,"新的区域，结构更加复杂。",#cgid:cg_past
-2_a,"这个机关有点绕……不过我摸清了规律。",#char@1:b1,#istalking:b1
-3_a,"在笔记里画个示意图吧，后面的人就不会走弯路了。",#char@1:b1,#istalking:b1
-4_a,"嗯，再加点注释……'这个机关别急，先往左看'。",#char@1:b1,#istalking:b1
-5_a,"不知道为什么，写这些的时候心情很好。",#char@1:b1,#istalking:b1
-6_a,"好像在跟某个还没见面的人说话一样。",#char@1:b1,#istalking:b1
+1_na,"新的区域，结构更加复杂。",#cgid:cg_past,"#texten:New area — more complex structure."
+2_a,"这个机关有点绕……不过我摸清了规律。",#char@1:b1,#istalking:b1,#texten:This mechanism is tricky... but I figured out the pattern.
+3_a,"在笔记里画个示意图吧，后面的人就不会走弯路了。",#char@1:b1,#istalking:b1,"#texten:I'll draw a diagram in the notes, so no one else has to go the long way."
+4_a,"嗯，再加点注释……'这个机关别急，先往左看'。",#char@1:b1,#istalking:b1,"#texten:Hmm, let me add a note... 'Don't rush this one — look left first.'"
+5_a,"不知道为什么，写这些的时候心情很好。",#char@1:b1,#istalking:b1,"#texten:I don't know why, but writing these makes me feel good."
+6_a,"好像在跟某个还没见面的人说话一样。",#char@1:b1,#istalking:b1,#texten:Like I'm talking to someone I haven't met yet.

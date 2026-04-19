@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "地球。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Earth.",
       "cgId": "cg_past",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "一颗已经没有任何生命迹象的星球。",
-      "dlgTextEN": null,
+      "dlgTextEN": "A planet with no remaining signs of life.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -36,7 +36,7 @@
     "3_na": {
       "id": "3_na",
       "dlgText": "但科考队在这里探测到了巨大的人工建筑信号。",
-      "dlgTextEN": null,
+      "dlgTextEN": "But the expedition detected a massive artificial structure signal here.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -52,7 +52,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "好壮观……这一定是某种文明建造的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Incredible... this must have been built by some civilization.",
       "cgId": null,
       "charDisplays": [
         {
@@ -74,7 +74,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "灯还亮着，说明还有能源在运转。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The lights are still on — there's still energy running.",
       "cgId": null,
       "charDisplays": [
         {
@@ -96,7 +96,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "进去看看吧。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Let's go inside.",
       "cgId": null,
       "charDisplays": [
         {

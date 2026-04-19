@@ -1,8 +1,8 @@
 id,text,tags
-1_a,"好了，继续出发。",#cgid:cg_past,#char@1:b1,#istalking:b1
-2_na,"……",#cgid:cg_now_dark
-3_b,"§Ø_∆.µΩ的笔记越来越详细了。",#char@1:a1,#istalking:a1
-4_b,"连'先往左看'这种小提示都有……",#char@1:a1,#istalking:a1
-5_b,"感觉§Ø_∆.µΩ就在前面不远处，一路牵着我走一样。",#char@1:a1,#istalking:a1
-6_b,"我们真是心有灵犀，我遇到的每个问题§Ø_∆.µΩ都提前想到了。",#char@1:a1,#istalking:a1
-7_b,"照这样下去，一定能找到§Ø_∆.µΩ的。",#char@1:a1,#istalking:a1
+1_a,"好了，继续出发。",#cgid:cg_past,#char@1:b1,#istalking:b1,"#texten:Alright, moving on."
+2_na,"……",#cgid:cg_now_dark,#texten:......
+3_b,"§Ø_∆.µΩ的笔记越来越详细了。",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ's notes are getting more and more detailed.
+4_b,"连'先往左看'这种小提示都有……",#char@1:a1,#istalking:a1,#texten:Even little tips like 'look left first'...
+5_b,"感觉§Ø_∆.µΩ就在前面不远处，一路牵着我走一样。",#char@1:a1,#istalking:a1,"#texten:It feels like §Ø_∆.µΩ is just ahead, guiding me the whole way."
+6_b,"我们真是心有灵犀，我遇到的每个问题§Ø_∆.µΩ都提前想到了。",#char@1:a1,#istalking:a1,"#texten:We really are in sync — every problem I run into, §Ø_∆.µΩ anticipated it."
+7_b,"照这样下去，一定能找到§Ø_∆.µΩ的。",#char@1:a1,#istalking:a1,"#texten:At this rate, I'll definitely find §Ø_∆.µΩ."

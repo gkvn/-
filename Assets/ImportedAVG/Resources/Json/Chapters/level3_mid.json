@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "好了，继续出发。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Alright, moving on.",
       "cgId": "cg_past",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -42,7 +42,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "§Ø_∆.µΩ的笔记越来越详细了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ's notes are getting more and more detailed.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_b": {
       "id": "4_b",
       "dlgText": "连'先往左看'这种小提示都有……",
-      "dlgTextEN": null,
+      "dlgTextEN": "Even little tips like 'look left first'...",
       "cgId": null,
       "charDisplays": [
         {
@@ -85,8 +85,8 @@
     },
     "5_b": {
       "id": "5_b",
-      "dlgText": "感觉她就在前面不远处，一路牵着我走一样。",
-      "dlgTextEN": null,
+      "dlgText": "感觉§Ø_∆.µΩ就在前面不远处，一路牵着我走一样。",
+      "dlgTextEN": "It feels like §Ø_∆.µΩ is just ahead, guiding me the whole way.",
       "cgId": null,
       "charDisplays": [
         {
@@ -107,8 +107,8 @@
     },
     "6_b": {
       "id": "6_b",
-      "dlgText": "我们真是心有灵犀，我遇到的每个问题她都提前想到了。",
-      "dlgTextEN": null,
+      "dlgText": "我们真是心有灵犀，我遇到的每个问题§Ø_∆.µΩ都提前想到了。",
+      "dlgTextEN": "We really are in sync — every problem I run into, §Ø_∆.µΩ anticipated it.",
       "cgId": null,
       "charDisplays": [
         {
@@ -129,8 +129,8 @@
     },
     "7_b": {
       "id": "7_b",
-      "dlgText": "照这样下去，一定能找到她的。",
-      "dlgTextEN": null,
+      "dlgText": "照这样下去，一定能找到§Ø_∆.µΩ的。",
+      "dlgTextEN": "At this rate, I'll definitely find §Ø_∆.µΩ.",
       "cgId": null,
       "charDisplays": [
         {

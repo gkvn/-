@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "新的区域，结构更加复杂。",
-      "dlgTextEN": null,
+      "dlgTextEN": "New area — more complex structure.",
       "cgId": "cg_past",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这个机关有点绕……不过我摸清了规律。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This mechanism is tricky... but I figured out the pattern.",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "在笔记里画个示意图吧，后面的人就不会走弯路了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I'll draw a diagram in the notes, so no one else has to go the long way.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "嗯，再加点注释……'这个机关别急，先往左看'。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Hmm, let me add a note... 'Don't rush this one — look left first.'",
       "cgId": null,
       "charDisplays": [
         {
@@ -86,7 +86,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "不知道为什么，写这些的时候心情很好。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I don't know why, but writing these makes me feel good.",
       "cgId": null,
       "charDisplays": [
         {
@@ -108,7 +108,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "好像在跟某个还没见面的人说话一样。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Like I'm talking to someone I haven't met yet.",
       "cgId": null,
       "charDisplays": [
         {

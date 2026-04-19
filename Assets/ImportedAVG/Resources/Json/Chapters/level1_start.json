@@ -1,10 +1,10 @@
-{
+﻿{
   "chapterId": "level1_start",
   "dialogs": {
     "1_na": {
       "id": "1_na",
       "dlgText": "新的区域。",
-      "dlgTextEN": null,
+      "dlgTextEN": "A new area.",
       "cgId": "cg_past",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这个地方太大了，走过的路很容易忘记。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This place is too big — easy to forget the paths I've taken.",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "我应该把路线和发现记录下来。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I should record the routes and discoveries.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "万一之后还要回来，或者有人来接应，这些笔记会有用的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "If I need to come back, or someone comes to find me, these notes will help.",
       "cgId": null,
       "charDisplays": [
         {

@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "又头疼了……比上次严重一点。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Headache again... worse than last time.",
       "cgId": "cg_past1",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "大概是这里深处的空气不太好吧。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Probably poor air quality this deep in.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "不影响，继续记录。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Won't slow me down. Continuing to record.",
       "cgId": null,
       "charDisplays": [
         {
@@ -70,7 +70,7 @@
     "4_na": {
       "id": "4_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -86,7 +86,7 @@
     "5_b": {
       "id": "5_b",
       "dlgText": "看了§Ø_∆.µΩ的笔记……",
-      "dlgTextEN": null,
+      "dlgTextEN": "Read §Ø_∆.µΩ's notes...",
       "cgId": null,
       "charDisplays": [
         {
@@ -108,7 +108,7 @@
     "6_b": {
       "id": "6_b",
       "dlgText": "这个文明是自己毁灭了自己吗。",
-      "dlgTextEN": null,
+      "dlgTextEN": "This civilization destroyed itself?",
       "cgId": null,
       "charDisplays": [
         {
@@ -129,8 +129,8 @@
     },
     "7_b": {
       "id": "7_b",
-      "dlgText": "她说头疼变严重了，还说是空气不好……",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ说头疼变严重了，还说是空气不好……",
+      "dlgTextEN": "§Ø_∆.µΩ says the headache is getting worse, blames it on the air...",
       "cgId": null,
       "charDisplays": [
         {
@@ -152,7 +152,7 @@
     "8_b": {
       "id": "8_b",
       "dlgText": "§Ø_∆.µΩ，你有没有在逞强啊。",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ, are you just being tough?",
       "cgId": null,
       "charDisplays": [
         {

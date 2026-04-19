@@ -1,4 +1,4 @@
 id,text,tags
-1_b,"之前的笔记一直都很冷静、很清晰。",#cgid:cg_now,#char@1:a1,#istalking:a1
-2_b,"从这里开始突然不一样了。",#char@1:a1,#istalking:a1
-3_b,"§Ø_∆.µΩ发现了什么难过的事……",#char@1:a1,#istalking:a1
+1_b,"之前的笔记一直都很冷静、很清晰。",#cgid:cg_now,#char@1:a1,#istalking:a1,"#texten:The notes were always calm and clear before this."
+2_b,"从这里开始突然不一样了。",#char@1:a1,#istalking:a1,#texten:From here everything suddenly changed.
+3_b,"§Ø_∆.µΩ发现了什么难过的事……",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ discovered something devastating...

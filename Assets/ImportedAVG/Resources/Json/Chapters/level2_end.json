@@ -4,7 +4,7 @@
     "1_b": {
       "id": "1_b",
       "dlgText": "信号编码真的有效……那些东西被击退了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The signal encoding actually worked... those things were driven back.",
       "cgId": "cg_now",
       "charDisplays": [
         {
@@ -25,8 +25,8 @@
     },
     "2_b": {
       "id": "2_b",
-      "dlgText": "§Ø_∆.µΩ的时候根本没有这些怪物吧，她的笔记里完全没提到。",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ那时候根本没有这些怪物吧，笔记里完全没提到。",
+      "dlgTextEN": "§Ø_∆.µΩ didn't have these monsters back then — not a word in the notes.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_b": {
       "id": "3_b",
       "dlgText": "这几十年里，这个地方到底发生了什么。",
-      "dlgTextEN": null,
+      "dlgTextEN": "What happened to this place over these decades.",
       "cgId": null,
       "charDisplays": [
         {
@@ -69,8 +69,8 @@
     },
     "4_b": {
       "id": "4_b",
-      "dlgText": "不管了，有她留下的编码就能对付。继续走。",
-      "dlgTextEN": null,
+      "dlgText": "不管了，有§Ø_∆.µΩ留下的编码就能对付。继续走。",
+      "dlgTextEN": "Doesn't matter. §Ø_∆.µΩ's encoding can handle them. Moving on.",
       "cgId": null,
       "charDisplays": [
         {

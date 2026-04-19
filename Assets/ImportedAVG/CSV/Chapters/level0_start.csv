@@ -1,7 +1,7 @@
 id,text,tags
-1_na,"地球。",#cgid:cg_past
-2_na,"一颗已经没有任何生命迹象的星球。"
-3_na,"但科考队在这里探测到了巨大的人工建筑信号。"
-4_a,"好壮观……这一定是某种文明建造的。",#char@1:b1,#istalking:b1
-5_a,"灯还亮着，说明还有能源在运转。",#char@1:b1,#istalking:b1
-6_a,"进去看看吧。",#char@1:b1,#istalking:b1
+1_na,"地球。",#cgid:cg_past,#texten:Earth.
+2_na,"一颗已经没有任何生命迹象的星球。",#texten:A planet with no remaining signs of life.
+3_na,"但科考队在这里探测到了巨大的人工建筑信号。",#texten:But the expedition detected a massive artificial structure signal here.
+4_a,"好壮观……这一定是某种文明建造的。",#char@1:b1,#istalking:b1,#texten:Incredible... this must have been built by some civilization.
+5_a,"灯还亮着，说明还有能源在运转。",#char@1:b1,#istalking:b1,#texten:The lights are still on — there's still energy running.
+6_a,"进去看看吧。",#char@1:b1,#istalking:b1,#texten:Let's go inside.

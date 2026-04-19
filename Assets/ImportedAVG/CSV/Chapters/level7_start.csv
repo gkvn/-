@@ -1,8 +1,8 @@
 id,text,tags
-1_na,"神殿的更深处。灯光似乎比之前微弱了一些。",#cgid:cg_past2
-2_a,"我想通了。把这件事写在笔记里。",#char@1:b1,#istalking:b1
-3_a,"如果你在读这些……说明有人来找我了。",#char@1:b1,#istalking:b1
-4_a,"你可能觉得我已经离开了几十年。",#char@1:b1,#istalking:b1
-5_a,"但对我来说，我离开西格纳鲁才没多久。",#char@1:b1,#istalking:b1
-6_a,"我不是不想回去。我不是故意失联的。",#char@1:b1,#istalking:b1
-7_a,"是时间骗了我们所有人。",#char@1:b1,#istalking:b1
+1_na,"神殿的更深处。灯光似乎比之前微弱了一些。",#cgid:cg_past2,#texten:Deeper still. The lights seem slightly dimmer than before.
+2_a,"我想通了。把这件事写在笔记里。",#char@1:b1,#istalking:b1,#texten:I've thought it through. Writing it in the notes.
+3_a,"如果你在读这些……说明有人来找我了。",#char@1:b1,#istalking:b1,#texten:If you're reading this... it means someone came to find me.
+4_a,"你可能觉得我已经离开了几十年。",#char@1:b1,#istalking:b1,#texten:You probably think I've been gone for decades.
+5_a,"但对我来说，我离开西格纳鲁才没多久。",#char@1:b1,#istalking:b1,"#texten:But for me, I only left Signalru not long ago."
+6_a,"我不是不想回去。我不是故意失联的。",#char@1:b1,#istalking:b1,#texten:It's not that I didn't want to come back. I didn't go silent on purpose.
+7_a,"是时间骗了我们所有人。",#char@1:b1,#istalking:b1,#texten:Time fooled all of us.

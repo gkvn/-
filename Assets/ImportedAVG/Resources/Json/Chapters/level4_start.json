@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "更深的区域。墙壁上开始出现密集的图案和符号。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Deeper area. Dense patterns and symbols cover the walls.",
       "cgId": "cg_past1",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这些是……图画？",
-      "dlgTextEN": null,
+      "dlgTextEN": "These are... paintings?",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "还有某种波形记录……像是被编码保存的声波。",
-      "dlgTextEN": null,
+      "dlgTextEN": "And some kind of waveform recordings... like encoded sound waves.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "我试着解码了一段……",
-      "dlgTextEN": null,
+      "dlgTextEN": "I tried decoding one...",
       "cgId": null,
       "charDisplays": [
         {
@@ -86,7 +86,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [
         {
@@ -108,7 +108,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "好美。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Beautiful.",
       "cgId": null,
       "charDisplays": [
         {
@@ -130,7 +130,7 @@
     "7_a": {
       "id": "7_a",
       "dlgText": "这个星球上的生物，把声波变成了一种……我不知道该怎么形容。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The beings on this planet turned sound waves into something... I don't know how to describe it.",
       "cgId": null,
       "charDisplays": [
         {
@@ -151,8 +151,8 @@
     },
     "8_a": {
       "id": "8_a",
-      "dlgText": "他们管这个叫什么呢。",
-      "dlgTextEN": null,
+      "dlgText": "这个文明管这个叫什么呢。",
+      "dlgTextEN": "What did this civilization call it.",
       "cgId": null,
       "charDisplays": [
         {

@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "还有一件事。",
-      "dlgTextEN": null,
+      "dlgTextEN": "One more thing.",
       "cgId": "cg_past2",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "我的身体……越来越不对劲了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "My body... something is getting more and more wrong.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "不是累，也不是空气的问题。",
-      "dlgTextEN": null,
+      "dlgTextEN": "It's not fatigue, and it's not the air.",
       "cgId": null,
       "charDisplays": [
         {
@@ -70,7 +70,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "我觉得我病了。而且一直在加重。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I think I'm sick. And it keeps getting worse.",
       "cgId": null,
       "charDisplays": [
         {
@@ -92,7 +92,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "我不知道原因。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I don't know why.",
       "cgId": null,
       "charDisplays": [
         {
@@ -114,7 +114,7 @@
     "6_na": {
       "id": "6_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -130,7 +130,7 @@
     "7_b": {
       "id": "7_b",
       "dlgText": "……我终于看懂了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...I finally understand now.",
       "cgId": null,
       "charDisplays": [
         {
@@ -151,8 +151,8 @@
     },
     "8_b": {
       "id": "8_b",
-      "dlgText": "她不是不回来。是时间过得不一样。",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ不是不回来。是时间过得不一样。",
+      "dlgTextEN": "§Ø_∆.µΩ didn't refuse to come back. Time just moved differently.",
       "cgId": null,
       "charDisplays": [
         {
@@ -173,8 +173,8 @@
     },
     "9_b": {
       "id": "9_b",
-      "dlgText": "对她来说只有几年……对我们来说是几十年……",
-      "dlgTextEN": null,
+      "dlgText": "对§Ø_∆.µΩ来说只有几年……对我们来说是几十年……",
+      "dlgTextEN": "For §Ø_∆.µΩ it was only a few years... for us it was decades...",
       "cgId": null,
       "charDisplays": [
         {
@@ -195,8 +195,8 @@
     },
     "10_b": {
       "id": "10_b",
-      "dlgText": "但她说她病了……",
-      "dlgTextEN": null,
+      "dlgText": "但§Ø_∆.µΩ说……病了……",
+      "dlgTextEN": "But §Ø_∆.µΩ says... sick...",
       "cgId": null,
       "charDisplays": [
         {
@@ -218,7 +218,7 @@
     "11_b": {
       "id": "11_b",
       "dlgText": "这里的灯全灭了，能源几乎没有了。我却好好的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "All the lights here are dead, barely any energy left. And I'm perfectly fine.",
       "cgId": null,
       "charDisplays": [
         {
@@ -239,8 +239,8 @@
     },
     "12_b": {
       "id": "12_b",
-      "dlgText": "她来的时候灯全亮着……难道是这里的能源在伤害她？",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ来的时候灯全亮着……难道是这里的能源在伤害§Ø_∆.µΩ？",
+      "dlgTextEN": "When §Ø_∆.µΩ came all the lights were on... could the energy here be hurting §Ø_∆.µΩ?",
       "cgId": null,
       "charDisplays": [
         {

@@ -1,13 +1,13 @@
 id,text,tags
-1_a,"还有一件事。",#cgid:cg_past2,#char@1:b1,#istalking:b1
-2_a,"我的身体……越来越不对劲了。",#char@1:b1,#istalking:b1
-3_a,"不是累，也不是空气的问题。",#char@1:b1,#istalking:b1
-4_a,"我觉得我病了。而且一直在加重。",#char@1:b1,#istalking:b1
-5_a,"我不知道原因。",#char@1:b1,#istalking:b1
-6_na,"……",#cgid:cg_now_dark
-7_b,"……我终于看懂了。",#char@1:a1,#istalking:a1
-8_b,"§Ø_∆.µΩ不是不回来。是时间过得不一样。",#char@1:a1,#istalking:a1
-9_b,"对§Ø_∆.µΩ来说只有几年……对我们来说是几十年……",#char@1:a1,#istalking:a1
-10_b,"但§Ø_∆.µΩ说……病了……",#char@1:a1,#istalking:a1
-11_b,"这里的灯全灭了，能源几乎没有了。我却好好的。",#char@1:a1,#istalking:a1
-12_b,"§Ø_∆.µΩ来的时候灯全亮着……难道是这里的能源在伤害§Ø_∆.µΩ？",#char@1:a1,#istalking:a1
+1_a,"还有一件事。",#cgid:cg_past2,#char@1:b1,#istalking:b1,#texten:One more thing.
+2_a,"我的身体……越来越不对劲了。",#char@1:b1,#istalking:b1,#texten:My body... something is getting more and more wrong.
+3_a,"不是累，也不是空气的问题。",#char@1:b1,#istalking:b1,"#texten:It's not fatigue, and it's not the air."
+4_a,"我觉得我病了。而且一直在加重。",#char@1:b1,#istalking:b1,#texten:I think I'm sick. And it keeps getting worse.
+5_a,"我不知道原因。",#char@1:b1,#istalking:b1,#texten:I don't know why.
+6_na,"……",#cgid:cg_now_dark,#texten:......
+7_b,"……我终于看懂了。",#char@1:a1,#istalking:a1,#texten:...I finally understand now.
+8_b,"§Ø_∆.µΩ不是不回来。是时间过得不一样。",#char@1:a1,#istalking:a1,#texten:§Ø_∆.µΩ didn't refuse to come back. Time just moved differently.
+9_b,"对§Ø_∆.µΩ来说只有几年……对我们来说是几十年……",#char@1:a1,#istalking:a1,#texten:For §Ø_∆.µΩ it was only a few years... for us it was decades...
+10_b,"但§Ø_∆.µΩ说……病了……",#char@1:a1,#istalking:a1,#texten:But §Ø_∆.µΩ says... sick...
+11_b,"这里的灯全灭了，能源几乎没有了。我却好好的。",#char@1:a1,#istalking:a1,"#texten:All the lights here are dead, barely any energy left. And I'm perfectly fine."
+12_b,"§Ø_∆.µΩ来的时候灯全亮着……难道是这里的能源在伤害§Ø_∆.µΩ？",#char@1:a1,#istalking:a1,#texten:When §Ø_∆.µΩ came all the lights were on... could the energy here be hurting §Ø_∆.µΩ?

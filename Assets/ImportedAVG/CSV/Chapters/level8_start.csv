@@ -1,6 +1,6 @@
 id,text,tags
-1_na,"更深处。§Ø_∆.µΩ的脚步明显变慢了。",#cgid:cg_past2
-2_a,"越往深处走，灯越亮……",#char@1:b1,#istalking:b1
-3_a,"可我的身体越来越沉。",#char@1:b1,#istalking:b1
-4_a,"也许真的是这些灯光在让我生病。",#char@1:b1,#istalking:b1
-5_a,"但我不能停。我要把所有东西都记录完。",#char@1:b1,#istalking:b1
+1_na,"更深处。§Ø_∆.µΩ的脚步明显变慢了。",#cgid:cg_past2,#texten:Deeper. §Ø_∆.µΩ's pace has noticeably slowed.
+2_a,"越往深处走，灯越亮……",#char@1:b1,#istalking:b1,"#texten:The deeper I go, the brighter the lights..."
+3_a,"可我的身体越来越沉。",#char@1:b1,#istalking:b1,#texten:But my body keeps getting heavier.
+4_a,"也许真的是这些灯光在让我生病。",#char@1:b1,#istalking:b1,#texten:Maybe the lights really are making me sick.
+5_a,"但我不能停。我要把所有东西都记录完。",#char@1:b1,#istalking:b1,#texten:But I can't stop. I have to record everything.

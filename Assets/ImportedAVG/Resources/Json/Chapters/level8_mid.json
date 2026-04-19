@@ -4,7 +4,7 @@
     "1_a": {
       "id": "1_a",
       "dlgText": "如果来找我的人是_99[k]r就好了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "If the one coming to find me is _99[k]r, that would be nice.",
       "cgId": "cg_past2",
       "charDisplays": [
         {
@@ -26,7 +26,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "……我在说什么。都这种时候了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...What am I saying. Not the time for this.",
       "cgId": null,
       "charDisplays": [
         {
@@ -48,7 +48,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "不对。我就是想说这个。",
-      "dlgTextEN": null,
+      "dlgTextEN": "No. That's exactly what I want to say.",
       "cgId": null,
       "charDisplays": [
         {
@@ -70,7 +70,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "_99[k]r，如果你看到这条笔记——",
-      "dlgTextEN": null,
+      "dlgTextEN": "_99[k]r, if you see this note—",
       "cgId": null,
       "charDisplays": [
         {
@@ -92,7 +92,7 @@
     "5_a": {
       "id": "5_a",
       "dlgText": "把这里的发现带回西格纳鲁就够了。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Just bring back what I found here to Signalru. That's enough.",
       "cgId": null,
       "charDisplays": [
         {
@@ -114,7 +114,7 @@
     "6_a": {
       "id": "6_a",
       "dlgText": "不用找我。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Don't come looking for me.",
       "cgId": null,
       "charDisplays": [
         {
@@ -136,7 +136,7 @@
     "7_na": {
       "id": "7_na",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -151,8 +151,8 @@
     },
     "8_b": {
       "id": "8_b",
-      "dlgText": "这条笔记……她写了我的名字。",
-      "dlgTextEN": null,
+      "dlgText": "这条笔记……§Ø_∆.µΩ写了我的名字。",
+      "dlgTextEN": "This note... §Ø_∆.µΩ wrote my name.",
       "cgId": null,
       "charDisplays": [
         {
@@ -174,7 +174,7 @@
     "9_b": {
       "id": "9_b",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
       "cgId": null,
       "charDisplays": [
         {
@@ -195,8 +195,8 @@
     },
     "10_b": {
       "id": "10_b",
-      "dlgText": "她说'不用找我'。",
-      "dlgTextEN": null,
+      "dlgText": "§Ø_∆.µΩ说'不用找我'。",
+      "dlgTextEN": "§Ø_∆.µΩ says 'don't come looking for me.'",
       "cgId": null,
       "charDisplays": [
         {
@@ -218,7 +218,7 @@
     "11_b": {
       "id": "11_b",
       "dlgText": "我偏要找。",
-      "dlgTextEN": null,
+      "dlgTextEN": "I'm coming anyway.",
       "cgId": null,
       "charDisplays": [
         {

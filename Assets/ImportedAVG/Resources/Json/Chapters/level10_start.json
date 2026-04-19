@@ -3,157 +3,29 @@
   "dialogs": {
     "1_na": {
       "id": "1_na",
-      "dlgText": "神殿最深处的核心区域。",
-      "dlgTextEN": null,
-      "cgId": "cg_now_dark",
+      "dlgText": "神殿的最终区域。灯光在这里亮得刺眼。",
+      "dlgTextEN": "The final area of the temple. The lights here are blindingly bright.",
+      "cgId": "cg_past2",
       "charDisplays": [],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "2_na"
+        "2_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "2_na": {
-      "id": "2_na",
-      "dlgText": "最后一点能源在这里汇聚，维持着某个系统的运转。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "3_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "3_na": {
-      "id": "3_na",
-      "dlgText": "突然，核心亮了起来。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "4_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "4_na": {
-      "id": "4_na",
-      "dlgText": "一个声音响起——",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "5_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "5_na": {
-      "id": "5_na",
-      "dlgText": "不是任何已知的语言，但通过§Ø_∆.µΩ之前的翻译笔记，能大致理解。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "6_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "6_na": {
-      "id": "6_na",
-      "dlgText": "『有人来了。』",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "7_na"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "7_na": {
-      "id": "7_na",
-      "dlgText": "『我等了很久。』",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "8_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "8_b": {
-      "id": "8_b",
-      "dlgText": "这是什么……？",
-      "dlgTextEN": null,
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "到了……最深处了。",
+      "dlgTextEN": "I made it... the very deepest point.",
       "cgId": null,
       "charDisplays": [
         {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        },
-        {
           "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": false
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "9_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "9_a": {
-      "id": "9_a",
-      "dlgText": "是这个文明留下的……某种智能。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
           "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
           "isTalking": true
         }
       ],
@@ -162,33 +34,111 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "10_na"
+        "3_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "10_na": {
-      "id": "10_na",
-      "dlgText": "『我是守门人。我的职责是判断——你们的文明，是否配得上带走我们的遗产。』",
-      "dlgTextEN": null,
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "中央有一个巨大的装置……",
+      "dlgTextEN": "There's a massive device in the center...",
       "cgId": null,
-      "charDisplays": [],
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "11_na"
+        "4_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "11_na": {
-      "id": "11_na",
-      "dlgText": "『证明给我看。』",
-      "dlgTextEN": null,
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "好像在休眠。但我能感觉到，里面有什么东西。",
+      "dlgTextEN": "It seems dormant. But I can feel something inside it.",
       "cgId": null,
-      "charDisplays": [],
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "……头好疼。这里的灯光太强了。",
+      "dlgTextEN": "...My head hurts so much. The lights here are too strong.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "把最后的发现记录完吧。",
+      "dlgTextEN": "Let me finish recording the last discoveries.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "不管谁来到这里，都会需要这些笔记的。",
+      "dlgTextEN": "Whoever comes here next will need these notes.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
       "options": [],
       "events": [],
       "setFlags": [],

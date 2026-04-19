@@ -3,8 +3,8 @@
   "dialogs": {
     "1_na": {
       "id": "1_na",
-      "dlgText": "守门人关闭了。神殿安静下来。",
-      "dlgTextEN": null,
+      "dlgText": "战斗中，§Ø_∆.µΩ用尽了最后的力气。",
+      "dlgTextEN": "In the battle, §Ø_∆.µΩ spent the very last reserves of strength.",
       "cgId": "cg_now_dark",
       "charDisplays": [],
       "options": [],
@@ -12,15 +12,224 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "2_b"
+        "2_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "2_b": {
-      "id": "2_b",
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "_99[k]r……左边……用那个编码……",
+      "dlgTextEN": "_99[k]r... on the left... use that encoding...",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "§Ø_∆.µΩ！你别动了！",
+      "dlgTextEN": "§Ø_∆.µΩ! Stop moving!",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "没事……我还能帮你……",
+      "dlgTextEN": "It's fine... I can still help you...",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_na": {
+      "id": "5_na",
+      "dlgText": "守门人停止了攻击。",
+      "dlgTextEN": "The Gatekeeper ceased its attack.",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_na": {
+      "id": "6_na",
+      "dlgText": "『……够了。』",
+      "dlgTextEN": "'...Enough.'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_na": {
+      "id": "7_na",
+      "dlgText": "『你们的技术并不成熟。你们的文明离我们还很远。』",
+      "dlgTextEN": "'Your technology is not mature. Your civilization is still far from ours.'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_na": {
+      "id": "8_na",
+      "dlgText": "『但是——』",
+      "dlgTextEN": "'But—'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_na": {
+      "id": "9_na",
+      "dlgText": "『§Ø_∆.µΩ为你留下了路。你为§Ø_∆.µΩ穿过了黑暗。』",
+      "dlgTextEN": "'§Ø_∆.µΩ left you the path. You crossed the darkness for §Ø_∆.µΩ.'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "10_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "10_na": {
+      "id": "10_na",
+      "dlgText": "『这是任何文明中最珍贵的东西。』",
+      "dlgTextEN": "'That is the most precious thing in any civilization.'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "11_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "11_na": {
+      "id": "11_na",
+      "dlgText": "『带走吧。这些遗产是你们的了。』",
+      "dlgTextEN": "'Take it. This legacy is yours now.'",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "12_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "12_na": {
+      "id": "12_na",
+      "dlgText": "守门人关闭了。神殿安静下来。",
+      "dlgTextEN": "The Gatekeeper shut down. The temple fell silent.",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "13_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "13_b": {
+      "id": "13_b",
       "dlgText": "§Ø_∆.µΩ！",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ!",
       "cgId": null,
       "charDisplays": [
         {
@@ -39,15 +248,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "3_a"
+        "14_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "3_a": {
-      "id": "3_a",
+    "14_a": {
+      "id": "14_a",
       "dlgText": "……别喊了。我听得见。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...Don't shout. I can hear you.",
       "cgId": null,
       "charDisplays": [
         {
@@ -66,15 +275,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "4_b"
+        "15_b"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "4_b": {
-      "id": "4_b",
+    "15_b": {
+      "id": "15_b",
       "dlgText": "我们走。我带你离开这里。离开了你就会好的。",
-      "dlgTextEN": null,
+      "dlgTextEN": "We're leaving. I'll carry you out. You'll be fine once we're out.",
       "cgId": null,
       "charDisplays": [
         {
@@ -86,303 +295,6 @@
           "charDisplayId": "b1",
           "slotIndex": 1,
           "isTalking": false
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "5_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "5_a": {
-      "id": "5_a",
-      "dlgText": "_99[k]r。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "6_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "6_a": {
-      "id": "6_a",
-      "dlgText": "你知道来不及了。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "7_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "7_b": {
-      "id": "7_b",
-      "dlgText": "……",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": false
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "8_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "8_a": {
-      "id": "8_a",
-      "dlgText": "帮我把笔记都带回去。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "9_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "9_a": {
-      "id": "9_a",
-      "dlgText": "还有那个理论……相对论。让大家知道时间的真相。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "10_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "10_a": {
-      "id": "10_a",
-      "dlgText": "这样以后就不会有人像我一样，走了几年却错过了几十年。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "11_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "11_b": {
-      "id": "11_b",
-      "dlgText": "§Ø_∆.µΩ……",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": false
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "12_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "12_a": {
-      "id": "12_a",
-      "dlgText": "_99[k]r，谢谢你来找我。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "13_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "13_a": {
-      "id": "13_a",
-      "dlgText": "我写'不用找我'的时候……其实特别希望你来。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "14_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "14_b": {
-      "id": "14_b",
-      "dlgText": "我知道。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": false
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "15_a"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "15_a": {
-      "id": "15_a",
-      "dlgText": "嗯。",
-      "dlgTextEN": null,
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": false
-        },
-        {
-          "charDisplayId": "b1",
-          "slotIndex": 1,
-          "isTalking": true
         }
       ],
       "options": [],
@@ -397,8 +309,8 @@
     },
     "16_a": {
       "id": "16_a",
-      "dlgText": "你一直都懂。",
-      "dlgTextEN": null,
+      "dlgText": "_99[k]r。",
+      "dlgTextEN": "_99[k]r.",
       "cgId": null,
       "charDisplays": [
         {
@@ -417,31 +329,312 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "17_na"
+        "17_a"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "17_na": {
-      "id": "17_na",
-      "dlgText": "§Ø_∆.µΩ闭上了眼睛。",
-      "dlgTextEN": null,
+    "17_a": {
+      "id": "17_a",
+      "dlgText": "你知道来不及了。",
+      "dlgTextEN": "You know there's no time left.",
       "cgId": null,
-      "charDisplays": [],
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
       "options": [],
       "events": [],
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "18_na"
+        "18_b"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "18_na": {
-      "id": "18_na",
+    "18_b": {
+      "id": "18_b",
       "dlgText": "……",
-      "dlgTextEN": null,
+      "dlgTextEN": "......",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "19_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "19_a": {
+      "id": "19_a",
+      "dlgText": "帮我把笔记都带回去。",
+      "dlgTextEN": "Take all the notes back for me.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "20_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "20_a": {
+      "id": "20_a",
+      "dlgText": "还有那个理论……相对论。让大家知道时间的真相。",
+      "dlgTextEN": "And that theory... relativity. Let everyone know the truth about time.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "21_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "21_a": {
+      "id": "21_a",
+      "dlgText": "这样以后就不会有人像我一样，走了几年却错过了几十年。",
+      "dlgTextEN": "So no one else will ever leave for a few years and miss a few decades.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "22_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "22_b": {
+      "id": "22_b",
+      "dlgText": "§Ø_∆.µΩ……",
+      "dlgTextEN": "§Ø_∆.µΩ...",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "23_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "23_a": {
+      "id": "23_a",
+      "dlgText": "_99[k]r，谢谢你来找我。",
+      "dlgTextEN": "_99[k]r, thank you for coming to find me.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "24_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "24_a": {
+      "id": "24_a",
+      "dlgText": "我写'不用找我'的时候……其实特别希望你来。",
+      "dlgTextEN": "When I wrote 'don't come looking for me'... I was really hoping you would.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "25_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "25_b": {
+      "id": "25_b",
+      "dlgText": "我知道。",
+      "dlgTextEN": "I know.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "26_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "26_a": {
+      "id": "26_a",
+      "dlgText": "嗯。",
+      "dlgTextEN": "Mm.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "27_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "27_a": {
+      "id": "27_a",
+      "dlgText": "你一直都懂。",
+      "dlgTextEN": "You always did understand.",
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "28_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "28_na": {
+      "id": "28_na",
+      "dlgText": "§Ø_∆.µΩ闭上了眼睛。",
+      "dlgTextEN": "§Ø_∆.µΩ closed those eyes.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -449,15 +642,31 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "19_na"
+        "29_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "19_na": {
-      "id": "19_na",
+    "29_na": {
+      "id": "29_na",
+      "dlgText": "……",
+      "dlgTextEN": "......",
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "30_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "30_na": {
+      "id": "30_na",
       "dlgText": "很久以后。",
-      "dlgTextEN": null,
+      "dlgTextEN": "A long time later.",
       "cgId": "cg_now",
       "charDisplays": [],
       "options": [],
@@ -465,15 +674,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "20_na"
+        "31_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "20_na": {
-      "id": "20_na",
+    "31_na": {
+      "id": "31_na",
       "dlgText": "_99[k]r带着所有的笔记、人类的遗产和相对论的知识，踏上了回西格纳鲁的归途。",
-      "dlgTextEN": null,
+      "dlgTextEN": "_99[k]r carried all the notes, humanity's legacy, and the knowledge of relativity on the journey back to Signalru.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -481,15 +690,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "21_na"
+        "32_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "21_na": {
-      "id": "21_na",
-      "dlgText": "她带回了两份遗产——",
-      "dlgTextEN": null,
+    "32_na": {
+      "id": "32_na",
+      "dlgText": "_99[k]r带回了两份遗产——",
+      "dlgTextEN": "_99[k]r brought back two legacies—",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -497,15 +706,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "22_na"
+        "33_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "22_na": {
-      "id": "22_na",
+    "33_na": {
+      "id": "33_na",
       "dlgText": "一个灭绝文明的记忆。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The memory of an extinct civilization.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -513,15 +722,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "23_na"
+        "34_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "23_na": {
-      "id": "23_na",
+    "34_na": {
+      "id": "34_na",
       "dlgText": "和一个朋友走过的路。",
-      "dlgTextEN": null,
+      "dlgTextEN": "And the path a friend once walked.",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -529,15 +738,15 @@
       "setFlags": [],
       "setVars": [],
       "nextIds": [
-        "24_na"
+        "35_na"
       ],
       "nextConds": {},
       "nextChapter": null
     },
-    "24_na": {
-      "id": "24_na",
+    "35_na": {
+      "id": "35_na",
       "dlgText": "身后，数字神殿熄灭了最后一盏灯。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Behind — the digital temple extinguished its final light.",
       "cgId": null,
       "charDisplays": [],
       "options": [],

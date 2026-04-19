@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "更深处的区域。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Deeper area.",
       "cgId": "cg_past",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_a": {
       "id": "2_a",
       "dlgText": "这里有种奇怪的能量波动……",
-      "dlgTextEN": null,
+      "dlgTextEN": "There's a strange energy fluctuation here...",
       "cgId": null,
       "charDisplays": [
         {
@@ -42,7 +42,7 @@
     "3_a": {
       "id": "3_a",
       "dlgText": "探测器捕捉到了一组特殊的信号编码。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The detector picked up a special signal encoding.",
       "cgId": null,
       "charDisplays": [
         {
@@ -64,7 +64,7 @@
     "4_a": {
       "id": "4_a",
       "dlgText": "不知道是做什么用的，先记下来吧。",
-      "dlgTextEN": null,
+      "dlgTextEN": "Not sure what it's for. I'll record it.",
       "cgId": null,
       "charDisplays": [
         {

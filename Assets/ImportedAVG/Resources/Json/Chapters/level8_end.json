@@ -4,7 +4,7 @@
     "1_na": {
       "id": "1_na",
       "dlgText": "这个区域的墙壁上，刻满了这个文明关于爱与羁绊的记录。",
-      "dlgTextEN": null,
+      "dlgTextEN": "The walls of this area are covered with records about love and bonds from this civilization.",
       "cgId": "cg_now",
       "charDisplays": [],
       "options": [],
@@ -20,7 +20,7 @@
     "2_na": {
       "id": "2_na",
       "dlgText": "§Ø_∆.µΩ在旁边留了一行歪歪扭扭的批注——",
-      "dlgTextEN": null,
+      "dlgTextEN": "§Ø_∆.µΩ left a shaky annotation beside them—",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -36,7 +36,7 @@
     "3_na": {
       "id": "3_na",
       "dlgText": "'原来每个星球都有这种东西。'",
-      "dlgTextEN": null,
+      "dlgTextEN": "'So every planet has this kind of thing.'",
       "cgId": null,
       "charDisplays": [],
       "options": [],
@@ -52,7 +52,7 @@
     "4_b": {
       "id": "4_b",
       "dlgText": "……我来了。等着我。",
-      "dlgTextEN": null,
+      "dlgTextEN": "...I'm coming. Wait for me.",
       "cgId": null,
       "charDisplays": [
         {
