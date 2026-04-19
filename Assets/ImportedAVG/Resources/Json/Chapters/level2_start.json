@@ -1,0 +1,85 @@
+﻿{
+  "chapterId": "level2_start",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "更深处的区域。",
+      "dlgTextEN": null,
+      "cgId": "cg_past",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "这里有种奇怪的能量波动……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "探测器捕捉到了一组特殊的信号编码。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "不知道是做什么用的，先记下来吧。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

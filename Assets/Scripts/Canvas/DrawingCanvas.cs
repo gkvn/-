@@ -28,7 +28,7 @@ public class DrawingCanvas : MonoBehaviour
         CreateBackground();
         CreateCanvasParticles();
 
-        if (config != null && toolbar != null)
+        if (config != null && toolbar != null && config.ShowIcons)
             toolbar.Initialize(config.AvailableIcons, canvasArea);
     }
 

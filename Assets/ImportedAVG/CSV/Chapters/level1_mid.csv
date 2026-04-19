@@ -1,8 +1,8 @@
 id,text,tags
-1_na,"离开房间后，身后的房间突然完全变黑了",#cgid:cg_past
-2_a,"记录一下之前的经历吧，以免还要再次穿过此处",#char@1:b1,#istalking:b1
-3_na,"时间来到四十年后。",#cgid:cg_now
-4_b,"§Ø_∆.µΩ，你们会在哪呢。",#char@1:a1,#istalking:a1
-5_b,"这里什么都看不见。",#char@1:a1,#istalking:a1
-6_b,"咦，这里有个母星的智能面板！这一定是§Ø_∆.µΩ留下的。",#char@1:a1,#istalking:a1
-7_b,"咦，§Ø_∆.µΩ，坚持住，我一定会找到你们的。",#char@1:a1,#istalking:a1
+1_a,"好，笔记做好了。",#cgid:cg_past,#char@1:b1,#istalking:b1
+2_a,"这样应该够清楚了。",#char@1:b1,#istalking:b1
+3_na,"……",#cgid:cg_now_dark
+4_b,"咦……这里有个母星制式的智能面板！",#char@1:a1,#istalking:a1
+5_b,"这一定是§Ø_∆.µΩ留下的！",#char@1:a1,#istalking:a1
+6_b,"上面记录了路线和机关的信息……",#char@1:a1,#istalking:a1
+7_b,"§Ø_∆.µΩ，谢谢你。有了这个我就不是摸黑瞎走了。",#char@1:a1,#istalking:a1

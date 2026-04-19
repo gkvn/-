@@ -1,0 +1,151 @@
+﻿{
+  "chapterId": "level5_start",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "数据密集的区域。这里存放着大量历史记录。",
+      "dlgTextEN": null,
+      "cgId": "cg_past1",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "这些记录……是这个文明的历史。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "他们曾经遍布整个星球，建造了无数壮观的东西。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "但后来……能源开始枯竭。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "为了争夺剩余的能源，他们彼此开战。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "最后……就没有然后了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "一个能创造出那种声波艺术的文明，亲手毁掉了自己。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

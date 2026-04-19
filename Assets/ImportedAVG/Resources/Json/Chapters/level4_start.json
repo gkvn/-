@@ -1,0 +1,173 @@
+﻿{
+  "chapterId": "level4_start",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "更深的区域。墙壁上开始出现密集的图案和符号。",
+      "dlgTextEN": null,
+      "cgId": "cg_past1",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "这些是……图画？",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "还有某种波形记录……像是被编码保存的声波。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "我试着解码了一段……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "好美。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "这个星球上的生物，把声波变成了一种……我不知道该怎么形容。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_a": {
+      "id": "8_a",
+      "dlgText": "他们管这个叫什么呢。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

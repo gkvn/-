@@ -1,0 +1,217 @@
+﻿{
+  "chapterId": "level6_start",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "神殿深层。这里存放着这个文明最核心的科学记录。",
+      "dlgTextEN": null,
+      "cgId": "cg_past1",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "这些数据……是某种物理学体系。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "光速……时间膨胀……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "等等。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "如果这个理论是对的……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "我们的飞船在接近光速飞行的时候……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_a": {
+      "id": "7_a",
+      "dlgText": "船上的时间会比外面慢很多……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_a": {
+      "id": "8_a",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_a": {
+      "id": "9_a",
+      "dlgText": "我离开西格纳鲁才过了几年。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "10_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "10_a": {
+      "id": "10_a",
+      "dlgText": "但西格纳鲁那边……已经过了几十年了？",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

@@ -1,0 +1,117 @@
+﻿{
+  "chapterId": "level0_start",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "地球。",
+      "dlgTextEN": null,
+      "cgId": "cg_past",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "一颗已经没有任何生命迹象的星球。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_na": {
+      "id": "3_na",
+      "dlgText": "但科考队在这里探测到了巨大的人工建筑信号。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_a": {
+      "id": "4_a",
+      "dlgText": "好壮观……这一定是某种文明建造的。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_a": {
+      "id": "5_a",
+      "dlgText": "灯还亮着，说明还有能源在运转。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_a": {
+      "id": "6_a",
+      "dlgText": "进去看看吧。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

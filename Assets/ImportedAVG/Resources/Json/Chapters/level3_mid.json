@@ -1,0 +1,151 @@
+﻿{
+  "chapterId": "level3_mid",
+  "dialogs": {
+    "1_a": {
+      "id": "1_a",
+      "dlgText": "好了，继续出发。",
+      "dlgTextEN": null,
+      "cgId": "cg_past",
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "§Ø_∆.µΩ的笔记越来越详细了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_b": {
+      "id": "4_b",
+      "dlgText": "连'先往左看'这种小提示都有……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_b": {
+      "id": "5_b",
+      "dlgText": "感觉她就在前面不远处，一路牵着我走一样。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_b": {
+      "id": "6_b",
+      "dlgText": "我们真是心有灵犀，我遇到的每个问题她都提前想到了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_b": {
+      "id": "7_b",
+      "dlgText": "照这样下去，一定能找到她的。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

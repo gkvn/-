@@ -1,5 +1,4 @@
 id,text,tags
-1_na,"房间之外。",#cgid:cg_now
-2_b,"呼，总算出来了。",#char@1:a1,#istalking:a1
-3_b,"看来这里没有这么简单。",#char@1:a1,#istalking:a1
-4_b,"不过有了§Ø_∆.µΩ的笔记的帮助，肯定没问题的。",#char@1:a1,#istalking:a1
+1_b,"有了笔记，顺利多了。",#cgid:cg_now,#char@1:a1,#istalking:a1
+2_b,"§Ø_∆.µΩ，你还记得给后面的人留下记录。",#char@1:a1,#istalking:a1
+3_b,"我一定会找到你的。",#char@1:a1,#istalking:a1

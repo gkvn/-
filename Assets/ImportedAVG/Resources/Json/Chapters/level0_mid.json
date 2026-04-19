@@ -1,0 +1,183 @@
+﻿{
+  "chapterId": "level0_mid",
+  "dialogs": {
+    "1_a": {
+      "id": "1_a",
+      "dlgText": "这些东西……完全无法辨认。",
+      "dlgTextEN": null,
+      "cgId": "cg_past",
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "但能感觉到，建造它们的一定是高度发达的文明。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "继续深入探索吧。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_na": {
+      "id": "4_na",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_na": {
+      "id": "5_na",
+      "dlgText": "四十多年后。（西格纳鲁星时间）",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_na": {
+      "id": "6_na",
+      "dlgText": "救援队抵达了地球。",
+      "dlgTextEN": null,
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_b": {
+      "id": "7_b",
+      "dlgText": "§Ø_∆.µΩ和科考队已经失联四十多年了……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_b": {
+      "id": "8_b",
+      "dlgText": "这座建筑……灯全灭了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_b": {
+      "id": "9_b",
+      "dlgText": "里面一片漆黑……但我一定要找到她们。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

@@ -1,0 +1,151 @@
+﻿{
+  "chapterId": "level4_mid",
+  "dialogs": {
+    "1_a": {
+      "id": "1_a",
+      "dlgText": "在笔记里记下了这些发现。",
+      "dlgTextEN": null,
+      "cgId": "cg_past1",
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_a": {
+      "id": "2_a",
+      "dlgText": "……嗯，有点头疼。大概是太久没休息了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_a": {
+      "id": "3_a",
+      "dlgText": "没什么大碍，继续吧。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_na": {
+      "id": "4_na",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_b": {
+      "id": "5_b",
+      "dlgText": "§Ø_∆.µΩ在笔记里说她发现了这个星球的声波艺术……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_b": {
+      "id": "6_b",
+      "dlgText": "原来这里曾经有过这么美的文明。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_b": {
+      "id": "7_b",
+      "dlgText": "对了，她说有点头疼……应该只是累了吧。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

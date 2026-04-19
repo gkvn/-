@@ -1,0 +1,13 @@
+id,text,tags
+1_a,"还有一件事。",#cgid:cg_past2,#char@1:b1,#istalking:b1
+2_a,"我的身体……越来越不对劲了。",#char@1:b1,#istalking:b1
+3_a,"不是累，也不是空气的问题。",#char@1:b1,#istalking:b1
+4_a,"我觉得我病了。而且一直在加重。",#char@1:b1,#istalking:b1
+5_a,"我不知道原因。",#char@1:b1,#istalking:b1
+6_na,"……",#cgid:cg_now_dark
+7_b,"……我终于看懂了。",#char@1:a1,#istalking:a1
+8_b,"她不是不回来。是时间过得不一样。",#char@1:a1,#istalking:a1
+9_b,"对她来说只有几年……对我们来说是几十年……",#char@1:a1,#istalking:a1
+10_b,"但她说她病了……",#char@1:a1,#istalking:a1
+11_b,"这里的灯全灭了，能源几乎没有了。我却好好的。",#char@1:a1,#istalking:a1
+12_b,"她来的时候灯全亮着……难道是这里的能源在伤害她？",#char@1:a1,#istalking:a1

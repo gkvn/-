@@ -1,0 +1,327 @@
+﻿{
+  "chapterId": "level9_mid",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "§Ø_∆.µΩ在核心区的地面上留下了最后的笔记。",
+      "dlgTextEN": null,
+      "cgId": "cg_past2",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "然后倒下了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_na": {
+      "id": "3_na",
+      "dlgText": "……",
+      "dlgTextEN": null,
+      "cgId": "cg_now_dark",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_na": {
+      "id": "4_na",
+      "dlgText": "黑暗中，_99[k]r拼命向最深处跑去。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "5_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "5_b": {
+      "id": "5_b",
+      "dlgText": "§Ø_∆.µΩ！！",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "6_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "6_na": {
+      "id": "6_na",
+      "dlgText": "核心区域还残留着最后一点微弱的光。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "7_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "7_na": {
+      "id": "7_na",
+      "dlgText": "光里面，有一个人影。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "8_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "8_b": {
+      "id": "8_b",
+      "dlgText": "§Ø_∆.µΩ……？",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "9_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "9_b": {
+      "id": "9_b",
+      "dlgText": "§Ø_∆.µΩ！你还活着！",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "10_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "10_a": {
+      "id": "10_a",
+      "dlgText": "……_99[k]r？",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "11_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "11_a": {
+      "id": "11_a",
+      "dlgText": "真的是你……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "12_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "12_b": {
+      "id": "12_b",
+      "dlgText": "我找到你了。我终于找到你了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "13_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "13_a": {
+      "id": "13_a",
+      "dlgText": "你怎么来了……我不是说了不用找我吗。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "14_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "14_b": {
+      "id": "14_b",
+      "dlgText": "你觉得我看到那句话会听话吗。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": false
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "15_a"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "15_a": {
+      "id": "15_a",
+      "dlgText": "……也是。你一直都这样。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": false
+        },
+        {
+          "charDisplayId": "b1",
+          "slotIndex": 1,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

@@ -1,0 +1,73 @@
+﻿{
+  "chapterId": "level8_end",
+  "dialogs": {
+    "1_na": {
+      "id": "1_na",
+      "dlgText": "这个区域的墙壁上，刻满了这个文明关于爱与羁绊的记录。",
+      "dlgTextEN": null,
+      "cgId": "cg_now",
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_na": {
+      "id": "2_na",
+      "dlgText": "§Ø_∆.µΩ在旁边留了一行歪歪扭扭的批注——",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_na"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_na": {
+      "id": "3_na",
+      "dlgText": "'原来每个星球都有这种东西。'",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_b": {
+      "id": "4_b",
+      "dlgText": "……我来了。等着我。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

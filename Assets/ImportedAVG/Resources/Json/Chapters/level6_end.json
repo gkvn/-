@@ -1,0 +1,69 @@
+﻿{
+  "chapterId": "level6_end",
+  "dialogs": {
+    "1_b": {
+      "id": "1_b",
+      "dlgText": "之前的笔记一直都很冷静、很清晰。",
+      "dlgTextEN": null,
+      "cgId": "cg_now",
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_b": {
+      "id": "2_b",
+      "dlgText": "从这里开始突然不一样了。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "她发现了什么让她这么难过的事……",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}

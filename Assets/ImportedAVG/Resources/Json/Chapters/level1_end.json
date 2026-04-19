@@ -1,12 +1,18 @@
-{
+﻿{
   "chapterId": "level1_end",
   "dialogs": {
-    "1_na": {
-      "id": "1_na",
-      "dlgText": "房间之外。",
-      "dlgTextEN": "Outside the chamber.",
+    "1_b": {
+      "id": "1_b",
+      "dlgText": "有了笔记，顺利多了。",
+      "dlgTextEN": null,
       "cgId": "cg_now",
-      "charDisplays": [],
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
       "options": [],
       "events": [],
       "setFlags": [],
@@ -19,8 +25,8 @@
     },
     "2_b": {
       "id": "2_b",
-      "dlgText": "呼，总算出来了。",
-      "dlgTextEN": "Phew, finally made it out.",
+      "dlgText": "§Ø_∆.µΩ，你还记得给后面的人留下记录。",
+      "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {
@@ -41,30 +47,8 @@
     },
     "3_b": {
       "id": "3_b",
-      "dlgText": "看来这里没有这么简单。",
-      "dlgTextEN": "It seems this place is not so simple.",
-      "cgId": null,
-      "charDisplays": [
-        {
-          "charDisplayId": "a1",
-          "slotIndex": 0,
-          "isTalking": true
-        }
-      ],
-      "options": [],
-      "events": [],
-      "setFlags": [],
-      "setVars": [],
-      "nextIds": [
-        "4_b"
-      ],
-      "nextConds": {},
-      "nextChapter": null
-    },
-    "4_b": {
-      "id": "4_b",
-      "dlgText": "不过有了§Ø_∆.µΩ的笔记的帮助，肯定没问题的。",
-      "dlgTextEN": "But with §Ø_∆.µΩ's notes to guide me, it should be fine.",
+      "dlgText": "我一定会找到你的。",
+      "dlgTextEN": null,
       "cgId": null,
       "charDisplays": [
         {

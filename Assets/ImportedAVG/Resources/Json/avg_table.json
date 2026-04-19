@@ -1,5 +1,20 @@
-{
+﻿{
   "chapters": {
+    "level0_start": {
+      "chapId": "level0_start",
+      "chapName": "level0_start",
+      "startDlgId": "1_na"
+    },
+    "level0_mid": {
+      "chapId": "level0_mid",
+      "chapName": "level0_mid",
+      "startDlgId": "1_a"
+    },
+    "level0_end": {
+      "chapId": "level0_end",
+      "chapName": "level0_end",
+      "startDlgId": "1_b"
+    },
     "level1_start": {
       "chapId": "level1_start",
       "chapName": "level1_start",
@@ -8,11 +23,146 @@
     "level1_mid": {
       "chapId": "level1_mid",
       "chapName": "level1_mid",
-      "startDlgId": "1_na"
+      "startDlgId": "1_a"
     },
     "level1_end": {
       "chapId": "level1_end",
       "chapName": "level1_end",
+      "startDlgId": "1_b"
+    },
+    "level2_start": {
+      "chapId": "level2_start",
+      "chapName": "level2_start",
+      "startDlgId": "1_na"
+    },
+    "level2_mid": {
+      "chapId": "level2_mid",
+      "chapName": "level2_mid",
+      "startDlgId": "1_a"
+    },
+    "level2_end": {
+      "chapId": "level2_end",
+      "chapName": "level2_end",
+      "startDlgId": "1_b"
+    },
+    "level3_start": {
+      "chapId": "level3_start",
+      "chapName": "level3_start",
+      "startDlgId": "1_na"
+    },
+    "level3_mid": {
+      "chapId": "level3_mid",
+      "chapName": "level3_mid",
+      "startDlgId": "1_a"
+    },
+    "level3_end": {
+      "chapId": "level3_end",
+      "chapName": "level3_end",
+      "startDlgId": "1_b"
+    },
+    "level4_start": {
+      "chapId": "level4_start",
+      "chapName": "level4_start",
+      "startDlgId": "1_na"
+    },
+    "level4_mid": {
+      "chapId": "level4_mid",
+      "chapName": "level4_mid",
+      "startDlgId": "1_a"
+    },
+    "level4_end": {
+      "chapId": "level4_end",
+      "chapName": "level4_end",
+      "startDlgId": "1_b"
+    },
+    "level5_start": {
+      "chapId": "level5_start",
+      "chapName": "level5_start",
+      "startDlgId": "1_na"
+    },
+    "level5_mid": {
+      "chapId": "level5_mid",
+      "chapName": "level5_mid",
+      "startDlgId": "1_a"
+    },
+    "level5_end": {
+      "chapId": "level5_end",
+      "chapName": "level5_end",
+      "startDlgId": "1_b"
+    },
+    "level6_start": {
+      "chapId": "level6_start",
+      "chapName": "level6_start",
+      "startDlgId": "1_na"
+    },
+    "level6_mid": {
+      "chapId": "level6_mid",
+      "chapName": "level6_mid",
+      "startDlgId": "1_a"
+    },
+    "level6_end": {
+      "chapId": "level6_end",
+      "chapName": "level6_end",
+      "startDlgId": "1_b"
+    },
+    "level7_start": {
+      "chapId": "level7_start",
+      "chapName": "level7_start",
+      "startDlgId": "1_na"
+    },
+    "level7_mid": {
+      "chapId": "level7_mid",
+      "chapName": "level7_mid",
+      "startDlgId": "1_a"
+    },
+    "level7_end": {
+      "chapId": "level7_end",
+      "chapName": "level7_end",
+      "startDlgId": "1_na"
+    },
+    "level8_start": {
+      "chapId": "level8_start",
+      "chapName": "level8_start",
+      "startDlgId": "1_na"
+    },
+    "level8_mid": {
+      "chapId": "level8_mid",
+      "chapName": "level8_mid",
+      "startDlgId": "1_a"
+    },
+    "level8_end": {
+      "chapId": "level8_end",
+      "chapName": "level8_end",
+      "startDlgId": "1_na"
+    },
+    "level9_start": {
+      "chapId": "level9_start",
+      "chapName": "level9_start",
+      "startDlgId": "1_na"
+    },
+    "level9_mid": {
+      "chapId": "level9_mid",
+      "chapName": "level9_mid",
+      "startDlgId": "1_na"
+    },
+    "level9_end": {
+      "chapId": "level9_end",
+      "chapName": "level9_end",
+      "startDlgId": "1_b"
+    },
+    "level10_start": {
+      "chapId": "level10_start",
+      "chapName": "level10_start",
+      "startDlgId": "1_na"
+    },
+    "level10_mid": {
+      "chapId": "level10_mid",
+      "chapName": "level10_mid",
+      "startDlgId": "1_na"
+    },
+    "level10_end": {
+      "chapId": "level10_end",
+      "chapName": "level10_end",
       "startDlgId": "1_na"
     }
   },
@@ -22,14 +172,16 @@
     "a1": {
       "charDisplayId": "a1",
       "charName": "_99[k]r",
-      "charAvatar": "a_1",
+      "charNameEN": null,
+      "charAvatar": "a_ava_1",
       "charBody": "a_1",
       "charFace": ""
     },
     "b1": {
       "charDisplayId": "b1",
       "charName": "§Ø_∆.µΩ",
-      "charAvatar": "b_1",
+      "charNameEN": null,
+      "charAvatar": "b_ava_1",
       "charBody": "b_1",
       "charFace": ""
     }

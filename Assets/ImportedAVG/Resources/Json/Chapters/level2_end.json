@@ -1,0 +1,91 @@
+﻿{
+  "chapterId": "level2_end",
+  "dialogs": {
+    "1_b": {
+      "id": "1_b",
+      "dlgText": "信号编码真的有效……那些东西被击退了。",
+      "dlgTextEN": null,
+      "cgId": "cg_now",
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "2_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "2_b": {
+      "id": "2_b",
+      "dlgText": "§Ø_∆.µΩ的时候根本没有这些怪物吧，她的笔记里完全没提到。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "3_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "3_b": {
+      "id": "3_b",
+      "dlgText": "这几十年里，这个地方到底发生了什么。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [
+        "4_b"
+      ],
+      "nextConds": {},
+      "nextChapter": null
+    },
+    "4_b": {
+      "id": "4_b",
+      "dlgText": "不管了，有她留下的编码就能对付。继续走。",
+      "dlgTextEN": null,
+      "cgId": null,
+      "charDisplays": [
+        {
+          "charDisplayId": "a1",
+          "slotIndex": 0,
+          "isTalking": true
+        }
+      ],
+      "options": [],
+      "events": [],
+      "setFlags": [],
+      "setVars": [],
+      "nextIds": [],
+      "nextConds": {},
+      "nextChapter": null
+    }
+  }
+}
