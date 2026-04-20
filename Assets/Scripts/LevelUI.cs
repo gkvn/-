@@ -9,8 +9,6 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Text phaseText;
 
     [Header("重开按钮")]
-    [Tooltip("重开按钮贴图（留空使用默认样式）")]
-    [SerializeField] private Sprite restartButtonSprite;
     [Tooltip("重开按钮大小")]
     [SerializeField] private Vector2 restartButtonSize = new Vector2(50, 50);
     [Tooltip("重开按钮位置偏移（相对右上角）")]
@@ -35,6 +33,9 @@ public class LevelUI : MonoBehaviour
             phaseText.gameObject.SetActive(false);
 
         CreateRestartButton();
+
+        if (blackOverlay != null)
+            blackOverlay.transform.SetAsLastSibling();
     }
 
     private void CreateBlackOverlay()
@@ -76,35 +77,20 @@ public class LevelUI : MonoBehaviour
         rt.sizeDelta = restartButtonSize;
 
         var img = go.AddComponent<Image>();
-        if (restartButtonSprite != null)
+        var sprite = Resources.Load<Sprite>("Art/ui/restart");
+        if (sprite != null)
         {
-            img.sprite = restartButtonSprite;
+            img.sprite = sprite;
             img.color = Color.white;
         }
         else
         {
+            Debug.LogWarning("未找到重开按钮图片: Art/ui/restart");
             img.color = new Color(0.2f, 0.2f, 0.2f, 0.7f);
         }
 
         var btn = go.AddComponent<Button>();
         btn.onClick.AddListener(OnRestartLevel);
-
-        if (restartButtonSprite == null)
-        {
-            var textGo = new GameObject("Text");
-            textGo.transform.SetParent(go.transform, false);
-            var textRt = textGo.AddComponent<RectTransform>();
-            textRt.anchorMin = Vector2.zero;
-            textRt.anchorMax = Vector2.one;
-            textRt.offsetMin = Vector2.zero;
-            textRt.offsetMax = Vector2.zero;
-            var txt = textGo.AddComponent<Text>();
-            txt.text = "↺";
-            txt.font = Resources.Load<Font>("Fonts/NotoSansSC-Regular") ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            txt.fontSize = (int)(restartButtonSize.y * 0.5f);
-            txt.alignment = TextAnchor.MiddleCenter;
-            txt.color = Color.white;
-        }
     }
 
     public void OnRestartLevel()
