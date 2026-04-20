@@ -23,6 +23,9 @@ public class LevelPhaseManager : MonoBehaviour
 
     private void Start()
     {
+        LevelAvgProgressTracker.ResetForNewLevel();
+        LevelAvgProgressTracker.EnsureSubscribed();
+
         if (topDownCamera == null)
             topDownCamera = FindObjectOfType<TopDownCamera>();
 
@@ -116,6 +119,7 @@ public class LevelPhaseManager : MonoBehaviour
 
     public void TransitionToDark()
     {
+        LevelAvgProgressTracker.NotifyMidTransitionApplied();
         ResetAllObjects();
         SetPhase(LevelPhase.Dark);
         var player = FindObjectOfType<PlayerController>();
@@ -142,6 +146,7 @@ public class LevelPhaseManager : MonoBehaviour
 
     public void OnLevelComplete()
     {
+        LevelAvgProgressTracker.NotifyLevelCompleteApplied();
         var levelUI = FindObjectOfType<LevelUI>();
         if (levelUI != null)
             levelUI.ShowLevelComplete();

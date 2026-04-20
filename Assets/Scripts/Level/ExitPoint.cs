@@ -17,6 +17,20 @@ public class ExitPoint : MonoBehaviour
 
     private bool triggered;
 
+    /// <summary>
+    /// 脚本驱动的 AVG（出口 mid/end）被取消（如日志跳转）时不会执行 onComplete，需重置 triggered，
+    /// 否则黑夜阶段再进出口会在「if (triggered) return」处永远被忽略。
+    /// </summary>
+    public static void ResetAllTriggersAfterScriptedAvgCancelled()
+    {
+        var exits = FindObjectsOfType<ExitPoint>();
+        foreach (var ep in exits)
+        {
+            if (ep != null)
+                ep.triggered = false;
+        }
+    }
+
     private void Start()
     {
         var col = GetComponent<Collider2D>();
@@ -30,7 +44,10 @@ public class ExitPoint : MonoBehaviour
         if (triggered) return;
 
         if (LevelConfig.IsAvgFlowBlocking)
+        {
+            Debug.LogWarning("[ExitPoint] 跳过触发：IsAvgFlowBlocking 为 true（AVG 流程未结束或状态未清理）");
             return;
+        }
 
         triggered = true;
 
@@ -38,7 +55,12 @@ public class ExitPoint : MonoBehaviour
         var playerTransform = other.transform;
 
         var pm = LevelPhaseManager.Instance;
-        if (pm == null) { Debug.LogWarning("[ExitPoint] LevelPhaseManager.Instance is null"); return; }
+        if (pm == null)
+        {
+            Debug.LogWarning("[ExitPoint] LevelPhaseManager.Instance is null");
+            triggered = false;
+            return;
+        }
 
         var cfg = FindObjectOfType<LevelConfig>();
 

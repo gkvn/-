@@ -30,11 +30,13 @@ public class LevelConfig : MonoBehaviour
     [Tooltip("等待 AvgController 出现在场景中的最长时间（秒）")]
     [SerializeField] private float avgControllerWaitTimeout = 15f;
 
-    [Tooltip("为 true 时：除 ChapterPlaybackEnded 外，还在「本章最后一句展示完毕」时结束阻塞（不必再点一次下一句）。建议开启，避免卡在 WAITING。")]
-    [SerializeField] private bool completeOnFinalLineReveal = false;
-
     /// <summary>正在等待当前 AVG 章节播完（ChapterPlaybackEnded）时为 true，用于防止重复触发出口等。</summary>
     public static bool IsAvgFlowBlocking { get; private set; }
+
+    public static void SetAvgFlowBlocking(bool value) => IsAvgFlowBlocking = value;
+
+    /// <summary>日志追赶模式是否与 <see cref="RunAvgChapterIfConfigured"/> 一样禁用玩家。</summary>
+    public bool BlockPlayerDuringAvgForCatchUp() => blockPlayerDuringAvg;
 
     public bool ShowDrawingCanvas => showDrawingCanvas;
     public bool ShowIcons => showIcons;
@@ -84,11 +86,46 @@ public class LevelConfig : MonoBehaviour
 
     private const string AVG_CONTROLLER_PREFAB_PATH = "Prefabs/avg_controller";
 
+    /// <summary>
+    /// <see cref="RunAvgChapterIfConfigured"/> 当前是否在等某一章播完；用于只响应对应章节的 <see cref="AvgController.ChapterPlaybackEnded"/>。
+    /// 日志跳转会取消等待（不执行 onComplete），避免「mid 流程挂着却先播完 start」时误触发进黑夜等回调。
+    /// </summary>
+    private static Action<string> s_scriptedAvgEndedHandler;
+    private static PlayerController s_scriptedAvgBlockedPlayer;
+    private static bool s_scriptedAvgDidBlockPlayer;
+
+    /// <summary>玩家从日志跳转到其它对白时调用：放弃当前脚本驱动的 AVG 等待，解除阻挡与订阅。</summary>
+    public static void CancelPendingScriptedAvgFlow()
+    {
+        var avg = AvgController.Instance;
+        bool hadPendingScriptedChapter = s_scriptedAvgEndedHandler != null;
+        if (avg != null && s_scriptedAvgEndedHandler != null)
+            avg.ChapterPlaybackEnded -= s_scriptedAvgEndedHandler;
+
+        s_scriptedAvgEndedHandler = null;
+        SetAvgFlowBlocking(false);
+        if (hadPendingScriptedChapter)
+            ExitPoint.ResetAllTriggersAfterScriptedAvgCancelled();
+
+        if (s_scriptedAvgDidBlockPlayer && s_scriptedAvgBlockedPlayer != null)
+            s_scriptedAvgBlockedPlayer.enabled = true;
+        s_scriptedAvgDidBlockPlayer = false;
+        s_scriptedAvgBlockedPlayer = null;
+    }
+
+    private static void ClearScriptedAvgTrackingOnly()
+    {
+        s_scriptedAvgEndedHandler = null;
+        s_scriptedAvgBlockedPlayer = null;
+        s_scriptedAvgDidBlockPlayer = false;
+    }
+
     private void Start()
     {
         if (!HasAvg)
             return;
         SpawnAvgController();
+        LevelAvgProgressTracker.EnsureSubscribed();
         StartCoroutine(RunIntroAvgWhenReady());
     }
 
@@ -132,7 +169,7 @@ public class LevelConfig : MonoBehaviour
 
     /// <summary>
     /// chapterId 为空或仅空白则直接调用 onComplete；否则播放 AVG，在章节可继续关卡时调用 onComplete。
-    /// 完成条件：ChapterPlaybackEnded（点「下一句」确认无后续）或（可选）FinalDialogLineRevealComplete（本章最后一句已展示完毕）。
+    /// 完成条件：仅 ChapterPlaybackEnded（再点「下一句」或自动播放推进，确认无后续对白时）。
     /// </summary>
     public void RunAvgChapterIfConfigured(string chapterId, Action onComplete)
     {
@@ -150,6 +187,8 @@ public class LevelConfig : MonoBehaviour
 
     private IEnumerator RunAvgChapterIfConfiguredAsync(string chapterId, Action onComplete)
     {
+        CancelPendingScriptedAvgFlow();
+
         yield return WaitForAvgControllerAsync();
         var avg = AvgController.Instance;
         if (avg == null)
@@ -177,43 +216,41 @@ public class LevelConfig : MonoBehaviour
 
         bool completed = false;
         Action<string> endedHandler = null;
-        Action<string, string> finalHandler = null;
 
-        void TryComplete(string reason)
+        void TryComplete()
         {
             if (completed)
                 return;
             completed = true;
 
-            if (avg != null)
-            {
-                if (endedHandler != null)
-                    avg.ChapterPlaybackEnded -= endedHandler;
-                if (finalHandler != null && completeOnFinalLineReveal)
-                    avg.FinalDialogLineRevealComplete -= finalHandler;
-            }
+            if (avg != null && endedHandler != null)
+                avg.ChapterPlaybackEnded -= endedHandler;
 
+            ClearScriptedAvgTrackingOnly();
             IsAvgFlowBlocking = false;
             if (blockedPlayer && player != null)
                 player.enabled = true;
             onComplete();
         }
 
-        endedHandler = _ => TryComplete("ChapterPlaybackEnded");
-        finalHandler = (_, __) => TryComplete("FinalDialogLineRevealComplete");
+        endedHandler = endedChapterId =>
+        {
+            if (!string.Equals(endedChapterId, chapterId, StringComparison.OrdinalIgnoreCase))
+                return;
+            TryComplete();
+        };
+
+        s_scriptedAvgEndedHandler = endedHandler;
+        s_scriptedAvgBlockedPlayer = player;
+        s_scriptedAvgDidBlockPlayer = blockedPlayer;
 
         avg.ChapterPlaybackEnded += endedHandler;
-        if (completeOnFinalLineReveal)
-            avg.FinalDialogLineRevealComplete += finalHandler;
 
         if (!avg.TryStartChapter(chapterId))
         {
             if (avg != null)
-            {
                 avg.ChapterPlaybackEnded -= endedHandler;
-                if (completeOnFinalLineReveal)
-                    avg.FinalDialogLineRevealComplete -= finalHandler;
-            }
+            ClearScriptedAvgTrackingOnly();
             IsAvgFlowBlocking = false;
             if (blockedPlayer && player != null)
                 player.enabled = true;

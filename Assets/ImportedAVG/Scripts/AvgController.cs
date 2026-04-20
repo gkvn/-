@@ -88,6 +88,9 @@ namespace AVG {
     private AvgMode m_currentMode = AvgMode.DEFAULT;
     private Coroutine m_typingCoroutine;
     private Coroutine m_waitCoroutine;
+    /// <summary>ChapterPlaybackEnded 同步派发期间 &gt; 0；用于链式 TryStartChapter 时跳过本章结束后的关界面。</summary>
+    private int _chapterPlaybackEndedNotifyDepth;
+    private bool _continueChapterWithoutEndUiDismiss;
 
     #region Modules
     private AvgDataManager m_dataManager;
@@ -195,15 +198,26 @@ namespace AVG {
     public bool TryStartChapter(string chapterId) {
       InitIfNot();
       _EnsureAvgUiCanvasGroup();
+      if (_chapterPlaybackEndedNotifyDepth <= 0)
+        _continueChapterWithoutEndUiDismiss = false;
       if (!m_model.NextChapter(chapterId)) {
         Debug.LogError($"无法开始章节: {chapterId}");
         return false;
       }
+      if (_chapterPlaybackEndedNotifyDepth > 0)
+        _continueChapterWithoutEndUiDismiss = true;
       _ResetAvgModeWhenReopeningUi();
       if (_HasFadeTarget()) {
-        _PrepareAvgUiCanvasForContentBeforeFadeIn();
-        _UpdateViews();
-        _GetAvgUiFadeAnim().FadeIn();
+        // 上一章链式接章时界面未关闭，避免 alpha 置 0 再 FadeIn 造成闪屏
+        if (_chapterPlaybackEndedNotifyDepth > 0 && _IsAvgUiCanvasAlreadyOpaque()) {
+          _KillAvgUiFadeTween();
+          _RestoreAvgUiCanvasInteraction();
+          _UpdateViews();
+        } else {
+          _PrepareAvgUiCanvasForContentBeforeFadeIn();
+          _UpdateViews();
+          _GetAvgUiFadeAnim().FadeIn();
+        }
       } else {
         _ApplyAvgUiShownImmediate();
         _UpdateViews();
@@ -243,6 +257,7 @@ namespace AVG {
       
       string chapterId = logLineData.chapterId;
       string dialogId = logLineData.dialogId;
+      string originChapterId = currChapterId;
       
       if (string.IsNullOrEmpty(dialogId)) {
         Debug.LogWarning("跳转的dialogId为空");
@@ -288,6 +303,8 @@ namespace AVG {
           _logView.gameObject.SetActive(false);
         }
         _avgUiWasHidden = false;
+        LevelConfig.CancelPendingScriptedAvgFlow();
+        LevelAvgProgressTracker.OnLogJumped(chapterId, originChapterId);
       }
     }
     #endregion
@@ -391,7 +408,16 @@ namespace AVG {
 
     /// <summary>一段 AVG 播完：先发事件、再淡出并在结束后清空立绘/CG/对白等。</summary>
     private void _EndChapterPlaybackUi() {
-      _NotifyChapterPlaybackEnded();
+      _chapterPlaybackEndedNotifyDepth++;
+      try {
+        _NotifyChapterPlaybackEnded();
+      } finally {
+        _chapterPlaybackEndedNotifyDepth--;
+      }
+      if (_continueChapterWithoutEndUiDismiss) {
+        _continueChapterWithoutEndUiDismiss = false;
+        return;
+      }
       _ChangeState(AvgState.IDLE);
       _KillAvgUiFadeTween();
       if (_HasFadeTarget()) {
